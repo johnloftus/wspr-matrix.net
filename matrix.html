@@ -28,7 +28,7 @@
         <p class="note">Select one or more saved WSPRnet result files. Exact duplicate rows are removed automatically.</p>
       </div>
       <div id="wsprliveGroup" class="collection-group wsprlive-group wspr-live-collector">
-        <h3>3. wspr.live Data Collection</h3>
+        <h3>3. Live Data Collection</h3>
         <p class="note">Manual requests use the latest completed 30-minute UTC bin with a shared 5-second cooldown. Automatic day collection is user-started: it acquires the nine bands every three minutes for the preceding completed bin, retains consecutive bins, and stops after the UTC day. Trial fairness mode staggers each browser's automatic requests.</p>
         <div class="wspr-live-collector-controls">
           <div><label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="auto">Auto balanced — choose once per collection</option><option value="wsprLive">wspr.live</option><option value="wd1">WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option></select></div>
@@ -40,18 +40,20 @@
           <button id="startArchiveWspr" class="secondary" type="button" hidden>Start 7-Day Continuous Archive</button>
           <button id="stopAutoWsprDay" class="secondary" type="button" disabled>Stop Automatic Collection</button>
           <button id="retryMissingWspr" class="secondary" type="button" disabled>Retry Missing Requests</button>
-          <button id="buildCollectedWsprMatrix" type="button" disabled>Build Matrix from wspr.live Data</button>
-          <button id="saveCollectedWsprJson" class="secondary" type="button" disabled>Save Collected JSON</button>
-          <button id="clearCollectedWspr" class="secondary" type="button" disabled>Clear wspr.live Collection and Matrix</button>
+          <button id="buildCollectedWsprMatrix" type="button" disabled>Build Matrix from Live Data</button>
+          <button id="saveCollectedWsprJson" class="secondary" type="button" disabled>Save Collected Data</button>
+          <button id="loadCollectedWsprData" class="secondary" type="button">Load Collected Data</button>
+          <input id="loadCollectedWsprFile" type="file" accept=".json,application/json" hidden>
+          <button id="clearCollectedWspr" class="secondary" type="button" disabled>Clear live Collection and Matrix</button>
         </div>
         <details class="wspr-live-diagnostics"><summary>Request diagnostics</summary><div id="wsprLiveDiagnostics">No collection started.</div></details>
         <details id="wsprArchiveDetails" class="wspr-live-diagnostics" hidden><summary>7-day archive history</summary><div id="wsprArchiveHistory">No archived days loaded.</div></details>
       </div>
       <div id="matrixConfigGroup" class="collection-group shared-matrix-group">
         <h3>1. Receiver Callsign and Date</h3>
-        <p class="note">Enter the receiver callsign before using wspr.live. WSPRnet files identify their reporter automatically when imported.</p>
+        <p class="note">Enter the receiver callsign. WSPRnet files identify their reporter automatically when imported.</p>
         <div class="daily-matrix-controls shared-matrix-controls">
-          <div><label for="wsprLiveReceiver">Receiver callsign for wspr.live</label><input id="wsprLiveReceiver" type="text" maxlength="20" placeholder="e.g. VK4EMM" autocomplete="off" spellcheck="false"></div>
+          <div><label for="wsprLiveReceiver">Receiver callsign</label><input id="wsprLiveReceiver" type="text" maxlength="20" placeholder="e.g. VK4EMM" autocomplete="off" spellcheck="false"></div>
           <div><label for="dailyMatrixDate">Date UTC</label><input id="dailyMatrixDate" type="text" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10"></div>
           <div><label for="dailyReporter">Reporter callsign from selected data</label><input id="dailyReporter" type="text" placeholder="Select or collect data" autocomplete="off" readonly></div>
         </div>
@@ -77,7 +79,7 @@
       </div>
       <div id="matrixBuildGroup" class="collection-group shared-matrix-group">
         <h3>4. Build Matrix from WSPRnet Data</h3>
-        <p class="note">Build from imported WSPRnet data here. Build from wspr.live data in the green collection panel, then use the shared review and export controls below.</p>
+        <p class="note">Build from imported WSPRnet data here. Build from live data in the green collection panel, then use the shared review and export controls below.</p>
       <div class="daily-matrix-toolbar">
         <button id="buildDailyMatrix" type="button" disabled>Build Matrix from WSPRnet Data</button>
         <button id="dailyCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button>
@@ -87,7 +89,7 @@
       <div class="status-card">
         <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
         <div class="wspr-live-status" id="wsprLiveStatus">No collection started. This feature makes no requests until a band button is pressed.</div>
-        <div class="daily-matrix-status" id="dailyMatrixStatus">Import saved WSPRnet data or collect wspr.live data, then build the matrix.</div>
+        <div class="daily-matrix-status" id="dailyMatrixStatus">Import saved WSPRnet data or collect live data, then build the matrix.</div>
         <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span></div>
       </div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
@@ -2608,7 +2610,7 @@
         const outcome = wsprLiveCollection.lastOutcome ? ` Last request: ${wsprLiveCollection.lastOutcome}.` : "";
         const binCount = new Set(wsprLiveCollection.requests.map(request => request.binStart)).size;
         const dayLimit = nextDay ? " The UTC day is complete; use Clear Collection before starting the next day." : "";
-        $("wsprLiveStatus").textContent = `Collection: ${wsprLiveCollection.receiver} | server ${provider.label} | UTC date ${wsprLiveCollection.dateStr} | current bin ${wsprLiveBinLabel(targetBin)} | ${wsprLiveCollection.rows.length.toLocaleString()} spots from ${wsprLiveCollection.requests.length} band requests across ${binCount} bins; ${collectedBands.size} of ${DAILY_MATRIX_BANDS.length} bands collected in this bin.${outcome}${nextRun}${dayLimit}${nextDay ? "" : state}`;
+        $("wsprLiveStatus").textContent = `Collection: ${wsprLiveCollection.receiver} | data source ${provider.label} | UTC date ${wsprLiveCollection.dateStr} | current bin ${wsprLiveBinLabel(targetBin)} | ${wsprLiveCollection.rows.length.toLocaleString()} spots from ${wsprLiveCollection.requests.length} band requests across ${binCount} bins; ${collectedBands.size} of ${DAILY_MATRIX_BANDS.length} bands collected in this bin.${outcome}${nextRun}${dayLimit}${nextDay ? "" : state}`;
       } else {
         $("wsprLiveStatus").textContent = wsprAutoRunning
           ? wsprAutoMode === "archive"
@@ -2741,7 +2743,7 @@
         $("dailyMatrixWrap").innerHTML = "";
         $("dailyGlobalMatrixWrap").innerHTML = "";
         $("dailyGlobalScope").textContent = "";
-        $("dailyMatrixStatus").textContent = "wspr.live collection and its displayed matrix were cleared.";
+        $("dailyMatrixStatus").textContent = "Live data collection and its displayed matrix were cleared.";
         $("matrixSourceBadge").textContent = "No data selected";
         $("exportDailyMatrixCsv").disabled = true;
         $("printDailyMatrix").disabled = true;
@@ -2756,7 +2758,42 @@
       const filename = `wspr_live_${collection.receiver}_${collection.dateStr}_UTC.json`;
       const text = JSON.stringify({headers:WSPR_LIVE_HEADERS, rows:collection.rows, source:"live WSPR provider collection", receiver:collection.receiver, dateUtc:collection.dateStr, providerChoice:collection.providerChoice, activeProviderId:collection.activeProviderId, providerHistory:collection.providerHistory, requests:collection.requests}, null, 2);
       downloadText(filename, text, "application/json;charset=utf-8");
-      $("wsprLiveStatus").textContent = `Downloaded ${filename} using the browser's configured download folder.`;
+      $("wsprLiveStatus").textContent = `Saved ${filename} using the browser's configured download folder.`;
+    }
+
+    async function loadCollectedWsprData(file) {
+      if (!file) return;
+      try {
+        const saved = JSON.parse(await file.text());
+        const receiver = String(saved.receiver || "").trim().toUpperCase();
+        const dateStr = String(saved.dateUtc || "").trim();
+        if (!/^[A-Z0-9/]{1,20}$/.test(receiver)) throw new Error("The saved data does not contain a valid receiver callsign.");
+        if (!isValidIsoDate(dateStr)) throw new Error("The saved data does not contain a valid UTC date.");
+        if (!Array.isArray(saved.rows) || !saved.rows.every(row => Array.isArray(row))) throw new Error("The selected file is not collected live data from WSPR Matrix.");
+        wsprLiveCollection = {
+          receiver,
+          dateStr,
+          rows: saved.rows,
+          requests: Array.isArray(saved.requests) ? saved.requests : [],
+          providerChoice: saved.providerChoice || "auto",
+          activeProviderId: saved.activeProviderId || saved.providerHistory?.at(-1)?.providerId || "wsprLive",
+          providerHistory: Array.isArray(saved.providerHistory) ? saved.providerHistory : []
+        };
+        activeWsprLiveProvider();
+        $("wsprLiveProvider").value = wsprLiveCollection.providerChoice;
+        $("wsprLiveReceiver").value = receiver;
+        $("wsprLiveReceiver").readOnly = true;
+        $("dailyReporter").value = receiver;
+        $("dailyMatrixDate").value = dateStr;
+        dailyMatrixSource = null;
+        await persistWsprLiveCollection();
+        renderWsprLiveCollector();
+        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${saved.rows.length.toLocaleString()} collected spots. Select two destination areas, then build the matrix.`;
+      } catch (error) {
+        $("wsprLiveStatus").textContent = `Unable to load collected data: ${error.message}`;
+      } finally {
+        $("loadCollectedWsprFile").value = "";
+      }
     }
 
     function buildDailyMatrixFromRows(rows, reporter, dateStr, path1, path2, details) {
@@ -2861,9 +2898,11 @@
     $("stopAutoWsprDay").addEventListener("click",()=>stopAutomaticWsprDay());
     $("retryMissingWspr").addEventListener("click",retryMissingWsprRequests);
     $("wsprArchiveHistory").addEventListener("click",event=>{const button=event.target.closest("button[data-archive-date]");if(button)exportWsprArchiveDay(button.dataset.archiveDate);});
-    $("buildCollectedWsprMatrix").addEventListener("click",buildCollectedWsprMatrix);
-    $("saveCollectedWsprJson").addEventListener("click",saveCollectedWsprJson);
-    $("clearCollectedWspr").addEventListener("click",clearWsprLiveCollection);
+   $("buildCollectedWsprMatrix").addEventListener("click",buildCollectedWsprMatrix);
+   $("saveCollectedWsprJson").addEventListener("click",saveCollectedWsprJson);
+    $("loadCollectedWsprData").addEventListener("click",()=>$("loadCollectedWsprFile").click());
+    $("loadCollectedWsprFile").addEventListener("change",event=>loadCollectedWsprData(event.target.files[0]));
+   $("clearCollectedWspr").addEventListener("click",clearWsprLiveCollection);
     $("exportDailyMatrixCsv").addEventListener("click",exportDailyMatrixCsv);
     $("printDailyMatrix").addEventListener("click",printDailyMatrix);
 </script>
