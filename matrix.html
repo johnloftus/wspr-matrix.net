@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily WSPR Path Matrix</title>
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:720px;min-width:720px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-global-table{width:428px;min-width:428px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:720px;min-width:720px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-global-table{width:428px;min-width:428px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
 .daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls,.shared-matrix-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
 </style>
 </head>
@@ -34,6 +34,7 @@
           <div><label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="auto">Auto balanced — choose once per collection</option><option value="wsprLive">wspr.live</option><option value="wd1">WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option></select></div>
           <div class="wspr-live-band-buttons" id="wsprLiveBandButtons"></div>
         </div>
+        <div class="wspr-live-next-step" id="wsprLiveNextStep">Next step: enter a receiver callsign.</div>
         <div class="daily-matrix-toolbar">
           <button id="startAutoWsprDay" class="secondary" type="button">Schedule Next Full UTC-Day</button>
           <button id="startCurrentWsprDay" class="secondary" type="button">Start Current-Day Live Collection</button>
@@ -2571,36 +2572,80 @@
       $("wsprLiveStatus").textContent = message;
     }
 
+    function setButtonHelp(id, message) {
+      const button = $(id);
+      if (button) button.title = message;
+    }
+
+    function buttonState(id, disabled, enabledHelp, disabledHelp = enabledHelp) {
+      const button = $(id);
+      if (!button) return;
+      button.disabled = disabled;
+      button.title = disabled ? disabledHelp : enabledHelp;
+    }
+
     function renderWsprLiveCollector() {
       const receiver = $("wsprLiveReceiver").value.trim().toUpperCase();
+      const receiverValid = /^[A-Z0-9/]{1,20}$/.test(receiver);
       const now = Date.now();
       const cooldownRemaining = Math.max(0, wsprLiveCooldownUntil - now);
       const targetBin = latestCompleteWsprBin();
       const targetKey = targetBin.start.toISOString();
       const locked = Boolean(wsprLiveCollection);
       const nextDay = locked && targetBin.start.toISOString().slice(0, 10) !== wsprLiveCollection.dateStr;
-      const canRequest = !wsprLiveRequestInFlight && !cooldownRemaining && !nextDay && (!locked ? Boolean(receiver) : true);
+      const canRequest = !wsprLiveRequestInFlight && !cooldownRemaining && !nextDay && (!locked ? receiverValid : true);
       $("wsprLiveProvider").disabled = locked;
+      $("wsprLiveProvider").title = locked ? "The live data server is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Choose the live data source before starting collection.";
+      $("wsprLiveReceiver").title = locked ? "The receiver callsign is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Enter the reporter callsign before collecting live data.";
       const collectedBands = new Set((wsprLiveCollection?.requests || []).filter(request => request.binStart === targetKey).map(request => request.band));
       $("wsprLiveBandButtons").innerHTML = DAILY_MATRIX_BANDS.map(item => {
         const collected = collectedBands.has(item.band);
         const disabled = !canRequest || collected;
-        return `<button class="secondary" type="button" data-wspr-live-band="${item.band}" title="${collected ? "Already collected for this UTC bin." : "Request this band from the selected live-data server."}" ${disabled ? "disabled" : ""}>${item.label}${collected ? " ✓" : ""}</button>`;
+        let help = "Request this band from the selected live data server.";
+        if (collected) help = "Already collected for this UTC bin.";
+        else if (!locked && !receiverValid) help = "Enter a valid receiver callsign before requesting this band.";
+        else if (wsprLiveRequestInFlight) help = "A live data request is already in progress.";
+        else if (cooldownRemaining) help = `Next request available in ${Math.ceil(cooldownRemaining / 1000)} seconds.`;
+        else if (nextDay) help = "This collection has reached the next UTC day. Save it if required, then clear the collection before starting again.";
+        return `<button class="secondary" type="button" data-wspr-live-band="${item.band}" title="${esc(help)}" ${disabled ? "disabled" : ""}>${item.label}${collected ? " ✓" : ""}</button>`;
       }).join("");
-      $("buildCollectedWsprMatrix").disabled = !(wsprLiveCollection?.rows.length);
-      $("saveCollectedWsprJson").disabled = !(wsprLiveCollection?.rows.length);
-      $("clearCollectedWspr").disabled = !wsprLiveCollection;
-      $("startAutoWsprDay").disabled = wsprAutoRunning;
-      $("startCurrentWsprDay").disabled = wsprAutoRunning;
-      $("startArchiveWspr").disabled = wsprAutoRunning;
-      $("stopAutoWsprDay").disabled = !wsprAutoRunning;
+      const hasRows = Boolean(wsprLiveCollection?.rows.length);
+      const path1 = selectedDailyDestination(1);
+      const path2 = selectedDailyDestination(2);
+      const hasTwoDestinations = Boolean(path1 && path2 && !(path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm));
+      buttonState("buildCollectedWsprMatrix", !hasRows || !hasTwoDestinations, "Build the matrix from the collected live data and selected destination areas.", !hasRows ? "Collect or load live data before building the matrix." : "Select two different destination areas before building the matrix.");
+      buttonState("saveCollectedWsprJson", !hasRows, "Save the current live collection to a file.", "Collect or load live data before saving it.");
+      buttonState("clearCollectedWspr", !wsprLiveCollection, "Clear the current live collection and unlock callsign, date, and server controls.", "No live collection is active.");
+      buttonState("startAutoWsprDay", wsprAutoRunning || (!locked && !receiverValid), "Schedule collection for the next complete UTC day.", wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before scheduling collection.");
+      buttonState("startCurrentWsprDay", wsprAutoRunning || (!locked && !receiverValid), "Start collecting the current UTC day from the latest completed 30-minute bin.", wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before starting collection.");
+      buttonState("startArchiveWspr", wsprAutoRunning || (!locked && !receiverValid), "Start a multi-day archive collection when this option is enabled.", WSPR_TRIAL_FAIRNESS_MODE ? "Seven-day archive is disabled in this trial build." : wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before starting archive collection.");
+      buttonState("stopAutoWsprDay", !wsprAutoRunning, "Stop the automatic live collection.", "Automatic collection is not running.");
       const failedRequests = (wsprLiveCollection?.requests || []).filter(request => request.status === "failed");
-      $("retryMissingWspr").disabled = !failedRequests.length || wsprLiveRequestInFlight;
+      buttonState("retryMissingWspr", !failedRequests.length || wsprLiveRequestInFlight || wsprAutoRunning, "Retry failed live data requests recorded in diagnostics.", wsprLiveRequestInFlight ? "A live data request is already in progress." : wsprAutoRunning ? "Stop automatic collection before retrying missing requests manually." : "Available after a live collection has failed or missing requests.");
+      setButtonHelp("loadCollectedWsprData", "Load a saved live collection file from this computer.");
+      setButtonHelp("openWsprnetQuery", "Open the WSPRnet query page in a new browser tab.");
+      setButtonHelp("buildDailyMatrix", $("dailyWsprnetFile").files.length ? "Build the matrix from imported WSPRnet files and selected destination areas." : "Import one or more saved WSPRnet files before building this matrix.");
+      setButtonHelp("dailyCountModeToggle", "Switch between raw spots, unique beacons per bin, and cumulative unique beacons.");
+      setButtonHelp("dailyGlobalCountModeToggle", "Switch counting mode for both displayed matrices.");
+      setButtonHelp("exportDailyMatrixCsv", dailyMatrixLastReport ? "Export the current matrix as a CSV file." : "Build a matrix before exporting CSV.");
+      setButtonHelp("printDailyMatrix", dailyMatrixLastReport ? "Print the current matrix or save it as PDF." : "Build a matrix before printing.");
       $("wsprLiveDiagnostics").innerHTML = !wsprLiveCollection
         ? "No collection started."
         : failedRequests.length
           ? `<strong>${failedRequests.length}</strong> missing request${failedRequests.length === 1 ? "" : "s"}.<ul>${failedRequests.slice(-12).map(request => `<li>${esc(DAILY_MATRIX_BANDS.find(item => item.band === request.band)?.label || request.band)} | ${esc(String(request.binStart || "").slice(0, 16).replace("T", " "))} UTC | ${esc(request.providerAttempts?.map(attempt => `${attempt.providerLabel}: ${attempt.outcome}`).join(" → ") || request.providerLabel || "provider not recorded")} | attempts ${request.attempts || 1} | ${esc(request.error || "Unknown error")}</li>`).join("")}</ul>`
           : "No failed requests recorded.";
+      const nextStep = (() => {
+        if (!locked && !receiverValid) return "Next step: enter a valid receiver callsign.";
+        if (wsprLiveRequestInFlight) return "Next step: wait for the current live data request to finish.";
+        if (wsprAutoRunning) return "Next step: monitor automatic collection or stop it before changing callsign, date, or server.";
+        if (nextDay) return "Next step: save the completed collection if required, then clear it before starting the next UTC day.";
+        if (failedRequests.length) return "Next step: use Retry Missing Requests, or build the matrix with the data already collected.";
+        if (!locked) return "Next step: press a band button, start current-day collection, schedule the next full UTC day, or load saved data.";
+        if (!hasRows) return "Next step: request one or more bands, or load a saved collection containing spots.";
+        if (!hasTwoDestinations) return "Next step: select two different destination areas.";
+        return "Next step: build the matrix, save the collected data, or collect more bands.";
+      })();
+      $("wsprLiveNextStep").textContent = nextStep;
       if (wsprLiveRequestInFlight) return;
       if (wsprLiveCollection) {
         const provider = activeWsprLiveProvider();
@@ -2877,8 +2922,9 @@
     $("dailyMatrixDate").value = new Date().toISOString().slice(0, 10);
     initDailyDestinationSelectors();
     restoreWsprLiveCollection();
-    $("dailyCont1").addEventListener("change",()=>populateDailyDestinationCities(1));
-    $("dailyCont2").addEventListener("change",()=>populateDailyDestinationCities(2));
+    $("dailyCont1").addEventListener("change",()=>{populateDailyDestinationCities(1);renderWsprLiveCollector();});
+    $("dailyCont2").addEventListener("change",()=>{populateDailyDestinationCities(2);renderWsprLiveCollector();});
+    ["dailyCity1","dailyCity2","dailyRadius1","dailyRadius2"].forEach(id => $(id).addEventListener("change", renderWsprLiveCollector));
     $("openWsprnetQuery").addEventListener("click",()=>window.open("https://www.wsprnet.org/drupal/wsprnet/spotquery","_blank","noopener"));
     $("buildDailyMatrix").addEventListener("click",buildDailyMatrix);
     $("dailyCountModeToggle").addEventListener("click",toggleDailyCountMode);
@@ -2888,6 +2934,7 @@
       const hasFiles = $("dailyWsprnetFile").files.length > 0;
       $("buildDailyMatrix").disabled = !hasFiles;
       if (hasFiles) $("matrixSourceBadge").textContent = "WSPRnet files selected";
+      renderWsprLiveCollector();
     });
     $("wsprLiveReceiver").addEventListener("input",renderWsprLiveCollector);
     $("wsprLiveProvider").addEventListener("change",renderWsprLiveCollector);
