@@ -10,8 +10,41 @@
 <main class="doc">
 <p><a href="index.html">Back to WSPR Matrix</a></p>
 <h1>Preferences</h1>
-<p>This page is reserved for future browser-local settings.</p>
-<p>Possible future options include preferred data source, default reporter callsign, default destination areas, endpoint radii, and startup state. These can be stored with the browser <code>localStorage</code> API.</p>
+<p>Preferences are saved in this browser only.</p>
+<form id="prefsForm">
+  <p>
+    <label for="utcOffset"><strong>Local UTC offset</strong></label><br>
+    <input id="utcOffset" type="number" min="-12" max="14" step="0.5" placeholder="10">
+  </p>
+  <p class="note">Example: Brisbane is UTC +10, so enter <code>10</code>. This adds a local-time column beside UTC in the matrix.</p>
+  <p>
+    <label for="saveFormat"><strong>Preferred save format</strong></label><br>
+    <select id="saveFormat">
+      <option value="json">JSON collected data</option>
+      <option value="csv" disabled>CSV matrix export - use Export CSV in the app</option>
+    </select>
+  </p>
+  <p><button type="submit">Save Preferences</button></p>
+</form>
+<p id="prefsStatus"></p>
+<h2>Planned Preferences</h2>
+<p>When ready, browser-local options may include default reporter callsign, default Path 1 and Path 2 destinations, default endpoint radii, default count mode, and startup state.</p>
 </main>
+<script>
+const PREFS_KEY = "wsprMatrixPreferences";
+function readPrefs(){try{return JSON.parse(localStorage.getItem(PREFS_KEY)||"{}")||{};}catch{return {};}}
+function savePrefs(prefs){localStorage.setItem(PREFS_KEY,JSON.stringify(prefs));}
+const prefs = readPrefs();
+document.getElementById("utcOffset").value = prefs.utcOffset ?? 10;
+document.getElementById("saveFormat").value = prefs.saveFormat || "json";
+document.getElementById("prefsForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const next = readPrefs();
+  next.utcOffset = document.getElementById("utcOffset").value;
+  next.saveFormat = document.getElementById("saveFormat").value;
+  savePrefs(next);
+  document.getElementById("prefsStatus").textContent = "Preferences saved in this browser.";
+});
+</script>
 </body>
 </html>

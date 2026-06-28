@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily WSPR Path Matrix</title>
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:720px;min-width:720px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-global-table{width:428px;min-width:428px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
-.daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls,.shared-matrix-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+.daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
 </style>
 </head>
 <body>
@@ -14,34 +14,34 @@
 <section id="dailyMatrixPanel">
       <h2>Daily WSPR Path Matrix - Single Reporter</h2>
       <p class="note">Developed by John Loftus (VK4EMM) · Technical assistance: OpenAI</p>
-      <p class="note">Choose one data source below, then use the shared matrix controls to compare activity received by one reporter from two independently selected destination areas.</p>
-      <div class="workflow-strip"><span>1. Receiver callsign and date</span><span>2. Configure destination areas</span><span>3. Collect or import data</span><span>4. Build, review, save, and export</span></div>
-      <div id="wsprnetGroup" class="collection-group wsprnet-group">
+      <p class="note">Choose a reporter, UTC date, and two destination areas. The app collects live ClickHouse data, then builds observed activity matrices for the selected paths and all beacons heard by the reporter.</p>
+      <div class="workflow-strip"><span>1. Receiver callsign, date, and local time</span><span>2. Configure destination areas</span><span>3. Build live matrix or load saved data</span><span>4. Review, save, and export</span></div>
+      <div id="wsprnetGroup" class="collection-group wsprnet-group" hidden>
         <h3>3. WSPRnet Data Collection <span class="panel-subtitle">(alternative source)</span></h3>
         <p class="note">Use WSPRnet to create and save source files. For busy bands, collect individual band files to avoid the 10,000-row download limit.</p>
         <div class="daily-matrix-controls wsprnet-controls">
           <div class="collection-group-action"><button id="openWsprnetQuery" class="secondary" type="button">Open WSPRnet Query</button></div>
         </div>
       </div>
-      <div id="wsprnetImportGroup" class="import-strip">
+      <div id="wsprnetImportGroup" class="import-strip" hidden>
         <div><label for="dailyWsprnetFile">Import saved WSPRnet data</label><input id="dailyWsprnetFile" type="file" accept=".json,.csv,.html,.htm,application/json,text/csv,text/html" multiple></div>
         <p class="note">Select one or more saved WSPRnet result files. Exact duplicate rows are removed automatically.</p>
       </div>
       <div id="wsprliveGroup" class="collection-group wsprlive-group wspr-live-collector">
         <h3>3. Live Data Collection</h3>
-        <p class="note">Manual requests use the latest completed 30-minute UTC bin with a shared 5-second cooldown. Automatic day collection is user-started: it acquires the nine bands every three minutes for the preceding completed bin, retains consecutive bins, and stops after the UTC day. Trial fairness mode staggers each browser's automatic requests.</p>
+        <p class="note">One live ClickHouse request collects the reporter's observed spots for the selected UTC date. Saved JSON data can be loaded later without repeating the live request.</p>
         <div class="wspr-live-collector-controls">
-          <div><label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="auto">Auto balanced — choose once per collection</option><option value="wsprLive">wspr.live</option><option value="wd1">WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option></select></div>
-          <div class="wspr-live-band-buttons" id="wsprLiveBandButtons"></div>
+          <div><label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="wd1" selected>WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option><option value="wsprLive">wspr.live</option><option value="auto">Auto fallback - WD1 first</option></select></div>
+          <div class="wspr-live-band-buttons" id="wsprLiveBandButtons" hidden></div>
         </div>
         <div class="wspr-live-next-step" id="wsprLiveNextStep">Next step: enter a receiver callsign.</div>
         <div class="daily-matrix-toolbar">
-          <button id="startAutoWsprDay" class="secondary" type="button">Schedule Next Full UTC-Day</button>
-          <button id="startCurrentWsprDay" class="secondary" type="button">Start Current-Day Live Collection</button>
+          <button id="startAutoWsprDay" class="secondary" type="button" hidden>Schedule Next Full UTC-Day</button>
+          <button id="startCurrentWsprDay" class="secondary" type="button" hidden>Start Current-Day Live Collection</button>
           <button id="startArchiveWspr" class="secondary" type="button" hidden>Start 7-Day Continuous Archive</button>
-          <button id="stopAutoWsprDay" class="secondary" type="button" disabled>Stop Automatic Collection</button>
-          <button id="retryMissingWspr" class="secondary" type="button" disabled>Retry Missing Requests</button>
-          <button id="buildCollectedWsprMatrix" type="button" disabled>Build Matrix from Live Data</button>
+          <button id="stopAutoWsprDay" class="secondary" type="button" disabled hidden>Stop Automatic Collection</button>
+          <button id="retryMissingWspr" class="secondary" type="button" disabled hidden>Retry Missing Requests</button>
+          <button id="buildCollectedWsprMatrix" type="button" disabled>Refresh Live Data and Build Matrix</button>
           <button id="saveCollectedWsprJson" class="secondary" type="button" disabled>Save Collected Data</button>
           <button id="loadCollectedWsprData" class="secondary" type="button">Load Collected Data</button>
           <input id="loadCollectedWsprFile" type="file" accept=".json,application/json" hidden>
@@ -52,10 +52,11 @@
       </div>
       <div id="matrixConfigGroup" class="collection-group shared-matrix-group">
         <h3>1. Receiver Callsign and Date</h3>
-        <p class="note">Enter the receiver callsign. WSPRnet files identify their reporter automatically when imported.</p>
+        <p class="note">Enter the receiver callsign and UTC date. Local time is displayed beside UTC when a time offset is supplied.</p>
         <div class="daily-matrix-controls shared-matrix-controls">
           <div><label for="wsprLiveReceiver">Receiver callsign</label><input id="wsprLiveReceiver" type="text" maxlength="20" placeholder="e.g. VK4EMM" autocomplete="off" spellcheck="false"></div>
           <div><label for="dailyMatrixDate">Date UTC</label><input id="dailyMatrixDate" type="text" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10"></div>
+          <div><label for="dailyLocalOffset">Local UTC offset</label><input id="dailyLocalOffset" type="number" min="-12" max="14" step="0.5" placeholder="e.g. 10"></div>
           <div><label for="dailyReporter">Reporter callsign from selected data</label><input id="dailyReporter" type="text" placeholder="Select or collect data" autocomplete="off" readonly></div>
         </div>
       <div class="daily-path-selectors">
@@ -79,18 +80,18 @@
       </div>
       </div>
       <div id="matrixBuildGroup" class="collection-group shared-matrix-group">
-        <h3>4. Build Matrix from WSPRnet Data</h3>
-        <p class="note">Build from imported WSPRnet data here. Build from live data in the green collection panel, then use the shared review and export controls below.</p>
+        <h3>4. Review Matrix</h3>
+        <p class="note">Build from live data in the green collection panel or load saved collected data, then use the shared review and export controls below.</p>
       <div class="daily-matrix-toolbar">
-        <button id="buildDailyMatrix" type="button" disabled>Build Matrix from WSPRnet Data</button>
+        <button id="buildDailyMatrix" type="button" disabled hidden>Build Matrix from WSPRnet Data</button>
         <button id="dailyCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button>
         <button id="exportDailyMatrixCsv" class="secondary" type="button" disabled>Export CSV</button>
         <button id="printDailyMatrix" class="secondary" type="button" disabled>Print / PDF</button>
       </div>
       <div class="status-card">
         <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
-        <div class="wspr-live-status" id="wsprLiveStatus">No collection started. This feature makes no requests until a band button is pressed.</div>
-        <div class="daily-matrix-status" id="dailyMatrixStatus">Import saved WSPRnet data or collect live data, then build the matrix.</div>
+        <div class="wspr-live-status" id="wsprLiveStatus">No collection started. This feature makes no requests until the refresh button is pressed.</div>
+        <div class="daily-matrix-status" id="dailyMatrixStatus">Collect live ClickHouse data or load saved data, then build the matrix.</div>
         <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span></div>
       </div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
@@ -99,7 +100,7 @@
       <div class="daily-global-scope" id="dailyGlobalScope"></div>
       <div class="daily-matrix-toolbar"><button id="dailyGlobalCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button></div>
       <div class="daily-matrix-wrap" id="dailyGlobalMatrixWrap"></div>
-      <div class="daily-matrix-note">At WSPRnet, leave <strong>Unique unchecked</strong>. <strong>Raw Spots</strong> counts every imported report row. <strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute, band, and destination cell. <strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin. Exact duplicate imported rows are removed in all modes to prevent overlapping downloaded files from double-counting the same report. Destination filtering uses each beacon Grid and the selected city radius. SNR is not used.</div>
+      <div class="daily-matrix-note"><strong>Raw Spots</strong> counts every collected report row. <strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute band/destination cell. <strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin. Destination filtering uses each beacon grid and the selected city radius. SNR is not used.</div>
       </div>
     </section>
 </main>
@@ -111,12 +112,15 @@
     const WSPR_LIVE_COOLDOWN_MS = 5 * 1000;
     const WSPR_AUTO_INTERVAL_MS = 3 * 60 * 1000;
     const WSPR_AUTO_START_DELAY_MS = 3 * 60 * 1000;
+    const CLICKHOUSE_AUTO_REFRESH_MIN_DELAY_MS = 4 * 60 * 1000;
+    const CLICKHOUSE_AUTO_REFRESH_MAX_DELAY_MS = 8 * 60 * 1000;
     const WSPR_TRIAL_FAIRNESS_MODE = true;
     const WSPR_AUTO_JITTER_MIN_MS = 20 * 1000;
     const WSPR_AUTO_JITTER_MAX_MS = 120 * 1000;
     const WSPR_AUTO_RETRY_MIN_MS = 30 * 1000;
     const WSPR_AUTO_RETRY_MAX_MS = 90 * 1000;
     const WSPR_AUTO_MAX_CONSECUTIVE_FAILURES = 3;
+    const WSPR_MATRIX_PREFS_KEY = "wsprMatrixPreferences";
     const WSPR_LIVE_DB_NAME = "dailyWsprPathMatrix";
     const WSPR_LIVE_DB_STORE = "collections";
     const WSPR_LIVE_ARCHIVE_DAYS = 7;
@@ -126,7 +130,7 @@
       {id:"wd1", label:"WsprDaemon WD1", endpoint:"https://wd1.wsprdaemon.org/"},
       {id:"wd2", label:"WsprDaemon WD2", endpoint:"https://wd2.wsprdaemon.org/"}
     ];
-    let wsprLiveCollection = null, wsprLiveCooldownUntil = 0, wsprLiveRequestInFlight = false, wsprLiveCooldownTimer = null, wsprAutoTimer = null, wsprAutoRunning = false, wsprAutoNextRunAt = 0, wsprAutoMode = null, wsprAutoJitterMs = 0, wsprAutoConsecutiveFailures = 0;
+    let wsprLiveCollection = null, wsprLiveCooldownUntil = 0, wsprLiveRequestInFlight = false, wsprLiveCooldownTimer = null, wsprAutoTimer = null, wsprAutoRunning = false, wsprAutoNextRunAt = 0, wsprAutoMode = null, wsprAutoJitterMs = 0, wsprAutoConsecutiveFailures = 0, clickHouseAutoTimer = null, clickHouseAutoRunning = false, clickHouseAutoNextRunAt = 0;
     let dailyMatrixLastReport = null, dailyMatrixSource = null, dailyMatrixCountMode = "raw";
     const DAILY_MATRIX_COUNT_MODES = ["raw", "unique", "cumulative"];
     const DAILY_MATRIX_COUNT_LABELS = {raw:"Raw Spots",unique:"Unique Beacons Per Bin",cumulative:"Cumulative Unique Beacons"};
@@ -1992,7 +1996,11 @@
     function matrixBandFooter(){return "";}
     function downloadText(filename,text,type="text/plain;charset=utf-8"){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download=filename;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 
+    function readMatrixPreferences(){try{return JSON.parse(localStorage.getItem(WSPR_MATRIX_PREFS_KEY)||"{}")||{};}catch{return {};}}
+    function saveMatrixPreferences(prefs){localStorage.setItem(WSPR_MATRIX_PREFS_KEY,JSON.stringify(prefs));}
+    function localUtcOffset(){const value=Number($("dailyLocalOffset")?.value ?? readMatrixPreferences().utcOffset ?? 0);return Number.isFinite(value)?value:0;}
     function dailySlotLabel(slot){const minutes=slot*30;return `${String(Math.floor(minutes/60)).padStart(2,"0")}:${String(minutes%60).padStart(2,"0")}`;}
+    function localSlotLabel(slot){const offsetMinutes=Math.round(localUtcOffset()*60),minutes=((slot*30+offsetMinutes)%1440+1440)%1440;return `${String(Math.floor(minutes/60)).padStart(2,"0")}:${String(minutes%60).padStart(2,"0")}`;}
     function dailyTotals(matrix){return DAILY_MATRIX_BANDS.map(item=>matrix.reduce((sum,slot)=>sum+(slot.get(item.band)||0),0));}
     function dailyFinalTotals(matrix){const last=matrix[matrix.length-1]||new Map();return DAILY_MATRIX_BANDS.map(item=>last.get(item.band)||0);}
     function dailySummaryTotals(matrix,mode){return mode==="cumulative"?dailyFinalTotals(matrix):dailyTotals(matrix);}
@@ -2253,13 +2261,14 @@
           }
         });
       }
-      return {matrix1,matrix2,globalMatrix,globalPeriodUniqueTotals,matchingRows,sourceRows:sourceTimes.length,importedRows:rows.length-1,wrongReporter,wrongDate,unreadable,earliestUtc,latestUtc,activeSlots,observedSpanMinutes,bandsPresent};
+      return {matrix1,matrix2,globalMatrix,globalPeriodUniqueTotals,matchingRows,sourceRows:sourceTimes.length,importedRows:rows.length-1,wrongReporter,wrongDate,unreadable,earliestUtc,latestUtc,activeSlots,observedSpanMinutes,bandsPresent,maxSourceSlot};
     }
 
     function matrixModelMarkers() { return new Map(); }
 
     function collectionCellState(report, slot, band) {
       if (!report.collectionRequests) return "";
+      if (report.collectionRequests.some(item => String(item.requestType || "").startsWith("clickhouse-"))) return slot <= (report.maxSourceSlot ?? -1) ? "collected" : "pending";
       const binStart = `${report.dateStr}T${dailySlotLabel(slot)}:00.000Z`;
       const request = report.collectionRequests.find(item => item.binStart === binStart && item.band === band);
       if (!request) return "pending";
@@ -2275,7 +2284,7 @@
     }
 
     function matrixBandFooter(columnSets = 1) {
-      let html=`<tr><th class="slot-cell">BAND</th>`;
+      let html=`<tr><th class="slot-cell">BAND</th><th></th>`;
       for(let set=0;set<columnSets;set++) DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`);
       return `${html}</tr>`;
     }
@@ -2286,10 +2295,10 @@
       const periodTotals=report.countMode==="raw"?dailyTotals(report.globalMatrix):report.globalPeriodUniqueTotals;
       const summaryLabel=report.countMode==="cumulative"?"FINAL UNIQUE":"BIN SUM";
       const summaryTotals=report.countMode==="cumulative"?dailyFinalTotals(report.globalMatrix):dailyTotals(report.globalMatrix);
-      let html=`<table class="daily-matrix-table daily-global-table"><thead><tr><th>UTC</th><th colspan="${DAILY_MATRIX_BANDS.length}">${esc(report.reporter)} | ALL BEACONS HEARD</th></tr><tr><th>UTC</th>`;
+      let html=`<table class="daily-matrix-table daily-global-table"><thead><tr><th>UTC</th><th>Local</th><th colspan="${DAILY_MATRIX_BANDS.length}">${esc(report.reporter)} | ALL BEACONS HEARD</th></tr><tr><th>UTC</th><th>Local</th>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
-      for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td>`;DAILY_MATRIX_BANDS.forEach(item=>{const n=report.globalMatrix[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyGlobalCell(n,max)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
-      html+=`<tr><td class="slot-cell">${summaryLabel}</td>${summaryTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr><tr><td class="slot-cell">${periodLabel}</td>${periodTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter()}</tbody></table>`;
+      for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;DAILY_MATRIX_BANDS.forEach(item=>{const n=report.globalMatrix[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyGlobalCell(n,max)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
+      html+=`<tr><td class="slot-cell">${summaryLabel}</td><td></td>${summaryTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr><tr><td class="slot-cell">${periodLabel}</td><td></td>${periodTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter()}</tbody></table>`;
       $("dailyGlobalMatrixWrap").innerHTML=html;
       $("dailyGlobalScope").textContent=`Every beacon heard by ${report.reporter}; no destination-area filter.`;
     }
@@ -2297,25 +2306,31 @@
     function renderDailyMatrix(report){
       const max=Math.max(1,...report.matrix1.flatMap(slot=>[...slot.values()]),...report.matrix2.flatMap(slot=>[...slot.values()]));
       const markers1=matrixModelMarkers(report.reporter,report.dateStr,report.path1),markers2=matrixModelMarkers(report.reporter,report.dateStr,report.path2);
-      let html=`<table class="daily-matrix-table"><thead><tr><th rowspan="2">UTC</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr>`;
+      let html=`<table class="daily-matrix-table"><thead><tr><th rowspan="2">UTC</th><th rowspan="2">Local</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
-      for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td>`;
+      for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix1[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,1)}>${matrixCellContent(n,state)}</td>`});
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix2[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,2)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
-      html+=`<tr><td class="slot-cell">${dailySummaryLabel(report.countMode)}</td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
+      html+=`<tr><td class="slot-cell">${dailySummaryLabel(report.countMode)}</td><td></td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
       renderGlobalReporterMatrix(report);
       const total1=dailySummaryTotals(report.matrix1,report.countMode).reduce((a,b)=>a+b,0),total2=dailySummaryTotals(report.matrix2,report.countMode).reduce((a,b)=>a+b,0);
-      const coverage = report.sourceRows ? `${report.earliestUtc}-${report.latestUtc} UTC; destination spots present in ${report.activeSlots} of 48 bins` : "no matching source time coverage";
+      const coverage = report.sourceRows ? `${report.earliestUtc}-${report.latestUtc} UTC; latest source spot ${report.latestUtc} UTC; destination spots present in ${report.activeSlots} of 48 bins` : "no matching source time coverage";
       const rowLimitWarning = report.rowLimitFiles.length ? ` | <strong>WSPRNET ROW LIMIT REACHED:</strong> ${report.rowLimitFiles.length} selected file${report.rowLimitFiles.length===1?"":"s"} may be truncated` : "";
       const spanWarning = report.observedSpanMinutes < 1380 ? " | <strong>LIMITED OBSERVED TIME SPAN:</strong> blank bins may be outside the WSPRnet query period" : "";
       const duplicateNote = report.duplicateRows ? ` | ${report.duplicateRows.toLocaleString()} exact duplicate imported rows removed` : "";
+      const delayNote = report.latestUtc && report.dateStr === new Date().toISOString().slice(0,10) ? (() => {
+        const latest = new Date(`${report.dateStr}T${report.latestUtc}:00Z`).getTime();
+        const minutes = Math.max(0, Math.round((Date.now() - latest) / 60000));
+        return ` | source delay about ${minutes} minutes`;
+      })() : "";
       const liveCoverage = report.collectionRequests ? (() => {
+        if (report.collectionRequests.some(item => String(item.requestType || "").startsWith("clickhouse-"))) return ` | live ClickHouse collection: ${report.collectionRequests.length.toLocaleString()} request${report.collectionRequests.length === 1 ? "" : "s"}; automatic refresh downloads one half-hour bin`;
         const successful = report.collectionRequests.filter(item => item.status !== "failed");
         const completeBins = [...new Set(successful.map(item => item.binStart))].filter(binStart => successful.filter(item => item.binStart === binStart).length === DAILY_MATRIX_BANDS.length);
         const failed = report.collectionRequests.filter(item => item.status === "failed").length;
         return ` | live collection: <strong>${completeBins.length}</strong> complete of 48 bins; ${successful.length} acquired band requests${failed ? `; <strong>${failed} missing</strong>` : ""} | <span title="— pending collection; 0 acquired with no spots; ! request failed">— pending, 0 no spots, ! missing</span>`;
       })() : "";
-      $("dailyMatrixStatus").innerHTML=`Two-path reporter matrix ready | <strong>${esc(report.reporter)}</strong> | ${esc(report.dateStr)} UTC | counting: <strong>${esc(DAILY_MATRIX_COUNT_LABELS[report.countMode]||report.countMode)}</strong> | Path 1: ${total1.toLocaleString()} counts | Path 2: ${total2.toLocaleString()} counts | bands present: ${esc(report.bandsPresent.join(", ")||"none")} | ${report.rawImportedRows.toLocaleString()} imported rows${duplicateNote} | coverage ${coverage}${liveCoverage}${rowLimitWarning}${spanWarning} | sources: ${report.filenames.length.toLocaleString()} files`;
+      $("dailyMatrixStatus").innerHTML=`Two-path reporter matrix ready | <strong>${esc(report.reporter)}</strong> | ${esc(report.dateStr)} UTC | counting: <strong>${esc(DAILY_MATRIX_COUNT_LABELS[report.countMode]||report.countMode)}</strong> | Path 1: ${total1.toLocaleString()} counts | Path 2: ${total2.toLocaleString()} counts | bands present: ${esc(report.bandsPresent.join(", ")||"none")} | ${report.rawImportedRows.toLocaleString()} imported rows${duplicateNote} | coverage ${coverage}${delayNote}${liveCoverage}${rowLimitWarning}${spanWarning} | sources: ${report.filenames.length.toLocaleString()} files`;
     }
 
     function latestCompleteWsprBin() {
@@ -2328,6 +2343,71 @@
     }
 
     function wsprLiveDateTime(value) { return value.toISOString().slice(0, 19).replace("T", " "); }
+
+    function nextClickHouseRefreshTime(now = Date.now()) {
+      const halfHour = 30 * 60 * 1000;
+      const boundary = Math.floor(now / halfHour) * halfHour;
+      let runAt = boundary + randomInteger(CLICKHOUSE_AUTO_REFRESH_MIN_DELAY_MS, CLICKHOUSE_AUTO_REFRESH_MAX_DELAY_MS);
+      if (runAt <= now) runAt = boundary + halfHour + randomInteger(CLICKHOUSE_AUTO_REFRESH_MIN_DELAY_MS, CLICKHOUSE_AUTO_REFRESH_MAX_DELAY_MS);
+      return runAt;
+    }
+
+    function scheduleClickHouseAutoRefresh() {
+      if (!clickHouseAutoRunning) return;
+      clearTimeout(clickHouseAutoTimer);
+      clickHouseAutoNextRunAt = nextClickHouseRefreshTime();
+      clickHouseAutoTimer = setTimeout(runClickHouseAutoRefresh, Math.max(0, clickHouseAutoNextRunAt - Date.now()));
+      renderWsprLiveCollector();
+    }
+
+    function startClickHouseAutoRefresh() {
+      clickHouseAutoRunning = true;
+      scheduleClickHouseAutoRefresh();
+    }
+
+    function stopClickHouseAutoRefresh() {
+      clickHouseAutoRunning = false;
+      clearTimeout(clickHouseAutoTimer);
+      clickHouseAutoTimer = null;
+      clickHouseAutoNextRunAt = 0;
+      renderWsprLiveCollector();
+    }
+
+    async function runClickHouseAutoRefresh() {
+      if (!clickHouseAutoRunning || wsprLiveRequestInFlight) {
+        scheduleClickHouseAutoRefresh();
+        return;
+      }
+      const todayUtc = new Date().toISOString().slice(0, 10);
+      if ($("dailyMatrixDate").value !== todayUtc) $("dailyMatrixDate").value = todayUtc;
+      await collectClickHouseDay({automated:true});
+      if (clickHouseAutoRunning) scheduleClickHouseAutoRefresh();
+    }
+
+    function sqlString(value) {
+      return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    }
+
+    function clickHouseCurrentBinRange(now = Date.now()) {
+      const halfHour = 30 * 60 * 1000;
+      const startMs = Math.floor(now / halfHour) * halfHour;
+      return {start:new Date(startMs), end:new Date(startMs + halfHour)};
+    }
+
+    function clickHouseSpotQuery(receiver, dateStr, range = null) {
+      const start = range ? wsprLiveDateTime(range.start) : `${dateStr} 00:00:00`;
+      const endClause = range ? `toDateTime('${wsprLiveDateTime(range.end)}', 'UTC')` : `addDays(toDateTime('${start}', 'UTC'), 1)`;
+      const bandList = DAILY_MATRIX_BANDS.map(item => item.band).join(",");
+      return `SELECT rx_sign AS Reporter, formatDateTime(time, '%F %T', 'UTC') AS Date, band AS Band, tx_loc AS Grid, tx_sign AS Call FROM wspr.rx WHERE time >= toDateTime('${start}', 'UTC') AND time < ${endClause} AND rx_sign = '${sqlString(receiver)}' AND band IN (${bandList}) AND tx_loc != '' AND match(tx_sign, '^[Q01]') = 0 ORDER BY time FORMAT JSONCompact`;
+    }
+
+    function clickHouseSpotRows(json) {
+      const names = (json.meta || []).map(column => column.name);
+      const index = name => names.indexOf(name);
+      const required = ["Reporter", "Date", "Band", "Grid", "Call"];
+      if (!required.every(name => index(name) >= 0) || !Array.isArray(json.data)) throw new Error("ClickHouse returned an unexpected result format.");
+      return json.data.map(row => required.map(name => row[index(name)]));
+    }
 
     function wsprLiveDb() {
       return new Promise((resolve, reject) => {
@@ -2361,14 +2441,15 @@
         if (collection?.receiver && Array.isArray(collection.rows) && Array.isArray(collection.requests)) {
           wsprLiveCollection = collection;
           activeWsprLiveProvider();
-          $("wsprLiveProvider").value = collection.providerChoice || "wsprLive";
+          $("wsprLiveProvider").value = collection.providerChoice || "wd1";
           $("wsprLiveReceiver").value = collection.receiver;
-          $("wsprLiveReceiver").readOnly = true;
+          $("wsprLiveReceiver").readOnly = !collection.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-"));
           $("dailyReporter").value = collection.receiver;
           $("dailyMatrixDate").value = collection.dateStr;
         }
       } catch (error) { console.warn("Unable to restore WSPR collection", error); }
       renderWsprLiveCollector();
+      if (wsprLiveCollection?.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-")) && wsprLiveCollection.dateStr === new Date().toISOString().slice(0,10)) startClickHouseAutoRefresh();
       renderWsprArchiveHistory();
     }
 
@@ -2415,7 +2496,7 @@
 
     function selectedWsprLiveProvider() {
       const choice = $("wsprLiveProvider").value;
-      return choice === "auto" ? WSPR_LIVE_PROVIDERS[randomInteger(0, WSPR_LIVE_PROVIDERS.length - 1)] : wsprLiveProviderById(choice);
+      return choice === "auto" ? wsprLiveProviderById("wd1") : wsprLiveProviderById(choice);
     }
 
     function initialiseWsprLiveCollection(receiver, dateStr) {
@@ -2433,9 +2514,9 @@
     function activeWsprLiveProvider() {
       if (!wsprLiveCollection) return selectedWsprLiveProvider();
       if (!wsprLiveCollection.activeProviderId) {
-        wsprLiveCollection.activeProviderId = "wsprLive";
-        wsprLiveCollection.providerChoice ||= "wsprLive";
-        wsprLiveCollection.providerHistory ||= [{providerId:"wsprLive", providerLabel:"wspr.live", endpoint:wsprLiveProviderById("wsprLive").endpoint, selectedAt:new Date().toISOString(), reason:"legacy collection"}];
+        wsprLiveCollection.activeProviderId = "wd1";
+        wsprLiveCollection.providerChoice ||= "wd1";
+        wsprLiveCollection.providerHistory ||= [{providerId:"wd1", providerLabel:"WsprDaemon WD1", endpoint:wsprLiveProviderById("wd1").endpoint, selectedAt:new Date().toISOString(), reason:"legacy collection"}];
       }
       return wsprLiveProviderById(wsprLiveCollection.activeProviderId);
     }
@@ -2530,7 +2611,7 @@
       if (!wsprLiveCollection) {
         initialiseWsprLiveCollection(receiver, new Date().toISOString().slice(0,10));
         $("wsprLiveReceiver").value = receiver;
-        $("wsprLiveReceiver").readOnly = true;
+        $("wsprLiveReceiver").readOnly = !wsprLiveCollection.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-"));
         $("dailyReporter").value = receiver;
         $("dailyMatrixDate").value = wsprLiveCollection.dateStr;
         persistWsprLiveCollection();
@@ -2591,7 +2672,8 @@
       const cooldownRemaining = Math.max(0, wsprLiveCooldownUntil - now);
       const targetBin = latestCompleteWsprBin();
       const targetKey = targetBin.start.toISOString();
-      const locked = Boolean(wsprLiveCollection);
+      const clickHouseCollection = Boolean(wsprLiveCollection?.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-")));
+      const locked = Boolean(wsprLiveCollection && !clickHouseCollection);
       const nextDay = locked && targetBin.start.toISOString().slice(0, 10) !== wsprLiveCollection.dateStr;
       const canRequest = !wsprLiveRequestInFlight && !cooldownRemaining && !nextDay && (!locked ? receiverValid : true);
       $("wsprLiveProvider").disabled = locked;
@@ -2613,7 +2695,8 @@
       const path1 = selectedDailyDestination(1);
       const path2 = selectedDailyDestination(2);
       const hasTwoDestinations = Boolean(path1 && path2 && !(path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm));
-      buttonState("buildCollectedWsprMatrix", !hasRows || !hasTwoDestinations, "Build the matrix from the collected live data and selected destination areas.", !hasRows ? "Collect or load live data before building the matrix." : "Select two different destination areas before building the matrix.");
+      const dateValid = isValidIsoDate($("dailyMatrixDate").value);
+      buttonState("buildCollectedWsprMatrix", wsprLiveRequestInFlight || !receiverValid || !dateValid || !hasTwoDestinations, "Collect fresh live ClickHouse data for the selected callsign/date, build the matrix, and keep refreshing after each UTC half-hour.", wsprLiveRequestInFlight ? "A live data request is already in progress." : !receiverValid ? "Enter a valid receiver callsign before building the matrix." : !dateValid ? "Enter the UTC date as YYYY-MM-DD before building the matrix." : "Select two different destination areas before building the matrix.");
       buttonState("saveCollectedWsprJson", !hasRows, "Save the current live collection to a file.", "Collect or load live data before saving it.");
       buttonState("clearCollectedWspr", !wsprLiveCollection, "Clear the current live collection and unlock callsign, date, and server controls.", "No live collection is active.");
       buttonState("startAutoWsprDay", wsprAutoRunning || (!locked && !receiverValid), "Schedule collection for the next complete UTC day.", wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before scheduling collection.");
@@ -2636,26 +2719,32 @@
           : "No failed requests recorded.";
       const nextStep = (() => {
         if (!locked && !receiverValid) return "Next step: enter a valid receiver callsign.";
+        if (!dateValid) return "Next step: enter the UTC date as YYYY-MM-DD.";
         if (wsprLiveRequestInFlight) return "Next step: wait for the current live data request to finish.";
+        if (clickHouseAutoRunning) return `Automatic refresh is active. Next refresh: ${new Date(clickHouseAutoNextRunAt).toISOString().slice(11,16)} UTC.`;
         if (wsprAutoRunning) return "Next step: monitor automatic collection or stop it before changing callsign, date, or server.";
         if (nextDay) return "Next step: save the completed collection if required, then clear it before starting the next UTC day.";
         if (failedRequests.length) return "Next step: use Retry Missing Requests, or build the matrix with the data already collected.";
-        if (!locked) return "Next step: press a band button, start current-day collection, schedule the next full UTC day, or load saved data.";
+        if (!locked) return "Next step: build from live ClickHouse data, or load saved data.";
         if (!hasRows) return "Next step: request one or more bands, or load a saved collection containing spots.";
         if (!hasTwoDestinations) return "Next step: select two different destination areas.";
-        return "Next step: build the matrix, save the collected data, or collect more bands.";
+        return "Next step: refresh live data, save the collected data, or change counting mode.";
       })();
       $("wsprLiveNextStep").textContent = nextStep;
       if (wsprLiveRequestInFlight) return;
       if (wsprLiveCollection) {
         const provider = activeWsprLiveProvider();
+        const clickHouseDay = wsprLiveCollection.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-"));
         const autoLabel = wsprAutoMode === "archive" ? "7-day continuous archive" : wsprAutoMode === "current" ? "Current-day" : "Full-day";
         const nextRun = wsprAutoRunning ? ` ${autoLabel} automatic collection active; next set begins ${new Date(wsprAutoNextRunAt).toISOString().slice(11, 16)} UTC.` : "";
-        const state = cooldownRemaining ? ` Next request available in ${Math.ceil(cooldownRemaining / 1000)} seconds.` : " Select another uncollected band or build the matrix.";
+        const state = clickHouseDay ? " Refresh live data, save the collected data, or change counting mode." : cooldownRemaining ? ` Next request available in ${Math.ceil(cooldownRemaining / 1000)} seconds.` : " Select another uncollected band or build the matrix.";
         const outcome = wsprLiveCollection.lastOutcome ? ` Last request: ${wsprLiveCollection.lastOutcome}.` : "";
         const binCount = new Set(wsprLiveCollection.requests.map(request => request.binStart)).size;
         const dayLimit = nextDay ? " The UTC day is complete; use Clear Collection before starting the next day." : "";
-        $("wsprLiveStatus").textContent = `Collection: ${wsprLiveCollection.receiver} | data source ${provider.label} | UTC date ${wsprLiveCollection.dateStr} | current bin ${wsprLiveBinLabel(targetBin)} | ${wsprLiveCollection.rows.length.toLocaleString()} spots from ${wsprLiveCollection.requests.length} band requests across ${binCount} bins; ${collectedBands.size} of ${DAILY_MATRIX_BANDS.length} bands collected in this bin.${outcome}${nextRun}${dayLimit}${nextDay ? "" : state}`;
+        const clickHouseNext = clickHouseAutoRunning ? ` Automatic refresh active; next refresh ${new Date(clickHouseAutoNextRunAt).toISOString().slice(11,16)} UTC.` : "";
+        $("wsprLiveStatus").textContent = clickHouseDay
+          ? `Collection: ${wsprLiveCollection.receiver} | data source ${provider.label} | UTC date ${wsprLiveCollection.dateStr} | ${wsprLiveCollection.rows.length.toLocaleString()} spots from ClickHouse.${outcome}${clickHouseNext}${state}`
+          : `Collection: ${wsprLiveCollection.receiver} | data source ${provider.label} | UTC date ${wsprLiveCollection.dateStr} | current bin ${wsprLiveBinLabel(targetBin)} | ${wsprLiveCollection.rows.length.toLocaleString()} spots from ${wsprLiveCollection.requests.length} band requests across ${binCount} bins; ${collectedBands.size} of ${DAILY_MATRIX_BANDS.length} bands collected in this bin.${outcome}${nextRun}${dayLimit}${nextDay ? "" : state}`;
       } else {
         $("wsprLiveStatus").textContent = wsprAutoRunning
           ? wsprAutoMode === "archive"
@@ -2663,7 +2752,7 @@
             : wsprAutoMode === "current"
             ? `Current-day live collection is scheduled to begin ${new Date(wsprAutoNextRunAt).toISOString().slice(0, 16).replace("T", " ")} UTC, collecting the preceding completed bin.`
             : `Automatic full-day collection is scheduled to begin ${new Date(wsprAutoNextRunAt).toISOString().slice(0, 16).replace("T", " ")} UTC, collecting the first completed bin of that UTC day.`
-          : receiver ? "Ready. Press a band button to start a UTC-day collection using the latest completed 30-minute bin." : "Enter a receiver callsign. This feature makes no requests until a band button is pressed.";
+          : receiver ? "Ready. Press Refresh Live Data and Build Matrix to collect ClickHouse data for the selected UTC date." : "Enter a receiver callsign. This feature makes no requests until the refresh button is pressed.";
       }
     }
 
@@ -2777,6 +2866,7 @@
     }
 
     function clearWsprLiveCollection() {
+      stopClickHouseAutoRefresh();
       if (wsprAutoRunning) stopAutomaticWsprDay("Automatic collection stopped and collection cleared.");
       wsprLiveCollection = null;
       wsprLiveCooldownUntil = 0;
@@ -2800,7 +2890,7 @@
     function saveCollectedWsprJson() {
       if (!wsprLiveCollection?.rows.length) return;
       const collection = wsprLiveCollection;
-      const filename = `wspr_live_${collection.receiver}_${collection.dateStr}_UTC.json`;
+      const filename = `wspr_matrix_${collection.receiver}_${collection.dateStr}_UTC.json`;
       const text = JSON.stringify({headers:WSPR_LIVE_HEADERS, rows:collection.rows, source:"live WSPR provider collection", receiver:collection.receiver, dateUtc:collection.dateStr, providerChoice:collection.providerChoice, activeProviderId:collection.activeProviderId, providerHistory:collection.providerHistory, requests:collection.requests}, null, 2);
       downloadText(filename, text, "application/json;charset=utf-8");
       $("wsprLiveStatus").textContent = `Saved ${filename} using the browser's configured download folder.`;
@@ -2820,8 +2910,8 @@
           dateStr,
           rows: saved.rows,
           requests: Array.isArray(saved.requests) ? saved.requests : [],
-          providerChoice: saved.providerChoice || "auto",
-          activeProviderId: saved.activeProviderId || saved.providerHistory?.at(-1)?.providerId || "wsprLive",
+          providerChoice: saved.providerChoice || "wd1",
+          activeProviderId: saved.activeProviderId || saved.providerHistory?.at(-1)?.providerId || "wd1",
           providerHistory: Array.isArray(saved.providerHistory) ? saved.providerHistory : []
         };
         activeWsprLiveProvider();
@@ -2833,12 +2923,89 @@
         dailyMatrixSource = null;
         await persistWsprLiveCollection();
         renderWsprLiveCollector();
-        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${saved.rows.length.toLocaleString()} collected spots. Select two destination areas, then build the matrix.`;
+        buildCollectedWsprMatrix();
+        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${saved.rows.length.toLocaleString()} collected spots.`;
       } catch (error) {
         $("wsprLiveStatus").textContent = `Unable to load collected data: ${error.message}`;
       } finally {
         $("loadCollectedWsprFile").value = "";
       }
+    }
+
+    async function collectClickHouseDay(options = {}) {
+      const automated = Boolean(options.automated);
+      const receiver = $("wsprLiveReceiver").value.trim().toUpperCase();
+      const dateStr = $("dailyMatrixDate").value.trim();
+      const path1 = selectedDailyDestination(1), path2 = selectedDailyDestination(2);
+      if (!/^[A-Z0-9/]{1,20}$/.test(receiver)) { $("wsprLiveStatus").textContent = "Enter a valid receiver callsign before building the matrix."; return; }
+      if (!isValidIsoDate(dateStr)) { $("wsprLiveStatus").textContent = "Enter the UTC date as YYYY-MM-DD before building the matrix."; return; }
+      if (!path1 || !path2) { $("dailyMatrixStatus").textContent = "Select both destination cities."; return; }
+      if (path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm) { $("dailyMatrixStatus").textContent = "Select two different destination areas."; return; }
+      const provider = selectedWsprLiveProvider();
+      const range = automated ? clickHouseCurrentBinRange() : null;
+      wsprLiveRequestInFlight = true;
+      const rangeLabel = range ? `${range.start.toISOString().slice(11,16)}-${range.end.toISOString().slice(11,16)} UTC` : `${dateStr} UTC`;
+      $("wsprLiveStatus").textContent = `${automated ? "Automatic refresh" : "Requesting"} ${receiver} spots for ${rangeLabel} from ${provider.label}...`;
+      renderWsprLiveCollector();
+      try {
+        const query = clickHouseSpotQuery(receiver, dateStr, range);
+        const response = await fetch(`${provider.endpoint}?query=${encodeURIComponent(query)}`, {method:"GET"});
+        if (!response.ok) {
+          const detail = (await response.text()).trim().replace(/\s+/g, " ").slice(0, 240);
+          throw new Error(`HTTP ${response.status}${detail ? `: ${detail}` : ""}`);
+        }
+        const rows = clickHouseSpotRows(await response.json());
+        const requestRecord = {
+          status:"success",
+          requestType: range ? "clickhouse-bin" : "clickhouse-day",
+          binStart: range ? range.start.toISOString() : `${dateStr}T00:00:00.000Z`,
+          binEnd: range ? range.end.toISOString() : `${dateStr}T23:59:59.999Z`,
+          attemptedAt:new Date().toISOString(),
+          providerId:provider.id,
+          providerLabel:provider.label,
+          providerEndpoint:provider.endpoint,
+          rows:rows.length
+        };
+        if (automated && wsprLiveCollection?.receiver === receiver && wsprLiveCollection?.dateStr === dateStr) {
+          const existing = new Set(wsprLiveCollection.rows.map(row => JSON.stringify(row)));
+          rows.forEach(row => { if (!existing.has(JSON.stringify(row))) wsprLiveCollection.rows.push(row); });
+          wsprLiveCollection.requests.push(requestRecord);
+          wsprLiveCollection.providerChoice = $("wsprLiveProvider").value;
+          wsprLiveCollection.activeProviderId = provider.id;
+          wsprLiveCollection.providerHistory ||= [];
+          wsprLiveCollection.providerHistory.push({providerId:provider.id, providerLabel:provider.label, endpoint:provider.endpoint, selectedAt:new Date().toISOString(), reason:"ClickHouse half-hour refresh"});
+          wsprLiveCollection.lastOutcome = `${rows.length.toLocaleString()} spots returned for ${rangeLabel} from ${provider.label}`;
+        } else {
+          wsprLiveCollection = {
+            receiver,
+            dateStr,
+            requests: [requestRecord],
+            rows,
+            providerChoice: $("wsprLiveProvider").value,
+            activeProviderId: provider.id,
+            providerHistory: [{providerId:provider.id, providerLabel:provider.label, endpoint:provider.endpoint, selectedAt:new Date().toISOString(), reason:range ? "ClickHouse half-hour refresh" : "ClickHouse day matrix collection"}],
+            lastOutcome: `${rows.length.toLocaleString()} spots returned for ${rangeLabel} from ${provider.label}`
+          };
+        }
+        $("wsprLiveReceiver").value = receiver;
+        $("wsprLiveReceiver").readOnly = false;
+        $("dailyReporter").value = receiver;
+        await persistWsprLiveCollection();
+        buildCollectedWsprMatrix();
+        $("wsprLiveStatus").textContent = `Collected ${rows.length.toLocaleString()} spots for ${receiver}, ${rangeLabel} from ${provider.label}.`;
+        if (!automated && dateStr === new Date().toISOString().slice(0,10)) startClickHouseAutoRefresh();
+      } catch (error) {
+        $("wsprLiveStatus").textContent = `Unable to collect ClickHouse data: ${error.message}`;
+        $("dailyMatrixStatus").textContent = "Live collection did not complete. Try another live data server or load saved data.";
+        console.warn(error);
+      } finally {
+        wsprLiveRequestInFlight = false;
+        renderWsprLiveCollector();
+      }
+    }
+
+    function buildOrCollectWsprMatrix() {
+      collectClickHouseDay();
     }
 
     function buildDailyMatrixFromRows(rows, reporter, dateStr, path1, path2, details) {
@@ -2872,7 +3039,8 @@
         $("dailyMatrixDate").value = dateStr;
         $("dailyReporter").value = collection.receiver;
         const providers = [...new Set(collection.requests.map(request => request.providerLabel).filter(Boolean))];
-        buildDailyMatrixFromRows([WSPR_LIVE_HEADERS, ...collection.rows], collection.receiver, dateStr, path1, path2, {filenames:[`Live WSPR ${dateStr}; ${collection.requests.length} band requests${providers.length ? `; ${providers.join(", ")}` : ""}`],rawImportedRows:collection.rows.length,duplicateRows:0,rowLimitFiles:[],collectionRequests:collection.requests,sourceLabel:"Live WSPR collection"});
+        const clickHouseDay = collection.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-"));
+        buildDailyMatrixFromRows([WSPR_LIVE_HEADERS, ...collection.rows], collection.receiver, dateStr, path1, path2, {filenames:[clickHouseDay ? `ClickHouse live data ${dateStr}; ${providers.join(", ") || "selected server"}` : `Live WSPR ${dateStr}; ${collection.requests.length} band requests${providers.length ? `; ${providers.join(", ")}` : ""}`],rawImportedRows:collection.rows.length,duplicateRows:0,rowLimitFiles:[],collectionRequests:collection.requests,sourceLabel:clickHouseDay ? "ClickHouse live data" : "Live WSPR collection"});
       } catch(error) { $("dailyMatrixStatus").textContent=`Unable to build the collected-data matrix: ${error.message}`; console.warn(error); }
     }
 
@@ -2904,7 +3072,7 @@
       else if ($("dailyWsprnetFile").files.length) buildDailyMatrix();
     }
 
-    function dailyExportRows(report){const descriptions={raw:"Raw spots - every imported report row counted",unique:"Unique beacons per bin - each callsign counted once per 30-minute, band, and destination cell",cumulative:"Cumulative unique beacons - each callsign counted once across the UTC day, with running totals shown by time bin"};const globalSummaryLabel=report.countMode==="cumulative"?"Final unique":"Bin sum";const globalSummaryTotals=report.countMode==="cumulative"?dailyFinalTotals(report.globalMatrix):dailyTotals(report.globalMatrix);const periodLabel=report.countMode==="raw"?"Period raw":"Period unique";const periodTotals=report.countMode==="raw"?dailyTotals(report.globalMatrix):report.globalPeriodUniqueTotals;const rows=[["Report","Two-Path Single Reporter Daily WSPR Matrix"],["Reporter",report.reporter],["Date UTC",report.dateStr],["Counting mode",descriptions[report.countMode]||report.countMode],["Path 1",`${report.reporter} <> ${report.path1.continent}; ${report.path1.name} centred; ${report.path1.radiusKm} km radius`],["Path 2",`${report.reporter} <> ${report.path2.continent}; ${report.path2.name} centred; ${report.path2.radiusKm} km radius`],["Source files",report.filenames.join(" | ")],["Bands present in destination areas",report.bandsPresent.join(", ")],["Raw imported rows",report.rawImportedRows],["Exact duplicate imported rows removed",report.duplicateRows],["Distinct imported rows",report.importedRows],["Reporter/date source rows",report.sourceRows],["Destination-matching counts",report.matchingRows],["WSPRnet row-limit caution",report.rowLimitFiles.length?`${report.rowLimitFiles.length} source file(s) reached 10,000 rows and may be truncated`:"No source file reached 10,000 rows"],["Observed source time span UTC",report.sourceRows?`${report.earliestUtc}-${report.latestUtc}`:"none"],["Observed span minutes",report.observedSpanMinutes],["Bins containing destination spots",`${report.activeSlots} of 48`],["Coverage caution",report.observedSpanMinutes<1380?"Limited observed time span: blank bins may be outside the WSPRnet query period":"Observed source spots span most of the UTC day"],["UTC",...DAILY_MATRIX_BANDS.map(x=>`Path 1 ${x.label}`),...DAILY_MATRIX_BANDS.map(x=>`Path 2 ${x.label}`)]];for(let slot=0;slot<48;slot++)rows.push([dailySlotLabel(slot),...DAILY_MATRIX_BANDS.map(x=>report.matrix1[slot].get(x.band)||""),...DAILY_MATRIX_BANDS.map(x=>report.matrix2[slot].get(x.band)||"")]);rows.push([dailySummaryLabel(report.countMode),...dailySummaryTotals(report.matrix1,report.countMode),...dailySummaryTotals(report.matrix2,report.countMode)],[],["All Beacons Heard by Reporter"],["UTC",...DAILY_MATRIX_BANDS.map(x=>x.label)]);for(let slot=0;slot<48;slot++)rows.push([dailySlotLabel(slot),...DAILY_MATRIX_BANDS.map(x=>report.globalMatrix[slot].get(x.band)||"")]);rows.push([globalSummaryLabel,...globalSummaryTotals],[periodLabel,...periodTotals]);return rows;}
+    function dailyExportRows(report){const descriptions={raw:"Raw spots - every imported report row counted",unique:"Unique beacons per bin - each callsign counted once per 30-minute, band, and destination cell",cumulative:"Cumulative unique beacons - each callsign counted once across the UTC day, with running totals shown by time bin"};const globalSummaryLabel=report.countMode==="cumulative"?"Final unique":"Bin sum";const globalSummaryTotals=report.countMode==="cumulative"?dailyFinalTotals(report.globalMatrix):dailyTotals(report.globalMatrix);const periodLabel=report.countMode==="raw"?"Period raw":"Period unique";const periodTotals=report.countMode==="raw"?dailyTotals(report.globalMatrix):report.globalPeriodUniqueTotals;const rows=[["Report","Two-Path Single Reporter Daily WSPR Matrix"],["Reporter",report.reporter],["Date UTC",report.dateStr],["Local UTC offset",localUtcOffset()],["Counting mode",descriptions[report.countMode]||report.countMode],["Path 1",`${report.reporter} <> ${report.path1.continent}; ${report.path1.name} centred; ${report.path1.radiusKm} km radius`],["Path 2",`${report.reporter} <> ${report.path2.continent}; ${report.path2.name} centred; ${report.path2.radiusKm} km radius`],["Source files",report.filenames.join(" | ")],["Bands present in destination areas",report.bandsPresent.join(", ")],["Raw imported rows",report.rawImportedRows],["Exact duplicate imported rows removed",report.duplicateRows],["Distinct imported rows",report.importedRows],["Reporter/date source rows",report.sourceRows],["Destination-matching counts",report.matchingRows],["WSPRnet row-limit caution",report.rowLimitFiles.length?`${report.rowLimitFiles.length} source file(s) reached 10,000 rows and may be truncated`:"No source file reached 10,000 rows"],["Observed source time span UTC",report.sourceRows?`${report.earliestUtc}-${report.latestUtc}`:"none"],["Observed span minutes",report.observedSpanMinutes],["Bins containing destination spots",`${report.activeSlots} of 48`],["Coverage caution",report.observedSpanMinutes<1380?"Limited observed time span: blank bins may be outside the WSPRnet query period":"Observed source spots span most of the UTC day"],["UTC","Local",...DAILY_MATRIX_BANDS.map(x=>`Path 1 ${x.label}`),...DAILY_MATRIX_BANDS.map(x=>`Path 2 ${x.label}`)]];for(let slot=0;slot<48;slot++)rows.push([dailySlotLabel(slot),localSlotLabel(slot),...DAILY_MATRIX_BANDS.map(x=>report.matrix1[slot].get(x.band)||""),...DAILY_MATRIX_BANDS.map(x=>report.matrix2[slot].get(x.band)||"")]);rows.push([dailySummaryLabel(report.countMode),"",...dailySummaryTotals(report.matrix1,report.countMode),...dailySummaryTotals(report.matrix2,report.countMode)],[],["All Beacons Heard by Reporter"],["UTC","Local",...DAILY_MATRIX_BANDS.map(x=>x.label)]);for(let slot=0;slot<48;slot++)rows.push([dailySlotLabel(slot),localSlotLabel(slot),...DAILY_MATRIX_BANDS.map(x=>report.globalMatrix[slot].get(x.band)||"")]);rows.push([globalSummaryLabel,"",...globalSummaryTotals],[periodLabel,"",...periodTotals]);return rows;}
     function csvCell(value){const s=String(value??"");return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s;}
     function dailyFilename(report){return `wspr_single_reporter_matrix_${report.reporter}_${report.countMode || "raw"}_${report.dateStr}`.replace(/[<>|/:*?"\\]+/g,"_").replace(/\s+/g,"_").replace(/_+/g,"_");}
     function exportDailyMatrixCsv(){if(!dailyMatrixLastReport){$("dailyMatrixStatus").textContent="Build the daily table before exporting CSV.";return;}downloadText(`${dailyFilename(dailyMatrixLastReport)}.csv`,dailyExportRows(dailyMatrixLastReport).map(row=>row.map(csvCell).join(",")).join("\n"),"text/csv;charset=utf-8");}
@@ -2920,6 +3088,7 @@
     matrixPanel.insertBefore($("matrixConfigGroup"), $("wsprliveGroup"));
     matrixPanel.insertBefore($("wsprnetImportGroup"), $("matrixBuildGroup"));
     $("dailyMatrixDate").value = new Date().toISOString().slice(0, 10);
+    $("dailyLocalOffset").value = readMatrixPreferences().utcOffset ?? 10;
     initDailyDestinationSelectors();
     restoreWsprLiveCollection();
     $("dailyCont1").addEventListener("change",()=>{populateDailyDestinationCities(1);renderWsprLiveCollector();});
@@ -2945,11 +3114,17 @@
     $("stopAutoWsprDay").addEventListener("click",()=>stopAutomaticWsprDay());
     $("retryMissingWspr").addEventListener("click",retryMissingWsprRequests);
     $("wsprArchiveHistory").addEventListener("click",event=>{const button=event.target.closest("button[data-archive-date]");if(button)exportWsprArchiveDay(button.dataset.archiveDate);});
-   $("buildCollectedWsprMatrix").addEventListener("click",buildCollectedWsprMatrix);
+   $("buildCollectedWsprMatrix").addEventListener("click",buildOrCollectWsprMatrix);
    $("saveCollectedWsprJson").addEventListener("click",saveCollectedWsprJson);
     $("loadCollectedWsprData").addEventListener("click",()=>$("loadCollectedWsprFile").click());
     $("loadCollectedWsprFile").addEventListener("change",event=>loadCollectedWsprData(event.target.files[0]));
    $("clearCollectedWspr").addEventListener("click",clearWsprLiveCollection);
+    $("dailyMatrixDate").addEventListener("input",renderWsprLiveCollector);
+    $("dailyLocalOffset").addEventListener("input",()=>{
+      const prefs=readMatrixPreferences(); prefs.utcOffset=$("dailyLocalOffset").value; saveMatrixPreferences(prefs);
+      if(dailyMatrixLastReport)renderDailyMatrix(dailyMatrixLastReport);
+      renderWsprLiveCollector();
+    });
     $("exportDailyMatrixCsv").addEventListener("click",exportDailyMatrixCsv);
     $("printDailyMatrix").addEventListener("click",printDailyMatrix);
 </script>

@@ -32,7 +32,7 @@ a.secondary{background:white;color:var(--blue)}
 <body>
 <header>
   <h1>WSPR Matrix</h1>
-  <p>A browser-based tool for turning saved WSPR reports into visual daily activity matrices by reporter, band, UTC time, and selected destination areas.</p>
+  <p>A browser-based tool for turning live ClickHouse WSPR reports into visual daily activity matrices by reporter, band, UTC time, local time, and selected destination areas.</p>
 </header>
 <main>
   <section class="hero">
@@ -44,11 +44,10 @@ a.secondary{background:white;color:var(--blue)}
     </div>
     <div class="panel">
       <h2>See when paths are active</h2>
-      <p>WSPR Matrix imports saved WSPRnet data or collected live data, then builds a 30-minute UTC table showing observed activity by band. It can compare two selected destination areas and also show all destinations heard by the reporter.</p>
+      <p>WSPR Matrix collects live ClickHouse data or loads saved collected data, then builds a 30-minute table showing observed activity by band. It can compare two selected destination areas and also show all destinations heard by the reporter.</p>
       <p>The app runs locally in your browser. No server is required for the browser app itself.</p>
       <div class="actions">
         <a class="button" href="matrix.html">Open WSPR Matrix</a>
-        <a class="button secondary" href="userguide.html">User Guide</a>
       </div>
     </div>
   </section>
@@ -56,7 +55,7 @@ a.secondary{background:white;color:var(--blue)}
     <a class="card" href="readme.html"><strong>Read Me</strong><span>Purpose, scope, and data-source overview.</span></a>
     <a class="card" href="userguide.html"><strong>User Guide</strong><span>Step-by-step use of the browser app.</span></a>
     <a class="card" href="about.html"><strong>About</strong><span>Authorship, acknowledgements, dependencies, and version notes.</span></a>
-    <a class="card" href="prefs.html"><strong>Preferences</strong><span>Placeholder for future local browser settings.</span></a>
+    <a class="card" href="prefs.html"><strong>Preferences</strong><span>Set local time offset and future browser-local defaults.</span></a>
   </nav>
   <p class="notes">WSPR Matrix reports observed WSPR activity. It does not prove short-path or long-path propagation unless supported by separate directional evidence.</p>
 </main>
