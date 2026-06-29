@@ -43,7 +43,7 @@
           <button id="retryMissingWspr" class="secondary" type="button" disabled hidden>Retry Missing Requests</button>
           <button id="buildCollectedWsprMatrix" type="button" disabled>Refresh Live Data and Build Matrix</button>
           <button id="saveCollectedWsprJson" class="secondary" type="button" disabled>Save Collected Data</button>
-          <button id="loadCollectedWsprData" class="secondary" type="button">Load Collected Data</button>
+          <button id="loadCollectedWsprData" class="secondary" type="button">Load WSPRnet Data and Build Matrix</button>
           <input id="loadCollectedWsprFile" type="file" accept=".json,application/json" hidden>
           <button id="clearCollectedWspr" class="secondary" type="button" disabled>Clear live Collection and Matrix</button>
         </div>
@@ -81,7 +81,7 @@
       </div>
       <div id="matrixBuildGroup" class="collection-group shared-matrix-group">
         <h3>4. Review Matrix</h3>
-        <p class="note">Build from live data in the green collection panel or load saved collected data, then use the shared review and export controls below.</p>
+        <p class="note">Build from live data in the green collection panel or load WSPRnet JSON data, then use the shared review and export controls below.</p>
       <div class="daily-matrix-toolbar">
         <button id="buildDailyMatrix" type="button" disabled hidden>Build Matrix from WSPRnet Data</button>
         <button id="dailyCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button>
@@ -2267,7 +2267,7 @@
     function matrixModelMarkers() { return new Map(); }
 
     function collectionCellState(report, slot, band) {
-      if (!report.collectionRequests) return "";
+      if (!report.collectionRequests) return report.sourceRows && slot > (report.maxSourceSlot ?? -1) ? "pending" : "collected";
       if (report.collectionRequests.some(item => String(item.requestType || "").startsWith("clickhouse-"))) return slot <= (report.maxSourceSlot ?? -1) ? "collected" : "pending";
       const binStart = `${report.dateStr}T${dailySlotLabel(slot)}:00.000Z`;
       const request = report.collectionRequests.find(item => item.binStart === binStart && item.band === band);
@@ -2705,7 +2705,7 @@
       buttonState("stopAutoWsprDay", !wsprAutoRunning, "Stop the automatic live collection.", "Automatic collection is not running.");
       const failedRequests = (wsprLiveCollection?.requests || []).filter(request => request.status === "failed");
       buttonState("retryMissingWspr", !failedRequests.length || wsprLiveRequestInFlight || wsprAutoRunning, "Retry failed live data requests recorded in diagnostics.", wsprLiveRequestInFlight ? "A live data request is already in progress." : wsprAutoRunning ? "Stop automatic collection before retrying missing requests manually." : "Available after a live collection has failed or missing requests.");
-      setButtonHelp("loadCollectedWsprData", "Load a saved live collection file from this computer.");
+      setButtonHelp("loadCollectedWsprData", "Load WSPRnet JSON data from this computer and build the matrix.");
       setButtonHelp("openWsprnetQuery", "Open the WSPRnet query page in a new browser tab.");
       setButtonHelp("buildDailyMatrix", $("dailyWsprnetFile").files.length ? "Build the matrix from imported WSPRnet files and selected destination areas." : "Import one or more saved WSPRnet files before building this matrix.");
       setButtonHelp("dailyCountModeToggle", "Switch between raw spots, unique beacons per bin, and cumulative unique beacons.");
@@ -2887,46 +2887,102 @@
       renderWsprLiveCollector();
     }
 
+    function clearDisplayedMatrix(message, badge = "No data selected") {
+      dailyMatrixLastReport = null;
+      dailyMatrixSource = null;
+      $("dailyMatrixWrap").innerHTML = "";
+      $("dailyGlobalMatrixWrap").innerHTML = "";
+      $("dailyGlobalScope").textContent = "";
+      $("dailyMatrixStatus").textContent = message;
+      $("matrixSourceBadge").textContent = badge;
+      $("exportDailyMatrixCsv").disabled = true;
+      $("printDailyMatrix").disabled = true;
+    }
+
+    function beginLiveMatrixRefresh(receiver, rangeLabel, providerLabel) {
+      $("dailyWsprnetFile").value = "";
+      clearDisplayedMatrix(`Requesting live ClickHouse data for ${receiver}, ${rangeLabel} from ${providerLabel}...`, "Live request running");
+    }
+
     function saveCollectedWsprJson() {
       if (!wsprLiveCollection?.rows.length) return;
       const collection = wsprLiveCollection;
       const filename = `wspr_matrix_${collection.receiver}_${collection.dateStr}_UTC.json`;
-      const text = JSON.stringify({headers:WSPR_LIVE_HEADERS, rows:collection.rows, source:"live WSPR provider collection", receiver:collection.receiver, dateUtc:collection.dateStr, providerChoice:collection.providerChoice, activeProviderId:collection.activeProviderId, providerHistory:collection.providerHistory, requests:collection.requests}, null, 2);
+      const text = JSON.stringify({headers:collection.headers || WSPR_LIVE_HEADERS, rows:collection.rows, source:"live WSPR provider collection", receiver:collection.receiver, dateUtc:collection.dateStr, providerChoice:collection.providerChoice, activeProviderId:collection.activeProviderId, providerHistory:collection.providerHistory, requests:collection.requests}, null, 2);
       downloadText(filename, text, "application/json;charset=utf-8");
       $("wsprLiveStatus").textContent = `Saved ${filename} using the browser's configured download folder.`;
     }
 
+    function dateFromWsprRows(rows, preferredDate = "") {
+      if (rows.length < 2) return "";
+      const dateIndex = wsprColumnIndex(rows[0], ["date", "timestamp", "time", "datetime", "dateutc"]);
+      if (dateIndex < 0) return "";
+      const dates = [...new Set(rows.slice(1).map(row => parseWsprUtc(row[dateIndex])?.toISOString().slice(0, 10)).filter(Boolean))];
+      if (preferredDate && dates.includes(preferredDate)) return preferredDate;
+      return dates.length === 1 ? dates[0] : "";
+    }
+
+    function latestDateFromWsprRows(rows) {
+      if (rows.length < 2) return "";
+      const dateIndex = wsprColumnIndex(rows[0], ["date", "timestamp", "time", "datetime", "dateutc"]);
+      if (dateIndex < 0) return "";
+      return [...new Set(rows.slice(1).map(row => parseWsprUtc(row[dateIndex])?.toISOString().slice(0, 10)).filter(Boolean))].sort().at(-1) || "";
+    }
+
+    function busiestDateFromWsprRows(rows) {
+      if (rows.length < 2) return "";
+      const dateIndex = wsprColumnIndex(rows[0], ["date", "timestamp", "time", "datetime", "dateutc"]);
+      if (dateIndex < 0) return "";
+      const counts = new Map();
+      rows.slice(1).forEach(row => {
+        const date = parseWsprUtc(row[dateIndex])?.toISOString().slice(0, 10);
+        if (date) counts.set(date, (counts.get(date) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0].localeCompare(a[0]))[0]?.[0] || "";
+    }
+
     async function loadCollectedWsprData(file) {
       if (!file) return;
+      stopClickHouseAutoRefresh();
+      wsprLiveCollection = null;
+      clearDisplayedMatrix(`Reading WSPRnet data from ${file.name}...`, "Loading WSPRnet JSON");
+      wsprLiveDb().then(db => { const request=db.transaction(WSPR_LIVE_DB_STORE,"readwrite").objectStore(WSPR_LIVE_DB_STORE).delete("active"); request.onsuccess=()=>db.close(); request.onerror=()=>db.close(); }).catch(error => console.warn("Unable to clear persisted live collection before WSPRnet load", error));
       try {
-        const saved = JSON.parse(await file.text());
-        const receiver = String(saved.receiver || "").trim().toUpperCase();
-        const dateStr = String(saved.dateUtc || "").trim();
+        const text = await file.text();
+        if (/^\s*[\[{]/.test(text)) {
+          const saved = JSON.parse(text);
+          const savedSource = String(saved.source || "").toLowerCase();
+          if (savedSource.includes("live wspr provider collection") || Array.isArray(saved.requests) || Array.isArray(saved.providerHistory)) {
+            throw new Error("This is saved live-collection data. Use Refresh Live Data and Build Matrix for live data, or select a WSPRnet JSON export.");
+          }
+        }
+        const sourceRows = wsprRowsFromText(text, file.name);
+        const merged = mergeWsprFileRows([{name:file.name, rows:sourceRows}]);
+        const receiver = reporterFromWsprRows(merged.rows);
+        const dateStr = String(busiestDateFromWsprRows(merged.rows) || dateFromWsprRows(merged.rows) || latestDateFromWsprRows(merged.rows) || $("dailyMatrixDate").value.trim() || "").trim();
         if (!/^[A-Z0-9/]{1,20}$/.test(receiver)) throw new Error("The saved data does not contain a valid receiver callsign.");
         if (!isValidIsoDate(dateStr)) throw new Error("The saved data does not contain a valid UTC date.");
-        if (!Array.isArray(saved.rows) || !saved.rows.every(row => Array.isArray(row))) throw new Error("The selected file is not collected live data from WSPR Matrix.");
-        wsprLiveCollection = {
-          receiver,
-          dateStr,
-          rows: saved.rows,
-          requests: Array.isArray(saved.requests) ? saved.requests : [],
-          providerChoice: saved.providerChoice || "wd1",
-          activeProviderId: saved.activeProviderId || saved.providerHistory?.at(-1)?.providerId || "wd1",
-          providerHistory: Array.isArray(saved.providerHistory) ? saved.providerHistory : []
-        };
-        activeWsprLiveProvider();
-        $("wsprLiveProvider").value = wsprLiveCollection.providerChoice;
+        const path1 = selectedDailyDestination(1), path2 = selectedDailyDestination(2);
+        if (!path1 || !path2) throw new Error("Select both destination cities before loading WSPRnet data.");
+        if (path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm) throw new Error("Select two different destination areas before loading WSPRnet data.");
         $("wsprLiveReceiver").value = receiver;
-        $("wsprLiveReceiver").readOnly = true;
+        $("wsprLiveReceiver").readOnly = false;
         $("dailyReporter").value = receiver;
         $("dailyMatrixDate").value = dateStr;
-        dailyMatrixSource = null;
-        await persistWsprLiveCollection();
+        dailyMatrixSource = "wsprnetJson";
+        buildDailyMatrixFromRows(merged.rows, receiver, dateStr, path1, path2, {
+          filenames:[file.name],
+          rawImportedRows:merged.importedRows,
+          duplicateRows:merged.duplicateRows,
+          rowLimitFiles:merged.rowLimitFiles,
+          collectionRequests:null,
+          sourceLabel:"Loaded WSPRnet JSON"
+        });
         renderWsprLiveCollector();
-        buildCollectedWsprMatrix();
-        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${saved.rows.length.toLocaleString()} collected spots.`;
+        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${merged.importedRows.toLocaleString()} WSPRnet rows.`;
       } catch (error) {
-        $("wsprLiveStatus").textContent = `Unable to load collected data: ${error.message}`;
+        $("wsprLiveStatus").textContent = `Unable to load WSPRnet data: ${error.message}`;
+        $("dailyMatrixStatus").textContent = `Unable to load WSPRnet data: ${error.message}`;
       } finally {
         $("loadCollectedWsprFile").value = "";
       }
@@ -2935,7 +2991,11 @@
     async function collectClickHouseDay(options = {}) {
       const automated = Boolean(options.automated);
       const receiver = $("wsprLiveReceiver").value.trim().toUpperCase();
-      const dateStr = $("dailyMatrixDate").value.trim();
+      let dateStr = $("dailyMatrixDate").value.trim();
+      if (!automated && dailyMatrixSource === "wsprnetJson") {
+        dateStr = new Date().toISOString().slice(0, 10);
+        $("dailyMatrixDate").value = dateStr;
+      }
       const path1 = selectedDailyDestination(1), path2 = selectedDailyDestination(2);
       if (!/^[A-Z0-9/]{1,20}$/.test(receiver)) { $("wsprLiveStatus").textContent = "Enter a valid receiver callsign before building the matrix."; return; }
       if (!isValidIsoDate(dateStr)) { $("wsprLiveStatus").textContent = "Enter the UTC date as YYYY-MM-DD before building the matrix."; return; }
@@ -2945,6 +3005,7 @@
       const range = automated ? clickHouseCurrentBinRange() : null;
       wsprLiveRequestInFlight = true;
       const rangeLabel = range ? `${range.start.toISOString().slice(11,16)}-${range.end.toISOString().slice(11,16)} UTC` : `${dateStr} UTC`;
+      if (!automated) beginLiveMatrixRefresh(receiver, rangeLabel, provider.label);
       $("wsprLiveStatus").textContent = `${automated ? "Automatic refresh" : "Requesting"} ${receiver} spots for ${rangeLabel} from ${provider.label}...`;
       renderWsprLiveCollector();
       try {
@@ -2980,6 +3041,7 @@
             receiver,
             dateStr,
             requests: [requestRecord],
+            headers: WSPR_LIVE_HEADERS,
             rows,
             providerChoice: $("wsprLiveProvider").value,
             activeProviderId: provider.id,
@@ -3040,7 +3102,7 @@
         $("dailyReporter").value = collection.receiver;
         const providers = [...new Set(collection.requests.map(request => request.providerLabel).filter(Boolean))];
         const clickHouseDay = collection.requests?.some(request => String(request.requestType || "").startsWith("clickhouse-"));
-        buildDailyMatrixFromRows([WSPR_LIVE_HEADERS, ...collection.rows], collection.receiver, dateStr, path1, path2, {filenames:[clickHouseDay ? `ClickHouse live data ${dateStr}; ${providers.join(", ") || "selected server"}` : `Live WSPR ${dateStr}; ${collection.requests.length} band requests${providers.length ? `; ${providers.join(", ")}` : ""}`],rawImportedRows:collection.rows.length,duplicateRows:0,rowLimitFiles:[],collectionRequests:collection.requests,sourceLabel:clickHouseDay ? "ClickHouse live data" : "Live WSPR collection"});
+        buildDailyMatrixFromRows([collection.headers || WSPR_LIVE_HEADERS, ...collection.rows], collection.receiver, dateStr, path1, path2, {filenames:[clickHouseDay ? `ClickHouse live data ${dateStr}; ${providers.join(", ") || "selected server"}` : `Loaded WSPRnet data ${dateStr}; ${collection.requests.length} request records${providers.length ? `; ${providers.join(", ")}` : ""}`],rawImportedRows:collection.rows.length,duplicateRows:0,rowLimitFiles:[],collectionRequests:collection.requests,sourceLabel:clickHouseDay ? "ClickHouse live data" : "Loaded WSPRnet JSON"});
       } catch(error) { $("dailyMatrixStatus").textContent=`Unable to build the collected-data matrix: ${error.message}`; console.warn(error); }
     }
 

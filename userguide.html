@@ -15,7 +15,7 @@
 <li>Open <a href="matrix.html">WSPR Matrix</a>.</li>
 <li>Enter the reporter callsign, UTC date, and local UTC offset if local time is wanted beside UTC.</li>
 <li>Choose Path 1 and Path 2 destination areas using continent, city, and radius.</li>
-<li>Build from live ClickHouse data, or load saved collected data.</li>
+<li>Build from live ClickHouse data, or use <strong>Load WSPRnet Data and Build Matrix</strong> to build from WSPRnet JSON data.</li>
 <li>Choose the counting mode: Raw Spots, Unique Beacons Per Bin, or Cumulative Unique Beacons.</li>
 <li>Use <strong>Save Collected Data</strong> if you want to keep the collected JSON data for later review.</li>
 <li>Review the path matrices and the all-destinations matrix.</li>
@@ -27,7 +27,7 @@
 <p><strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin.</p>
 <h2>Important Notes</h2>
 <ul>
-<li>Saved collected JSON data can be loaded again without repeating the live request.</li>
+<li>WSPRnet JSON data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
 <li>Blank cells mean no matching observed reports in the imported data, not proof that propagation was closed.</li>
 <li>Endpoint radius controls which beacon grids are included in each path area.</li>
 </ul>
