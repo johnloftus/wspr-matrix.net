@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily WSPR Path Matrix</title>
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-top-links{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
 .daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
-.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:96px;padding:4px 6px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
+.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{margin-top:8px}.matrix-band-actions button{padding:6px 9px;font-size:11px}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:96px;padding:4px 6px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
 </style>
 </head>
 <body>
 <main>
 <section id="dailyMatrixPanel">
+      <nav class="matrix-top-links" aria-label="Matrix navigation"><a href="index.html">Landing Page</a><a href="prefs.html">Preferences</a></nav>
       <h2>Daily WSPR Path Matrix - Single Reporter</h2>
       <p class="note">Developed by John Loftus (VK4EMM) · Technical assistance: OpenAI</p>
       <p class="note">Choose a reporter, UTC date, and two destination areas. The app collects live ClickHouse data, then builds observed activity matrices for the selected paths and all beacons heard by the reporter.</p>
@@ -93,7 +94,7 @@
         <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
         <div class="wspr-live-status" id="wsprLiveStatus">No collection started. This feature makes no requests until the refresh button is pressed.</div>
         <div class="daily-matrix-status" id="dailyMatrixStatus">Load saved data, then review the matrix.</div>
-        <div class="matrix-band-panel"><div class="matrix-band-heading">Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></div><div id="dailyBandButtons" class="matrix-band-buttons"></div></div>
+        <div class="matrix-band-panel"><div class="matrix-band-heading">Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></div><div id="dailyBandButtons" class="matrix-band-buttons"></div><div class="matrix-band-actions"><button id="saveDailyBandsAsDefault" class="secondary" type="button">Update band preferences</button></div></div>
         <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span><div class="matrix-radius-controls"><label>Path 1 Radius <select id="dailyLegendRadius1"></select></label><label>Path 2 Radius <select id="dailyLegendRadius2"></select></label></div></div>
       </div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
@@ -128,6 +129,8 @@
     const WSPR_AUTO_RETRY_MAX_MS = 90 * 1000;
     const WSPR_AUTO_MAX_CONSECUTIVE_FAILURES = 3;
     const WSPR_MATRIX_PREFS_KEY = "wsprMatrixPreferences";
+    const WSPR_MATRIX_BANDS_KEY = "wsprMatrixSelectedBands";
+    const WSPR_MATRIX_DEFAULT_BANDS_KEY = "wsprMatrixDefaultBands";
     const WSPR_LIVE_DB_NAME = "dailyWsprPathMatrix";
     const WSPR_LIVE_DB_STORE = "collections";
     const WSPR_LIVE_ARCHIVE_DAYS = 7;
@@ -2011,10 +2014,54 @@
     function dailyTotals(matrix){return DAILY_MATRIX_BANDS.map(item=>matrix.reduce((sum,slot)=>sum+(slot.get(item.band)||0),0));}
     function dailyFinalTotals(matrix){const last=matrix[matrix.length-1]||new Map();return DAILY_MATRIX_BANDS.map(item=>last.get(item.band)||0);}
 
+    function validDailyBandCodes(codes) {
+      const available = new Set(ALL_WSPR_BANDS.map(item => item.band));
+      return [...new Set((Array.isArray(codes) ? codes : []).map(Number))]
+        .filter(code => available.has(code))
+        .slice(0, MAX_DAILY_BAND_SELECTION);
+    }
+
     function setDailyMatrixBandsFromCodes(codes) {
-      const wanted = new Set(codes);
+      const validCodes = validDailyBandCodes(codes);
+      const wanted = new Set(validCodes.length ? validCodes : DEFAULT_DAILY_BAND_CODES);
       DAILY_MATRIX_BANDS = ALL_WSPR_BANDS.filter(item => wanted.has(item.band));
-      if (!DAILY_MATRIX_BANDS.length) DAILY_MATRIX_BANDS = ALL_WSPR_BANDS.filter(item => DEFAULT_DAILY_BAND_CODES.includes(item.band));
+    }
+
+    function readStoredDailyBandCodes() {
+      try {
+        const current = JSON.parse(sessionStorage.getItem(WSPR_MATRIX_BANDS_KEY) || "null");
+        if (Array.isArray(current)) return current;
+      } catch {}
+      try {
+        const defaults = JSON.parse(localStorage.getItem(WSPR_MATRIX_DEFAULT_BANDS_KEY) || "null");
+        if (Array.isArray(defaults)) return defaults;
+      } catch {}
+      return readMatrixPreferences().dailyBandCodes;
+    }
+
+    function restoreDailyBandSelection() {
+      setDailyMatrixBandsFromCodes(readStoredDailyBandCodes());
+    }
+
+    function currentDailyBandCodes() {
+      return DAILY_MATRIX_BANDS.map(item => item.band);
+    }
+
+    function saveDailyBandSelection() {
+      try { sessionStorage.setItem(WSPR_MATRIX_BANDS_KEY, JSON.stringify(currentDailyBandCodes())); } catch {}
+    }
+
+    function saveDailyBandsAsDefaultPreference() {
+      const codes = currentDailyBandCodes();
+      try {
+        localStorage.setItem(WSPR_MATRIX_DEFAULT_BANDS_KEY, JSON.stringify(codes));
+        sessionStorage.setItem(WSPR_MATRIX_BANDS_KEY, JSON.stringify(codes));
+        localStorage.removeItem(WSPR_MATRIX_BANDS_KEY);
+      } catch {}
+      const prefs = readMatrixPreferences();
+      prefs.dailyBandCodes = codes;
+      saveMatrixPreferences(prefs);
+      renderDailyBandButtons("Band preferences updated");
     }
 
     function renderDailyBandButtons(message = "") {
@@ -2041,6 +2088,7 @@
         selected.add(band);
       }
       setDailyMatrixBandsFromCodes([...selected]);
+      saveDailyBandSelection();
       renderDailyBandButtons(message);
       renderWsprLiveCollector();
       if (dailyMatrixLastReport) rebuildDisplayedDailyMatrix();
@@ -2757,17 +2805,8 @@
       $("wsprLiveProvider").title = locked ? "The live data server is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Choose the live data source before manual collection.";
       $("wsprLiveReceiver").title = locked ? "The receiver callsign is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Enter the reporter callsign before collecting live data.";
       const collectedBands = new Set((wsprLiveCollection?.requests || []).filter(request => request.binStart === targetKey).map(request => request.band));
-      $("wsprLiveBandButtons").innerHTML = DAILY_MATRIX_BANDS.map(item => {
-        const collected = collectedBands.has(item.band);
-        const disabled = !canRequest || collected;
-        let help = "Request this band from the selected live data server.";
-        if (collected) help = "Already collected for this UTC bin.";
-        else if (!locked && !receiverValid) help = "Enter a valid receiver callsign before requesting this band.";
-        else if (wsprLiveRequestInFlight) help = "A live data request is already in progress.";
-        else if (cooldownRemaining) help = `Next request available in ${Math.ceil(cooldownRemaining / 1000)} seconds.`;
-        else if (nextDay) help = "This collection has reached the next UTC day. Save it if required, then clear the collection before starting again.";
-        return `<button class="secondary" type="button" data-wspr-live-band="${item.band}" title="${esc(help)}" ${disabled ? "disabled" : ""}>${item.label}${collected ? " ✓" : ""}</button>`;
-      }).join("");
+      $("wsprLiveBandButtons").hidden = true;
+      $("wsprLiveBandButtons").innerHTML = "";
       const hasRows = Boolean(wsprLiveCollection?.rows.length);
       const path1 = selectedDailyDestination(1);
       const path2 = selectedDailyDestination(2);
@@ -3237,6 +3276,7 @@
     $("dailyMatrixDate").value = new Date().toISOString().slice(0, 10);
     $("dailyLocalOffset").value = readMatrixPreferences().utcOffset ?? 10;
     initDailyDestinationSelectors();
+    restoreDailyBandSelection();
     renderDailyBandButtons();
     restoreWsprLiveCollection();
     $("dailyCont1").addEventListener("change",()=>{populateDailyDestinationCities(1);renderWsprLiveCollector();});
@@ -3258,6 +3298,7 @@
     $("dailyCountModeToggle").addEventListener("click",toggleDailyCountMode);
     $("dailyGlobalCountModeToggle").addEventListener("click",toggleDailyCountMode);
     $("dailyBandButtons").addEventListener("click",event=>{const button=event.target.closest("button[data-daily-band]");if(button)toggleDailyBandSelection(Number(button.dataset.dailyBand));});
+    $("saveDailyBandsAsDefault").addEventListener("click",saveDailyBandsAsDefaultPreference);
     $("dailyWsprnetFile").addEventListener("change",detectDailyReporter);
     $("dailyWsprnetFile").addEventListener("change",()=>{
       const hasFiles = $("dailyWsprnetFile").files.length > 0;

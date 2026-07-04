@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WSPR Matrix Preferences</title>
 <link rel="stylesheet" href="site.css">
+<style>
+.band-pref-panel{margin:18px 0;padding:14px;border:1px solid #d7dde4;border-radius:8px;background:#fff}.band-pref-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px;color:#56616e;font-size:13px;font-weight:700}.band-pref-buttons{display:flex;flex-wrap:wrap;gap:6px}.band-pref-buttons button{min-width:54px;padding:6px 8px;border:1px solid #1d4f84;border-radius:5px;font-weight:700;cursor:pointer}.band-pref-buttons button.active{background:#1d4f84;color:#fff}.band-pref-buttons button.secondary{background:#fff;color:#1d4f84}.note{color:#56616e;font-size:13px;line-height:1.45}
+</style>
 </head>
 <body>
 <main class="doc">
@@ -24,6 +27,11 @@
       <option value="csv" disabled>CSV matrix export - use Export CSV in the app</option>
     </select>
   </p>
+  <div class="band-pref-panel">
+    <div class="band-pref-heading">Default matrix bands <span id="bandPrefStatus">9 of 10 selected</span></div>
+    <div id="bandPrefButtons" class="band-pref-buttons"></div>
+    <p class="note">These bands will be selected by default in the matrix. Maximum 10 bands can be selected at one time.</p>
+  </div>
   <p><button type="submit">Save Preferences</button></p>
 </form>
 <p id="prefsStatus"></p>
@@ -32,17 +40,55 @@
 </main>
 <script>
 const PREFS_KEY = "wsprMatrixPreferences";
+const BANDS_KEY = "wsprMatrixDefaultBands";
+const CURRENT_BANDS_KEY = "wsprMatrixSelectedBands";
+const ALL_BANDS = [{band:-1,label:"LF"},{band:0,label:"MF"},{band:1,label:"160m"},{band:3,label:"80m"},{band:5,label:"60m"},{band:7,label:"40m"},{band:10,label:"30m"},{band:13,label:"22m"},{band:14,label:"20m"},{band:18,label:"17m"},{band:21,label:"15m"},{band:24,label:"12m"},{band:28,label:"10m"},{band:50,label:"6m"},{band:70,label:"4m"},{band:144,label:"2m"},{band:432,label:"70cm"},{band:1296,label:"23cm"}];
+const DEFAULT_BANDS = [1,3,7,10,14,18,21,24,28];
+const MAX_BANDS = 10;
+let selectedBands = [];
 function readPrefs(){try{return JSON.parse(localStorage.getItem(PREFS_KEY)||"{}")||{};}catch{return {};}}
 function savePrefs(prefs){localStorage.setItem(PREFS_KEY,JSON.stringify(prefs));}
+function validBandCodes(codes){const available=new Set(ALL_BANDS.map(item=>item.band));return [...new Set((Array.isArray(codes)?codes:[]).map(Number))].filter(code=>available.has(code)).slice(0,MAX_BANDS);}
+function readJsonArray(key){try{const stored=JSON.parse(localStorage.getItem(key)||"null");if(Array.isArray(stored))return stored;}catch{}return null;}
+function readStoredBands(){return readJsonArray(BANDS_KEY)||readPrefs().dailyBandCodes;}
+function setSelectedBands(codes){selectedBands=validBandCodes(codes);if(!selectedBands.length)selectedBands=DEFAULT_BANDS.slice();}
+function renderBandButtons(message=""){
+  const selected=new Set(selectedBands);
+  document.getElementById("bandPrefButtons").innerHTML=ALL_BANDS.map(item=>`<button type="button" class="${selected.has(item.band)?"active":"secondary"}" data-band="${item.band}" aria-pressed="${selected.has(item.band)}">${item.label}</button>`).join("");
+  document.getElementById("bandPrefStatus").textContent=message||`${selectedBands.length} of ${MAX_BANDS} selected`;
+}
+function saveBandPreference(){localStorage.setItem(BANDS_KEY,JSON.stringify(selectedBands));localStorage.removeItem(CURRENT_BANDS_KEY);try{sessionStorage.removeItem(CURRENT_BANDS_KEY);}catch{}const prefs=readPrefs();prefs.dailyBandCodes=selectedBands;savePrefs(prefs);}
 const prefs = readPrefs();
 document.getElementById("utcOffset").value = prefs.utcOffset ?? 10;
 document.getElementById("saveFormat").value = prefs.saveFormat || "json";
+setSelectedBands(readStoredBands());
+renderBandButtons();
+document.getElementById("bandPrefButtons").addEventListener("click", event => {
+  const button = event.target.closest("button[data-band]");
+  if (!button) return;
+  const band = Number(button.dataset.band);
+  const selected = new Set(selectedBands);
+  let message = "";
+  if (selected.has(band)) {
+    if (selected.size === 1) message = "At least one band must remain selected";
+    else selected.delete(band);
+  } else if (selected.size >= MAX_BANDS) {
+    message = `Maximum ${MAX_BANDS} bands selected`;
+  } else {
+    selected.add(band);
+  }
+  setSelectedBands([...selected]);
+  saveBandPreference();
+  renderBandButtons(message);
+});
 document.getElementById("prefsForm").addEventListener("submit", event => {
   event.preventDefault();
   const next = readPrefs();
   next.utcOffset = document.getElementById("utcOffset").value;
   next.saveFormat = document.getElementById("saveFormat").value;
+  next.dailyBandCodes = selectedBands;
   savePrefs(next);
+  saveBandPreference();
   document.getElementById("prefsStatus").textContent = "Preferences saved in this browser.";
 });
 </script>
