@@ -2085,7 +2085,7 @@
     }
 
     function normalizeWsprHeader(value) {
-      return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
+      return String(value ?? "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
     }
 
     function rowsFromHtmlTable(text) {
@@ -2192,7 +2192,7 @@
     }
 
     function numericWsprValue(value) {
-      const match = String(value || "").trim().match(/-?\d+(?:\.\d+)?/);
+      const match = String(value ?? "").trim().match(/-?\d+(?:\.\d+)?/);
       return match ? Number(match[0]) : NaN;
     }
 
@@ -2213,7 +2213,7 @@
     }
 
     function wsprBandFromValue(value, exactBandCode = false) {
-      const text = String(value || "").trim().toLowerCase();
+      const text = String(value ?? "").trim().toLowerCase();
       if (text === "lf") return -1;
       if (text === "mf") return 0;
       const number = numericWsprValue(text);
@@ -2474,7 +2474,8 @@
       const start = range ? wsprLiveDateTime(range.start) : `${dateStr} 00:00:00`;
       const endClause = range ? `toDateTime('${wsprLiveDateTime(range.end)}', 'UTC')` : `addDays(toDateTime('${start}', 'UTC'), 1)`;
       const bandList = DAILY_MATRIX_BANDS.map(item => item.band).join(",");
-      return `SELECT rx_sign AS Reporter, formatDateTime(time, '%F %T', 'UTC') AS Date, band AS Band, tx_loc AS Grid, tx_sign AS Call FROM wspr.rx WHERE time >= toDateTime('${start}', 'UTC') AND time < ${endClause} AND rx_sign = '${sqlString(receiver)}' AND band IN (${bandList}) AND tx_loc != '' AND match(tx_sign, '^[Q01]') = 0 ORDER BY time FORMAT JSONCompact`;
+      const bandExpr = "toInt32(if(frequency / 1000000 < 0.25, -1, floor(frequency / 1000000)))";
+      return `SELECT rx_sign AS Reporter, formatDateTime(time, '%F %T', 'UTC') AS Date, ${bandExpr} AS Band, tx_loc AS Grid, tx_sign AS Call FROM wspr.rx WHERE time >= toDateTime('${start}', 'UTC') AND time < ${endClause} AND rx_sign = '${sqlString(receiver)}' AND ${bandExpr} IN (${bandList}) AND tx_loc != '' AND match(tx_sign, '^[Q01]') = 0 ORDER BY time FORMAT JSONCompact`;
     }
 
     function clickHouseSpotRows(json) {
@@ -2840,7 +2841,8 @@
     }
 
     function wsprLiveQuery(receiver, band, bin) {
-      return `SELECT formatDateTime(rx.time, '%F %T', 'UTC') AS spot_time, rx.band, rx.rx_sign, rx.tx_sign, rx.tx_loc FROM wspr.rx AS rx WHERE rx.time >= toDateTime('${wsprLiveDateTime(bin.start)}', 'UTC') AND rx.time < toDateTime('${wsprLiveDateTime(bin.end)}', 'UTC') AND rx.band = ${band} AND rx.rx_sign = '${receiver}' ORDER BY rx.time FORMAT JSONCompact`;
+      const bandExpr = "toInt32(if(rx.frequency / 1000000 < 0.25, -1, floor(rx.frequency / 1000000)))";
+      return `SELECT formatDateTime(rx.time, '%F %T', 'UTC') AS spot_time, ${bandExpr} AS band, rx.rx_sign, rx.tx_sign, rx.tx_loc FROM wspr.rx AS rx WHERE rx.time >= toDateTime('${wsprLiveDateTime(bin.start)}', 'UTC') AND rx.time < toDateTime('${wsprLiveDateTime(bin.end)}', 'UTC') AND ${bandExpr} = ${band} AND rx.rx_sign = '${receiver}' ORDER BY rx.time FORMAT JSONCompact`;
     }
 
     function wsprLiveRows(json) {
