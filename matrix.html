@@ -5,19 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily WSPR Path Matrix</title>
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1480px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-top-links{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:end}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:1fr 1fr 130px;gap:8px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
-.daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
-.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{margin-top:8px}.matrix-band-actions button{padding:6px 9px;font-size:11px}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:96px;padding:4px 6px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1040px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-heading-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.matrix-heading-row h2{margin-bottom:0}.matrix-top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin:0}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:130px minmax(170px,260px);gap:8px;align-items:center}.wspr-live-collector-controls label{margin:0}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:minmax(126px,1.15fr) minmax(98px,1fr) 78px;gap:6px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.matrix-heading-row{display:block}.matrix-top-links{justify-content:flex-start;margin-top:10px}.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+.daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix,button.matrix-refresh-button{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
+.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.daily-matrix-table .path-separator{background:#fff!important;border-left:2px solid #cbd5df;border-right:2px solid #cbd5df;color:transparent;padding:0}.daily-matrix-table .col-hover{box-shadow:inset 0 999px rgba(255,210,222,.34)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{display:inline-flex;margin-left:4px}.matrix-band-actions button{padding:5px 8px;font-size:11px}.matrix-refresh-button{padding:4px 8px;font-size:11px}.matrix-status-hidden{display:none!important}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:78px;padding:4px 5px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
 </style>
 </head>
 <body>
 <main>
 <section id="dailyMatrixPanel">
-      <nav class="matrix-top-links" aria-label="Matrix navigation"><a href="index.html">Landing Page</a><a href="prefs.html">Preferences</a></nav>
-      <h2>Daily WSPR Path Matrix - Single Reporter</h2>
+      <div class="matrix-heading-row"><h2>Daily WSPR Path Matrix - Single Reporter</h2><nav class="matrix-top-links" aria-label="Matrix navigation"><a href="index.html">Landing Page</a><a href="prefs.html">Preferences</a></nav></div>
       <p class="note">Developed by John Loftus (VK4EMM) · Technical assistance: OpenAI</p>
-      <p class="note">Choose a reporter, UTC date, and two destination areas. The app collects live ClickHouse data, then builds observed activity matrices for the selected paths and all beacons heard by the reporter.</p>
-      <div class="workflow-strip"><span>1. Receiver callsign, date, and local time</span><span>2. Configure destination areas</span><span>3. Refresh Live Data or Load Saved Data</span><span>4. Review, save, and export</span></div>
+      <div class="workflow-strip"><span>1. Receiver callsign, date, and local UTC offset</span><span>2. Configure destination areas</span><span>3. Refresh Data or Load Saved Data</span><span>4. Review, save, and export</span></div>
+      <p class="note">Choose a reporter, UTC date, and two destination areas. The app collects live data, then builds observed activity matrices for the selected paths.</p>
       <div id="wsprnetGroup" class="collection-group wsprnet-group" hidden>
         <h3>3. Saved Data Collection <span class="panel-subtitle">(alternative source)</span></h3>
         <p class="note">Use WSPRnet to create and save source files. For busy bands, collect individual band files to avoid the 10,000-row download limit.</p>
@@ -25,15 +24,14 @@
           <div class="collection-group-action"><button id="openWsprnetQuery" class="secondary" type="button">Open WSPRnet Query</button></div>
         </div>
       </div>
-      <div id="wsprnetImportGroup" class="import-strip" hidden>
+      <div id="wsprnetImportGroup" class="import-strip">
         <div><label for="dailyWsprnetFile">Import saved Data</label><input id="dailyWsprnetFile" type="file" accept=".json,.csv,.html,.htm,application/json,text/csv,text/html" multiple></div>
-        <p class="note">Select one or more saved WSPRnet result files. Exact duplicate rows are removed automatically.</p>
+        <p class="note">Select one or more saved files. Exact duplicate rows are removed automatically.</p>
       </div>
       <div id="wsprliveGroup" class="collection-group wsprlive-group wspr-live-collector">
         <h3>3. Live or Saved Data Collection</h3>
-        <p class="note">Press Refresh Live Data and Build Matrix for a deliberate one-time live request, or load a saved JSON data file. Automatic live collection is disabled to avoid unattended server load.</p>
         <div class="wspr-live-collector-controls">
-          <div><label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="wd1" selected>WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option><option value="wsprLive">wspr.live</option><option value="auto">Auto fallback - WD1 first</option></select></div>
+          <label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="wd1" selected>WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option><option value="wsprLive">wspr.live</option><option value="auto">Auto fallback - WD1 first</option></select>
           <div class="wspr-live-band-buttons" id="wsprLiveBandButtons" hidden></div>
         </div>
         <div class="wspr-live-next-step" id="wsprLiveNextStep">Next step: enter a receiver callsign.</div>
@@ -43,11 +41,11 @@
           <button id="startArchiveWspr" class="secondary" type="button" hidden>Start 7-Day Continuous Archive</button>
           <button id="stopAutoWsprDay" class="secondary" type="button" disabled hidden>Stop Automatic Collection</button>
           <button id="retryMissingWspr" class="secondary" type="button" disabled hidden>Retry Missing Requests</button>
-          <button id="buildCollectedWsprMatrix" type="button" disabled>Refresh Live Data and Build Matrix</button>
+          <button id="buildCollectedWsprMatrix" type="button" disabled>Refresh and Build Matrix</button>
           <button id="saveCollectedWsprJson" class="secondary" type="button" disabled>Save Collected Data</button>
           <button id="loadCollectedWsprData" class="secondary" type="button">Load saved Data and Build Matrix</button>
-          <input id="loadCollectedWsprFile" type="file" accept=".json,application/json" hidden>
-          <button id="clearCollectedWspr" class="secondary" type="button" disabled>Clear live Collection and Matrix</button>
+          <input id="loadCollectedWsprFile" type="file" accept=".json,.csv,.html,.htm,application/json,text/csv,text/html" multiple hidden>
+          <button id="clearCollectedWspr" class="secondary" type="button" disabled>Clear Matrix</button>
         </div>
         <details class="wspr-live-diagnostics"><summary>Request diagnostics</summary><div id="wsprLiveDiagnostics">No collection started.</div></details>
         <details id="wsprArchiveDetails" class="wspr-live-diagnostics" hidden><summary>7-day archive history</summary><div id="wsprArchiveHistory">No archived days loaded.</div></details>
@@ -68,7 +66,7 @@
           <div class="daily-path-selector-grid">
             <div><label for="dailyCont1">Continent</label><select id="dailyCont1"></select></div>
             <div><label for="dailyCity1">City</label><select id="dailyCity1"></select></div>
-            <div><label for="dailyRadius1">Radius</label><select id="dailyRadius1"></select></div>
+            <div><label for="dailyRadius1">Radius km</label><select id="dailyRadius1"></select></div>
           </div>
         </div>
         <div class="daily-path-selector path2">
@@ -76,7 +74,7 @@
           <div class="daily-path-selector-grid">
             <div><label for="dailyCont2">Continent</label><select id="dailyCont2"></select></div>
             <div><label for="dailyCity2">City</label><select id="dailyCity2"></select></div>
-            <div><label for="dailyRadius2">Radius</label><select id="dailyRadius2"></select></div>
+            <div><label for="dailyRadius2">Radius km</label><select id="dailyRadius2"></select></div>
           </div>
         </div>
       </div>
@@ -91,19 +89,19 @@
         <button id="printDailyMatrix" class="secondary" type="button" disabled>Print / PDF</button>
       </div>
       <div class="status-card">
-        <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
-        <div class="wspr-live-status" id="wsprLiveStatus">No collection started. This feature makes no requests until the refresh button is pressed.</div>
-        <div class="daily-matrix-status" id="dailyMatrixStatus">Load saved data, then review the matrix.</div>
-        <div class="matrix-band-panel"><div class="matrix-band-heading">Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></div><div id="dailyBandButtons" class="matrix-band-buttons"></div><div class="matrix-band-actions"><button id="saveDailyBandsAsDefault" class="secondary" type="button">Update band preferences</button></div></div>
-        <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span><div class="matrix-radius-controls"><label>Path 1 Radius <select id="dailyLegendRadius1"></select></label><label>Path 2 Radius <select id="dailyLegendRadius2"></select></label></div></div>
+        <h3 class="matrix-status-hidden">Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
+        <div class="wspr-live-status matrix-status-hidden" id="wsprLiveStatus">No collection started. This feature makes no requests until the refresh button is pressed.</div>
+        <div class="daily-matrix-status matrix-status-hidden" id="dailyMatrixStatus">Load saved data, then review the matrix.</div>
+        <div class="matrix-band-panel"><div class="matrix-band-heading">Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></div><div id="dailyBandButtons" class="matrix-band-buttons"></div></div>
+        <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span><button id="legendRefreshMatrix" class="secondary matrix-refresh-button" type="button">Refresh</button><div class="matrix-radius-controls"><label>Path 1 Radius km <select id="dailyLegendRadius1"></select></label><label>Path 2 Radius km <select id="dailyLegendRadius2"></select></label></div></div>
       </div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
       <h3 class="daily-matrix-subhead">All Beacons Heard by Reporter</h3>
-      <div class="daily-matrix-note">This separate matrix shows every beacon heard by the exact reporter callsign in the imported or collected data. It is not filtered by either selected destination area.</div>
+      <div class="daily-matrix-note">This global matrix shows every beacon heard by the reporter callsign in the data. It is not filtered by selected destination area.</div>
       <div class="daily-global-scope" id="dailyGlobalScope"></div>
       <div class="daily-matrix-toolbar"><button id="dailyGlobalCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button></div>
       <div class="daily-matrix-wrap" id="dailyGlobalMatrixWrap"></div>
-      <div class="daily-matrix-note"><strong>Raw Spots</strong> counts every collected report row. <strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute band/destination cell. <strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin. Destination filtering uses each beacon grid and the selected city radius. SNR is not used.</div>
+      <div class="daily-matrix-note"><strong>Raw Spots</strong> counts every collected report row. <strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute band/destination cell. <strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin. For the global matrix, destination filtering does not apply. For each selected path matrix, destination filtering uses each beacon grid and the selected city radius. SNR is deliberately not used for this wspr-matrix App.</div>
       </div>
     </section>
 </main>
@@ -2071,7 +2069,7 @@
         const title = active ? `Remove ${item.label} from the matrix` : `Add ${item.label} to the matrix`;
         return `<button type="button" class="${active ? "active" : "secondary"}" data-daily-band="${item.band}" aria-pressed="${active}" title="${esc(title)}">${esc(item.label)}</button>`;
       }).join("");
-      $("dailyBandButtons").innerHTML = buttons;
+      $("dailyBandButtons").innerHTML = `${buttons}<span class="matrix-band-actions"><button id="saveDailyBandsAsDefault" class="secondary" type="button">Update band preferences</button></span>`;
       $("dailyBandSelectionStatus").textContent = message || `${DAILY_MATRIX_BANDS.length} of ${MAX_DAILY_BAND_SELECTION} selected`;
     }
 
@@ -2103,7 +2101,7 @@
       const citySelect = $(`dailyCity${pathNo}`);
       citySelect.innerHTML = '<option value="">Select City</option>';
       (CITIES[continent] || []).slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(city => {
-        const option=document.createElement("option"); option.value=city.name; option.textContent=city.name; citySelect.appendChild(option);
+        const option=document.createElement("option"); option.value=city.name; option.textContent=city.name.split(",")[0]; citySelect.appendChild(option);
       });
       if ([...citySelect.options].some(option=>option.value===selectedName)) citySelect.value=selectedName;
     }
@@ -2112,10 +2110,10 @@
       const continents=Object.keys(CITIES).sort();
       [1,2].forEach(pathNo => {
         $(`dailyCont${pathNo}`).innerHTML=continents.map(continent=>`<option value="${esc(continent)}">${esc(continent)}</option>`).join("");
-        $(`dailyRadius${pathNo}`).innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()} km</option>`).join("");
+        $(`dailyRadius${pathNo}`).innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()}</option>`).join("");
       });
-      $("dailyLegendRadius1").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()} km</option>`).join("");
-      $("dailyLegendRadius2").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()} km</option>`).join("");
+      $("dailyLegendRadius1").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()}</option>`).join("");
+      $("dailyLegendRadius2").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()}</option>`).join("");
       $("dailyCont1").value="Europe"; populateDailyDestinationCities(1,"Frankfurt, Germany"); $("dailyRadius1").value="1800";
       $("dailyCont2").value="North America"; populateDailyDestinationCities(2,"Denver, United States"); $("dailyRadius2").value="1800";
       syncLegendRadiusSelectors();
@@ -2397,10 +2395,50 @@
       return "";
     }
 
+    function dailyMatrixBandColumnWidth() {
+      const count = Math.max(1, DAILY_MATRIX_BANDS.length);
+      return Math.max(32, Math.min(54, Math.floor(400 / count)));
+    }
+
+    function dailyMatrixTableWidth(columnSets = 1) {
+      const separatorWidth = columnSets > 1 ? 14 : 0;
+      return 96 + separatorWidth + DAILY_MATRIX_BANDS.length * columnSets * dailyMatrixBandColumnWidth();
+    }
+
+    function dailyMatrixColgroup(columnSets = 1) {
+      let html = `<colgroup><col style="width:48px"><col style="width:48px">`;
+      for (let set = 0; set < columnSets; set++) {
+        if (set > 0) html += `<col style="width:14px">`;
+        DAILY_MATRIX_BANDS.forEach(() => {
+          html += `<col style="width:${dailyMatrixBandColumnWidth()}px">`;
+        });
+      }
+      return `${html}</colgroup>`;
+    }
+
     function matrixBandFooter(columnSets = 1) {
       let html=`<tr><th class="slot-cell">BAND</th><th></th>`;
-      for(let set=0;set<columnSets;set++) DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`);
+      for(let set=0;set<columnSets;set++) {
+        if (set > 0) html += `<th class="path-separator"></th>`;
+        DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`);
+      }
       return `${html}</tr>`;
+    }
+
+    function installMatrixColumnHover(container) {
+      const table = container?.querySelector("table");
+      if (!table) return;
+      table.addEventListener("mouseover", event => {
+        const cell = event.target.closest("td,th");
+        if (!cell || !table.contains(cell)) return;
+        const index = cell.cellIndex;
+        table.querySelectorAll(".col-hover").forEach(item => item.classList.remove("col-hover"));
+        if (index < 2 || cell.classList.contains("path-separator")) return;
+        table.querySelectorAll("tr").forEach(row => row.cells[index]?.classList.add("col-hover"));
+      });
+      table.addEventListener("mouseleave", () => {
+        table.querySelectorAll(".col-hover").forEach(item => item.classList.remove("col-hover"));
+      });
     }
 
     function renderGlobalReporterMatrix(report) {
@@ -2409,23 +2447,28 @@
       const periodTotals=report.countMode==="raw"?dailyTotals(report.globalMatrix):report.globalPeriodUniqueTotals;
       const summaryLabel=report.countMode==="cumulative"?"FINAL UNIQUE":"BIN SUM";
       const summaryTotals=report.countMode==="cumulative"?dailyFinalTotals(report.globalMatrix):dailyTotals(report.globalMatrix);
-      let html=`<table class="daily-matrix-table daily-global-table"><thead><tr><th>UTC</th><th>Local</th><th colspan="${DAILY_MATRIX_BANDS.length}">${esc(report.reporter)} | ALL BEACONS HEARD</th></tr><tr><th>UTC</th><th>Local</th>`;
+      const tableWidth=dailyMatrixTableWidth(1);
+      let html=`<table class="daily-matrix-table daily-global-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(1)}<thead><tr><th colspan="2">${esc(report.dateStr)}</th><th colspan="${DAILY_MATRIX_BANDS.length}">${esc(report.reporter)} | ALL BEACONS HEARD</th></tr><tr><th>UTC</th><th>Local</th>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
       for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;DAILY_MATRIX_BANDS.forEach(item=>{const n=report.globalMatrix[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyGlobalCell(n,max)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
       html+=`<tr><td class="slot-cell">${summaryLabel}</td><td></td>${summaryTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr><tr><td class="slot-cell">${periodLabel}</td><td></td>${periodTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter()}</tbody></table>`;
       $("dailyGlobalMatrixWrap").innerHTML=html;
+      installMatrixColumnHover($("dailyGlobalMatrixWrap"));
       $("dailyGlobalScope").textContent=`Every beacon heard by ${report.reporter}; no destination-area filter.`;
     }
 
     function renderDailyMatrix(report){
       const max=Math.max(1,...report.matrix1.flatMap(slot=>[...slot.values()]),...report.matrix2.flatMap(slot=>[...slot.values()]));
       const markers1=matrixModelMarkers(report.reporter,report.dateStr,report.path1),markers2=matrixModelMarkers(report.reporter,report.dateStr,report.path2);
-      let html=`<table class="daily-matrix-table"><thead><tr><th rowspan="2">UTC</th><th rowspan="2">Local</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr>`;
-      DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
+      const tableWidth=dailyMatrixTableWidth(2);
+      let html=`<table class="daily-matrix-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(2)}<thead><tr><th colspan="2">${esc(report.dateStr)}</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path-separator"></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr><th>UTC</th><th>Local</th>`;
+      DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`<th class="path-separator"></th>`; DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
       for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix1[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,1)}>${matrixCellContent(n,state)}</td>`});
+        html+=`<td class="path-separator"></td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix2[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,2)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
-      html+=`<tr><td class="slot-cell">${dailySummaryLabel(report.countMode)}</td><td></td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
+      html+=`<tr><td class="slot-cell">${dailySummaryLabel(report.countMode)}</td><td></td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}<td class="path-separator"></td>${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
+      installMatrixColumnHover($("dailyMatrixWrap"));
       renderGlobalReporterMatrix(report);
       const total1=dailySummaryTotals(report.matrix1,report.countMode).reduce((a,b)=>a+b,0),total2=dailySummaryTotals(report.matrix2,report.countMode).reduce((a,b)=>a+b,0);
       const coverage = report.sourceRows ? `${report.earliestUtc}-${report.latestUtc} UTC; latest source spot ${report.latestUtc} UTC; destination spots present in ${report.activeSlots} of 48 bins` : "no matching source time coverage";
@@ -2802,8 +2845,8 @@
       const nextDay = locked && targetBin.start.toISOString().slice(0, 10) !== wsprLiveCollection.dateStr;
       const canRequest = !wsprLiveRequestInFlight && !cooldownRemaining && !nextDay && (!locked ? receiverValid : true);
       $("wsprLiveProvider").disabled = locked;
-      $("wsprLiveProvider").title = locked ? "The live data server is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Choose the live data source before manual collection.";
-      $("wsprLiveReceiver").title = locked ? "The receiver callsign is locked after collection starts. Use Clear live Collection and Matrix before changing it." : "Enter the reporter callsign before collecting live data.";
+      $("wsprLiveProvider").title = locked ? "The live data server is locked after collection starts. Use Clear Matrix before changing it." : "Choose the live data source before manual collection.";
+      $("wsprLiveReceiver").title = locked ? "The receiver callsign is locked after collection starts. Use Clear Matrix before changing it." : "Enter the reporter callsign before collecting live data.";
       const collectedBands = new Set((wsprLiveCollection?.requests || []).filter(request => request.binStart === targetKey).map(request => request.band));
       $("wsprLiveBandButtons").hidden = true;
       $("wsprLiveBandButtons").innerHTML = "";
@@ -2812,16 +2855,21 @@
       const path2 = selectedDailyDestination(2);
       const hasTwoDestinations = Boolean(path1 && path2 && !(path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm));
       const dateValid = isValidIsoDate($("dailyMatrixDate").value);
-      buttonState("buildCollectedWsprMatrix", wsprLiveRequestInFlight || !receiverValid || !dateValid || !hasTwoDestinations, "Collect fresh live ClickHouse data once for the selected callsign/date and build the matrix. Automatic refresh is disabled.", wsprLiveRequestInFlight ? "A live data request is already in progress." : !receiverValid ? "Enter a valid receiver callsign before building the matrix." : !dateValid ? "Enter the UTC date as YYYY-MM-DD before building the matrix." : "Select two different destination areas before building the matrix.");
+      const hasSavedImportFiles = Boolean($("dailyWsprnetFile").files.length);
+      const refreshDisabled = wsprLiveRequestInFlight || !dateValid || !hasTwoDestinations || (!hasSavedImportFiles && !receiverValid);
+      const refreshHelp = $("dailyWsprnetFile").files.length ? "Build the matrix from the selected saved data files." : "Collect fresh live data once for the selected callsign/date and build the matrix.";
+      const refreshDisabledHelp = wsprLiveRequestInFlight ? "A live data request is already in progress." : !dateValid ? "Enter the UTC date as YYYY-MM-DD before building the matrix." : !hasTwoDestinations ? "Select two different destination areas before building the matrix." : "Enter a valid receiver callsign before collecting live data.";
+      buttonState("buildCollectedWsprMatrix", refreshDisabled, refreshHelp, refreshDisabledHelp);
+      buttonState("legendRefreshMatrix", refreshDisabled, refreshHelp, refreshDisabledHelp);
       buttonState("saveCollectedWsprJson", !hasRows, "Save the current live collection to a file.", "Collect or load live data before saving it.");
-      buttonState("clearCollectedWspr", !wsprLiveCollection, "Clear the current live collection and unlock callsign, date, and server controls.", "No live collection is active.");
+      buttonState("clearCollectedWspr", !wsprLiveCollection && !dailyMatrixLastReport && !$("dailyWsprnetFile").files.length, "Clear the current matrix and any active live collection.", "No matrix or live collection is active.");
       buttonState("startAutoWsprDay", wsprAutoRunning || (!locked && !receiverValid), "Schedule collection for the next complete UTC day.", wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before scheduling collection.");
       buttonState("startCurrentWsprDay", wsprAutoRunning || (!locked && !receiverValid), "Start collecting the current UTC day from the latest completed 30-minute bin.", wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before starting collection.");
       buttonState("startArchiveWspr", wsprAutoRunning || (!locked && !receiverValid), "Start a multi-day archive collection when this option is enabled.", WSPR_TRIAL_FAIRNESS_MODE ? "Seven-day archive is disabled in this trial build." : wsprAutoRunning ? "Automatic collection is already running." : "Enter a valid receiver callsign before starting archive collection.");
       buttonState("stopAutoWsprDay", !wsprAutoRunning, "Stop the automatic live collection.", "Automatic collection is not running.");
       const failedRequests = (wsprLiveCollection?.requests || []).filter(request => request.status === "failed");
       buttonState("retryMissingWspr", !failedRequests.length || wsprLiveRequestInFlight || wsprAutoRunning, "Retry failed live data requests recorded in diagnostics.", wsprLiveRequestInFlight ? "A live data request is already in progress." : wsprAutoRunning ? "Stop automatic collection before retrying missing requests manually." : "Available after a live collection has failed or missing requests.");
-      setButtonHelp("loadCollectedWsprData", "Load saved JSON data from this computer and build the matrix.");
+      setButtonHelp("loadCollectedWsprData", "Load saved data from this computer and build the matrix.");
       setButtonHelp("openWsprnetQuery", "Open the WSPRnet query page in a new browser tab.");
       setButtonHelp("buildDailyMatrix", $("dailyWsprnetFile").files.length ? "Build the matrix from imported WSPRnet files and selected destination areas." : "Import one or more saved WSPRnet files before building this matrix.");
       setButtonHelp("dailyCountModeToggle", "Switch between raw spots, unique beacons per bin, and cumulative unique beacons.");
@@ -2868,7 +2916,7 @@
             : wsprAutoMode === "current"
             ? `Current-day live collection is scheduled to begin ${new Date(wsprAutoNextRunAt).toISOString().slice(0, 16).replace("T", " ")} UTC, collecting the preceding completed bin.`
             : `Automatic full-day collection is scheduled to begin ${new Date(wsprAutoNextRunAt).toISOString().slice(0, 16).replace("T", " ")} UTC, collecting the first completed bin of that UTC day.`
-          : receiver ? "Ready. Press Refresh Live Data and Build Matrix for a one-time ClickHouse request, or load saved data." : "Enter a receiver callsign, then refresh live data manually or load saved data.";
+          : receiver ? "Ready. Press Refresh and Build Matrix for a one-time ClickHouse request, or load saved data." : "Enter a receiver callsign, then refresh live data manually or load saved data.";
       }
     }
 
@@ -2989,17 +3037,8 @@
       wsprLiveCooldownUntil = 0;
       clearTimeout(wsprLiveCooldownTimer);
       $("wsprLiveReceiver").readOnly = false;
-      if (dailyMatrixSource === "wsprLive") {
-        dailyMatrixSource = null;
-        dailyMatrixLastReport = null;
-        $("dailyMatrixWrap").innerHTML = "";
-        $("dailyGlobalMatrixWrap").innerHTML = "";
-        $("dailyGlobalScope").textContent = "";
-        $("dailyMatrixStatus").textContent = "Live data collection and its displayed matrix were cleared.";
-        $("matrixSourceBadge").textContent = "No data selected";
-        $("exportDailyMatrixCsv").disabled = true;
-        $("printDailyMatrix").disabled = true;
-      }
+      $("dailyWsprnetFile").value = "";
+      clearDisplayedMatrix("Matrix cleared. Refresh live data or load saved data to build a new matrix.");
       wsprLiveDb().then(db => { const request=db.transaction(WSPR_LIVE_DB_STORE,"readwrite").objectStore(WSPR_LIVE_DB_STORE).delete("active"); request.onsuccess=()=>db.close(); }).catch(error => console.warn("Unable to clear persisted WSPR collection", error));
       renderWsprLiveCollector();
     }
@@ -3058,30 +3097,52 @@
       return [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0].localeCompare(a[0]))[0]?.[0] || "";
     }
 
-    async function loadCollectedWsprData(file) {
-      if (!file) return;
+    function savedRowsDateForBuild(rows, preferredDate = "") {
+      const selectedDate = isValidIsoDate(preferredDate) ? preferredDate : "";
+      return dateFromWsprRows(rows, selectedDate) || latestDateFromWsprRows(rows);
+    }
+
+    function savedRowsDateNotice(selectedDate, buildDate) {
+      if (selectedDate && buildDate && selectedDate !== buildDate) {
+        return ` Saved data date set to ${buildDate} UTC.`;
+      }
+      return "";
+    }
+
+    function savedRowsCoverageNotice(report) {
+      if (!report?.sourceRows) return "";
+      const coverage = ` Source rows cover ${report.earliestUtc}-${report.latestUtc} UTC.`;
+      return report.observedSpanMinutes < 1380
+        ? `${coverage} This saved data file covers part of the UTC day, so other bins may remain blank.`
+        : coverage;
+    }
+
+    async function loadSavedDataFiles(files) {
+      files = [...files].filter(Boolean);
+      if (!files.length) return;
       stopClickHouseAutoRefresh();
       wsprLiveCollection = null;
-      clearDisplayedMatrix(`Reading saved data from ${file.name}...`, "Loading saved data");
+      clearDisplayedMatrix(`Reading ${files.length} saved data file${files.length === 1 ? "" : "s"}...`, "Loading saved data");
       wsprLiveDb().then(db => { const request=db.transaction(WSPR_LIVE_DB_STORE,"readwrite").objectStore(WSPR_LIVE_DB_STORE).delete("active"); request.onsuccess=()=>db.close(); request.onerror=()=>db.close(); }).catch(error => console.warn("Unable to clear persisted live collection before WSPRnet load", error));
       try {
-        const text = await file.text();
-        const sourceRows = wsprRowsFromText(text, file.name);
-        const merged = mergeWsprFileRows([{name:file.name, rows:sourceRows}]);
+        const fileResults = [];
+        for (const file of files) fileResults.push({name:file.name, rows:wsprRowsFromText(await file.text(), file.name)});
+        const merged = mergeWsprFileRows(fileResults);
         const receiver = reporterFromWsprRows(merged.rows);
-        const dateStr = $("dailyMatrixDate").value.trim();
+        const selectedDate = $("dailyMatrixDate").value.trim();
+        const dateStr = savedRowsDateForBuild(merged.rows, selectedDate);
         if (!/^[A-Z0-9/]{1,20}$/.test(receiver)) throw new Error("The saved data does not contain a valid receiver callsign.");
-        if (!isValidIsoDate(dateStr)) throw new Error("Enter the UTC date as YYYY-MM-DD before loading saved data.");
-        if (dateFromWsprRows(merged.rows, dateStr) !== dateStr) throw new Error(`The selected file contains no rows for nominated UTC date ${dateStr}.`);
+        if (!dateStr) throw new Error("The selected saved data contains no readable UTC date.");
         const path1 = selectedDailyDestination(1), path2 = selectedDailyDestination(2);
         if (!path1 || !path2) throw new Error("Select both destination cities before loading saved data.");
         if (path1.continent === path2.continent && path1.name === path2.name && path1.radiusKm === path2.radiusKm) throw new Error("Select two different destination areas before loading saved data.");
+        $("dailyMatrixDate").value = dateStr;
         $("wsprLiveReceiver").value = receiver;
         $("wsprLiveReceiver").readOnly = false;
         $("dailyReporter").value = receiver;
         dailyMatrixSource = "wsprnetJson";
         buildDailyMatrixFromRows(merged.rows, receiver, dateStr, path1, path2, {
-          filenames:[file.name],
+          filenames:files.map(file => file.name),
           rawImportedRows:merged.importedRows,
           duplicateRows:merged.duplicateRows,
           rowLimitFiles:merged.rowLimitFiles,
@@ -3089,10 +3150,14 @@
           sourceLabel:"Loaded saved data"
         });
         renderWsprLiveCollector();
-        $("wsprLiveStatus").textContent = `Loaded ${file.name}: ${receiver}, ${dateStr} UTC, ${merged.importedRows.toLocaleString()} saved rows.`;
+        const notice = savedRowsDateNotice(selectedDate, dateStr);
+        const coverageNotice = savedRowsCoverageNotice(dailyMatrixLastReport);
+        $("wsprLiveStatus").textContent = `Loaded ${files.length} saved data file${files.length === 1 ? "" : "s"}: ${receiver}, ${dateStr} UTC, ${merged.importedRows.toLocaleString()} saved rows.${notice}`;
+        $("wsprLiveNextStep").textContent = `Saved data matrix built for ${receiver}, ${dateStr} UTC.${notice}${coverageNotice}`;
       } catch (error) {
         $("wsprLiveStatus").textContent = `Unable to load saved data: ${error.message}`;
         $("dailyMatrixStatus").textContent = `Unable to load saved data: ${error.message}`;
+        $("wsprLiveNextStep").textContent = `Unable to load saved data: ${error.message}`;
       } finally {
         $("loadCollectedWsprFile").value = "";
       }
@@ -3182,6 +3247,10 @@
     }
 
     function buildOrCollectWsprMatrix() {
+      if ($("dailyWsprnetFile").files.length) {
+        buildDailyMatrix();
+        return;
+      }
       collectClickHouseDay();
     }
 
@@ -3222,8 +3291,7 @@
     }
 
     async function buildDailyMatrix(){
-      const dateStr=$("dailyMatrixDate").value,files=[...$("dailyWsprnetFile").files],path1=selectedDailyDestination(1),path2=selectedDailyDestination(2);
-      if(!isValidIsoDate(dateStr)){ $("dailyMatrixStatus").textContent="Enter the date as YYYY-MM-DD.";return;}
+      const selectedDate=$("dailyMatrixDate").value.trim(),files=[...$("dailyWsprnetFile").files],path1=selectedDailyDestination(1),path2=selectedDailyDestination(2);
       if(!path1||!path2){$("dailyMatrixStatus").textContent="Select both destination cities.";return;}
       if(path1.continent===path2.continent&&path1.name===path2.name&&path1.radiusKm===path2.radiusKm){$("dailyMatrixStatus").textContent="Select two different destination areas.";return;}
       if(!files.length){$("dailyMatrixStatus").textContent="Select one or more saved WSPRnet JSON, CSV, or HTML results files.";return;}
@@ -3233,10 +3301,17 @@
         for(const file of files) fileResults.push({name:file.name,rows:wsprRowsFromText(await file.text(),file.name)});
         const merged=mergeWsprFileRows(fileResults);
         const reporter=reporterFromWsprRows(merged.rows);
+        const dateStr=savedRowsDateForBuild(merged.rows,selectedDate);
+        if(!dateStr)throw new Error("The selected saved data contains no readable UTC date.");
+        $("dailyMatrixDate").value=dateStr;
+        $("wsprLiveReceiver").value=reporter;
         $("dailyReporter").value=reporter;
         dailyMatrixSource = "files";
         buildDailyMatrixFromRows(merged.rows,reporter,dateStr,path1,path2,{filenames:files.map(file=>file.name),rawImportedRows:merged.importedRows,duplicateRows:merged.duplicateRows,rowLimitFiles:merged.rowLimitFiles,sourceLabel:"WSPRnet files"});
-      }catch(error){$("dailyMatrixStatus").textContent=`Unable to build the reporter matrix: ${error.message}`;console.warn(error);}
+        const notice=savedRowsDateNotice(selectedDate,dateStr);
+        const coverageNotice=savedRowsCoverageNotice(dailyMatrixLastReport);
+        $("wsprLiveNextStep").textContent=`Saved data matrix built for ${reporter}, ${dateStr} UTC.${notice}${coverageNotice}`;
+      }catch(error){$("dailyMatrixStatus").textContent=`Unable to build the reporter matrix: ${error.message}`;$("wsprLiveNextStep").textContent=`Unable to build saved data matrix: ${error.message}`;console.warn(error);}
     }
 
     function toggleDailyCountMode() {
@@ -3247,6 +3322,7 @@
       });
       if (dailyMatrixSource === "wsprLive") buildCollectedWsprMatrix();
       else if ($("dailyWsprnetFile").files.length) buildDailyMatrix();
+      else if (dailyMatrixLastReport?.sourceRowsData) rebuildDisplayedDailyMatrix();
     }
 
     function rebuildDisplayedDailyMatrix() {
@@ -3297,8 +3373,8 @@
     $("buildDailyMatrix").addEventListener("click",buildDailyMatrix);
     $("dailyCountModeToggle").addEventListener("click",toggleDailyCountMode);
     $("dailyGlobalCountModeToggle").addEventListener("click",toggleDailyCountMode);
-    $("dailyBandButtons").addEventListener("click",event=>{const button=event.target.closest("button[data-daily-band]");if(button)toggleDailyBandSelection(Number(button.dataset.dailyBand));});
-    $("saveDailyBandsAsDefault").addEventListener("click",saveDailyBandsAsDefaultPreference);
+    $("dailyBandButtons").addEventListener("click",event=>{const defaultButton=event.target.closest("#saveDailyBandsAsDefault");if(defaultButton){saveDailyBandsAsDefaultPreference();return;}const button=event.target.closest("button[data-daily-band]");if(button)toggleDailyBandSelection(Number(button.dataset.dailyBand));});
+    $("legendRefreshMatrix").addEventListener("click",buildOrCollectWsprMatrix);
     $("dailyWsprnetFile").addEventListener("change",detectDailyReporter);
     $("dailyWsprnetFile").addEventListener("change",()=>{
       const hasFiles = $("dailyWsprnetFile").files.length > 0;
@@ -3315,10 +3391,10 @@
     $("stopAutoWsprDay").addEventListener("click",()=>stopAutomaticWsprDay());
     $("retryMissingWspr").addEventListener("click",retryMissingWsprRequests);
     $("wsprArchiveHistory").addEventListener("click",event=>{const button=event.target.closest("button[data-archive-date]");if(button)exportWsprArchiveDay(button.dataset.archiveDate);});
-   $("buildCollectedWsprMatrix").addEventListener("click",buildOrCollectWsprMatrix);
+    $("buildCollectedWsprMatrix").addEventListener("click",buildOrCollectWsprMatrix);
    $("saveCollectedWsprJson").addEventListener("click",saveCollectedWsprJson);
     $("loadCollectedWsprData").addEventListener("click",()=>$("loadCollectedWsprFile").click());
-    $("loadCollectedWsprFile").addEventListener("change",event=>loadCollectedWsprData(event.target.files[0]));
+    $("loadCollectedWsprFile").addEventListener("change",event=>loadSavedDataFiles(event.target.files));
    $("clearCollectedWspr").addEventListener("click",clearWsprLiveCollection);
     $("dailyMatrixDate").addEventListener("input",renderWsprLiveCollector);
     $("dailyLocalOffset").addEventListener("input",()=>{
