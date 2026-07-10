@@ -10,26 +10,55 @@
 <main class="doc">
 <p><a href="index.html">Back to WSPR Matrix</a></p>
 <h1>User Guide</h1>
+
 <h2>Basic Workflow</h2>
 <ol>
 <li>Open <a href="matrix.html">WSPR Matrix</a>.</li>
 <li>Enter the reporter callsign, UTC date, and local UTC offset if local time is wanted beside UTC.</li>
 <li>Choose Path 1 and Path 2 destination areas using continent, city, and radius.</li>
-<li>Refresh Live Data and Build Matrix, or use <strong>Load Data and Build Matrix</strong> to build from JSON Data.</li>
+<li>Select the live data server if live data will be used.</li>
+<li>Select up to 10 bands in the fixed toolbar.</li>
+<li>Press <strong>Refresh</strong> to collect live data and build the matrix, or press <strong>Load</strong> to build from one or more saved data files.</li>
 <li>Choose the counting mode: Raw Spots, Unique Beacons Per Bin, or Cumulative Unique Beacons.</li>
-<li>Use <strong>Save Collected Data</strong> if you want to keep the collected JSON data for later review.</li>
-<li>Review the path matrices and the all-destinations matrix.</li>
-<li>Export CSV or print/save PDF from the browser.</li>
+<li>Use <strong>Save</strong> if you want to keep the collected JSON data for later review.</li>
+<li>Review the selected-path matrix and the all-beacons-heard matrix.</li>
+<li>Use <strong>Export CSV</strong> or <strong>Print / PDF</strong> for reports.</li>
 </ol>
+
+<h2>Fixed Toolbar</h2>
+<p>The fixed toolbar stays available while the matrix is being reviewed. It contains the high-use controls so the user does not need to scroll back to the top of the page.</p>
+<ul>
+<li><strong>Refresh</strong> collects live data for the entered callsign and UTC date, then rebuilds the matrix.</li>
+<li><strong>Save</strong> saves the current collected data as a JSON file.</li>
+<li><strong>Load</strong> opens saved JSON, CSV, HTML, or WSPRnet-style data files and builds the matrix. Multiple files can be selected together.</li>
+<li><strong>Clear</strong> clears the current matrix and collection state.</li>
+<li><strong>Counting</strong> cycles through Raw Spots, Unique Beacons Per Bin, and Cumulative Unique Beacons.</li>
+<li><strong>Configuration: Free / Docked</strong> controls the configuration panel. Free shows the callsign, date, and destination selectors. Docked hides that panel and moves the matrix to its home position below the fixed toolbar.</li>
+<li><strong>Band buttons</strong> select the bands shown in the matrix. The counter shows how many bands are selected out of the maximum of 10.</li>
+<li><strong>Live data server</strong> selects the ClickHouse-compatible live source used by Refresh.</li>
+<li><strong>Request diagnostics</strong> opens details about live data requests and failures.</li>
+<li><strong>Export CSV</strong> saves the current matrix as a CSV file.</li>
+<li><strong>Print / PDF</strong> opens the browser print flow for paper or PDF output.</li>
+<li><strong>Row height</strong> changes matrix row spacing. This setting is useful when aligning two browser windows side by side.</li>
+<li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area.</li>
+</ul>
+
 <h2>Counting Modes</h2>
-<p><strong>Raw Spots</strong> counts every imported report row.</p>
+<p><strong>Raw Spots</strong> counts every imported or collected report row.</p>
 <p><strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute band/destination cell.</p>
 <p><strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin.</p>
+
+<h2>Using Saved Data</h2>
+<p>Use <strong>Load</strong> to import saved data and build the matrix. The old import panel is hidden because the Load button now performs that function.</p>
+<p>Saved data can be collected JSON from this app or compatible WSPRnet-style files. When several files are selected together, exact duplicate rows are removed automatically.</p>
+
 <h2>Important Notes</h2>
 <ul>
-<li>JSON Data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
-<li>Blank cells mean no matching observed reports in the imported data, not proof that propagation was closed.</li>
+<li>JSON data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
+<li>Blank cells mean no matching observed reports in the imported or collected data, not proof that propagation was closed.</li>
 <li>Endpoint radius controls which beacon grids are included in each path area.</li>
+<li>The selected-path matrix filters by destination area. The all-beacons-heard matrix is not filtered by either destination area.</li>
+<li>SNR is deliberately not used by WSPR Matrix.</li>
 </ul>
 </main>
 </body>

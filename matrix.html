@@ -5,18 +5,47 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily WSPR Path Matrix</title>
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1040px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-heading-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.matrix-heading-row h2{margin-bottom:0}.matrix-top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin:0}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:130px minmax(170px,260px);gap:8px;align-items:center}.wspr-live-collector-controls label{margin:0}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:minmax(126px,1.15fr) minmax(98px,1fr) 78px;gap:6px}.daily-matrix-wrap{overflow:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:4px 2px;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.matrix-heading-row{display:block}.matrix-top-links{justify-content:flex-start;margin-top:10px}.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e;--matrix-row-height:22px}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1040px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-heading-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.matrix-heading-row h2{margin-bottom:0}.matrix-top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin:0}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:130px minmax(170px,260px);gap:8px;align-items:center}.wspr-live-collector-controls label{margin:0}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:minmax(126px,1.15fr) minmax(98px,1fr) 78px;gap:6px}.daily-matrix-wrap{overflow:auto;max-height:min(72vh,calc(var(--matrix-row-height) * 58));margin-top:0;border:1px solid var(--line);border-top:0;border-radius:0 0 6px 6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:0 2px;height:var(--matrix-row-height);line-height:14px;vertical-align:middle;white-space:nowrap;overflow:hidden;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}@media(max-width:900px){.matrix-heading-row{display:block}.matrix-top-links{justify-content:flex-start;margin-top:10px}.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
 .daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix,button.matrix-refresh-button{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
-.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.daily-matrix-table .path-separator{background:#fff!important;border-left:2px solid #cbd5df;border-right:2px solid #cbd5df;color:transparent;padding:0}.daily-matrix-table .col-hover{box-shadow:inset 0 999px rgba(255,210,222,.34)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{display:inline-flex;margin-left:4px}.matrix-band-actions button{padding:5px 8px;font-size:11px}.matrix-refresh-button{padding:4px 8px;font-size:11px}.matrix-status-hidden{display:none!important}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:78px;padding:4px 5px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
+.daily-matrix-header-wrap{overflow:hidden;margin-top:12px;border:1px solid var(--line);border-bottom:0;border-radius:6px 6px 0 0;background:#fff}.daily-matrix-header-wrap .daily-matrix-table{margin:0}.daily-matrix-header-wrap th{background:#fff;box-shadow:0 1px 0 var(--line)}.daily-matrix-header-wrap .path1-head{background:#fff1e7}.daily-matrix-header-wrap .path2-head{background:#eaf2fb}.matrix-header-spacer th{height:8px!important;line-height:8px!important;background:#fff!important}.daily-matrix-body-table thead{display:none}.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.daily-matrix-table .path-separator{background:#fff!important;border-left:2px solid #cbd5df;border-right:2px solid #cbd5df;color:transparent;padding:0}.daily-matrix-table .col-hover{box-shadow:inset 0 999px rgba(255,210,222,.34)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-row-height-control{display:flex;align-items:center;gap:6px;margin:0;font-size:12px}.matrix-row-height-control select{width:auto;min-width:92px;padding:4px 6px;font-size:12px}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{display:inline-flex;margin-left:4px}.matrix-band-actions button{padding:5px 8px;font-size:11px}.matrix-refresh-button{padding:4px 8px;font-size:11px}.matrix-status-hidden{display:none!important}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:78px;padding:4px 5px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
+body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix-row-height:28px}body.matrix-row-tall{--matrix-row-height:56px}body.matrix-configuration-docked .daily-matrix-header-wrap{position:sticky;top:var(--matrix-toolbar-height,0px);z-index:25;margin-top:0}
+.matrix-quick-toolbar{position:sticky;top:0;z-index:30;margin:12px 0;padding:10px;border:1px solid #9eb8d2;border-radius:8px;background:rgba(245,248,252,.98);box-shadow:0 2px 10px rgba(24,33,43,.12)}.matrix-quick-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:7px}.matrix-quick-row:first-child{margin-top:0}.matrix-quick-toolbar button{padding:6px 9px;font-size:12px}.matrix-quick-toolbar select{width:auto;min-width:92px;padding:5px 7px;font-size:12px}.matrix-quick-toolbar label{display:flex;align-items:center;gap:6px;margin:0;color:var(--muted);font-size:12px;font-weight:700}.matrix-quick-bands{display:flex;flex-wrap:wrap;gap:6px}.matrix-quick-bands button{min-width:48px;padding:5px 7px;font-size:11px}.matrix-quick-bands button.active{background:var(--blue);color:#fff}.matrix-quick-bands button.secondary{background:#fff;color:var(--blue)}@media(max-width:900px){.matrix-quick-toolbar{top:0}.matrix-quick-row{gap:6px}.matrix-quick-toolbar button{padding:5px 7px}}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <main>
 <section id="dailyMatrixPanel">
       <div class="matrix-heading-row"><h2>Daily WSPR Path Matrix - Single Reporter</h2><nav class="matrix-top-links" aria-label="Matrix navigation"><a href="index.html">Landing Page</a><a href="prefs.html">Preferences</a></nav></div>
-      <p class="note">Developed by John Loftus (VK4EMM) · Technical assistance: OpenAI</p>
+      <p class="note">Developed by John Loftus (VK4EMM) · Technical assistance: OpenAI · <span id="matrixAppVersion">Prototype v2026.07.10</span></p>
       <div class="workflow-strip"><span>1. Receiver callsign, date, and local UTC offset</span><span>2. Configure destination areas</span><span>3. Refresh Data or Load Saved Data</span><span>4. Review, save, and export</span></div>
       <p class="note">Choose a reporter, UTC date, and two destination areas. The app collects live data, then builds observed activity matrices for the selected paths.</p>
+      <div id="matrixQuickToolbar" class="matrix-quick-toolbar" aria-label="High-use matrix controls">
+        <div class="matrix-quick-row">
+          <button id="quickRefresh" type="button">Refresh</button>
+          <button id="quickSave" class="secondary" type="button">Save</button>
+          <button id="quickLoad" class="secondary" type="button">Load</button>
+          <button id="quickClear" class="secondary" type="button">Clear</button>
+          <button id="quickCountMode" class="secondary" type="button" aria-pressed="false">Counting</button>
+          <button id="quickConfigMode" class="secondary" type="button" aria-pressed="false">Configuration: Free</button>
+        </div>
+        <div class="matrix-quick-row matrix-quick-bands">
+          <span id="quickBandSelectionStatus" class="matrix-band-count">Bands</span>
+          <div id="quickBandButtons"></div>
+        </div>
+        <div class="matrix-quick-row">
+          <label for="quickLiveProvider">Live data server <select id="quickLiveProvider"></select></label>
+          <button id="quickDiagnostics" class="secondary" type="button">Request diagnostics</button>
+          <button id="quickExportCsv" class="secondary" type="button">Export CSV</button>
+          <button id="quickPrintPdf" class="secondary" type="button">Print / PDF</button>
+        </div>
+        <div class="matrix-quick-row">
+          <label for="quickRowHeight">Row height <select id="quickRowHeight"><option value="compact">Compact</option><option value="normal" selected>Normal</option><option value="tall">Tall</option></select></label>
+          <label for="quickRadius1">Path 1 Radius km <select id="quickRadius1"></select></label>
+          <label for="quickRadius2">Path 2 Radius km <select id="quickRadius2"></select></label>
+        </div>
+      </div>
+      <details id="quickDiagnosticsPanel" class="wspr-live-diagnostics" hidden><summary>Request diagnostics</summary><div id="quickWsprLiveDiagnostics">No collection started.</div></details>
       <div id="wsprnetGroup" class="collection-group wsprnet-group" hidden>
         <h3>3. Saved Data Collection <span class="panel-subtitle">(alternative source)</span></h3>
         <p class="note">Use WSPRnet to create and save source files. For busy bands, collect individual band files to avoid the 10,000-row download limit.</p>
@@ -24,11 +53,11 @@
           <div class="collection-group-action"><button id="openWsprnetQuery" class="secondary" type="button">Open WSPRnet Query</button></div>
         </div>
       </div>
-      <div id="wsprnetImportGroup" class="import-strip">
+      <div id="wsprnetImportGroup" class="import-strip" hidden>
         <div><label for="dailyWsprnetFile">Import saved Data</label><input id="dailyWsprnetFile" type="file" accept=".json,.csv,.html,.htm,application/json,text/csv,text/html" multiple></div>
         <p class="note">Select one or more saved files. Exact duplicate rows are removed automatically.</p>
       </div>
-      <div id="wsprliveGroup" class="collection-group wsprlive-group wspr-live-collector">
+      <div id="wsprliveGroup" class="collection-group wsprlive-group wspr-live-collector" hidden>
         <h3>3. Live or Saved Data Collection</h3>
         <div class="wspr-live-collector-controls">
           <label for="wsprLiveProvider">Live data server</label><select id="wsprLiveProvider"><option value="wd1" selected>WsprDaemon WD1</option><option value="wd2">WsprDaemon WD2</option><option value="wsprLive">wspr.live</option><option value="auto">Auto fallback - WD1 first</option></select>
@@ -79,27 +108,26 @@
         </div>
       </div>
       </div>
-      <div id="matrixBuildGroup" class="collection-group shared-matrix-group">
-        <h3>4. Review Matrix</h3>
-        <p class="note">Build from live data in the green collection panel or load JSON Data, then use the shared review and export controls below.</p>
-      <div class="daily-matrix-toolbar">
+      <div id="matrixBuildGroup" class="collection-group shared-matrix-group matrix-review-group">
+        <h3 class="matrix-status-hidden">4. Review Matrix</h3>
+        <p class="note matrix-status-hidden">Build from live data in the green collection panel or load JSON Data, then use the shared review and export controls below.</p>
+      <div class="daily-matrix-toolbar matrix-status-hidden">
         <button id="buildDailyMatrix" type="button" disabled hidden>Build Matrix from Data</button>
         <button id="dailyCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button>
         <button id="exportDailyMatrixCsv" class="secondary" type="button" disabled>Export CSV</button>
         <button id="printDailyMatrix" class="secondary" type="button" disabled>Print / PDF</button>
       </div>
-      <div class="status-card">
-        <h3 class="matrix-status-hidden">Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
+      <div class="status-card matrix-status-hidden">
+        <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
         <div class="wspr-live-status matrix-status-hidden" id="wsprLiveStatus">No collection started. This feature makes no requests until the refresh button is pressed.</div>
         <div class="daily-matrix-status matrix-status-hidden" id="dailyMatrixStatus">Load saved data, then review the matrix.</div>
-        <div class="matrix-band-panel"><div class="matrix-band-heading">Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></div><div id="dailyBandButtons" class="matrix-band-buttons"></div></div>
+        <div class="matrix-band-panel"><div class="matrix-band-heading"><span>Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></span><label class="matrix-row-height-control" for="matrixRowHeight">Row height <select id="matrixRowHeight"><option value="compact">Compact</option><option value="normal" selected>Normal</option><option value="tall">Tall</option></select></label></div><div id="dailyBandButtons" class="matrix-band-buttons"></div></div>
         <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span><button id="legendRefreshMatrix" class="secondary matrix-refresh-button" type="button">Refresh</button><div class="matrix-radius-controls"><label>Path 1 Radius km <select id="dailyLegendRadius1"></select></label><label>Path 2 Radius km <select id="dailyLegendRadius2"></select></label></div></div>
       </div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
       <h3 class="daily-matrix-subhead">All Beacons Heard by Reporter</h3>
       <div class="daily-matrix-note">This global matrix shows every beacon heard by the reporter callsign in the data. It is not filtered by selected destination area.</div>
       <div class="daily-global-scope" id="dailyGlobalScope"></div>
-      <div class="daily-matrix-toolbar"><button id="dailyGlobalCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button></div>
       <div class="daily-matrix-wrap" id="dailyGlobalMatrixWrap"></div>
       <div class="daily-matrix-note"><strong>Raw Spots</strong> counts every collected report row. <strong>Unique Beacons Per Bin</strong> counts each beacon callsign once within each 30-minute band/destination cell. <strong>Cumulative Unique Beacons</strong> counts each beacon callsign once across the UTC day and shows the running total by time bin. For the global matrix, destination filtering does not apply. For each selected path matrix, destination filtering uses each beacon grid and the selected city radius. SNR is deliberately not used for this wspr-matrix App.</div>
       </div>
@@ -140,6 +168,7 @@
     ];
     let wsprLiveCollection = null, wsprLiveCooldownUntil = 0, wsprLiveRequestInFlight = false, wsprLiveCooldownTimer = null, wsprAutoTimer = null, wsprAutoRunning = false, wsprAutoNextRunAt = 0, wsprAutoMode = null, wsprAutoJitterMs = 0, wsprAutoConsecutiveFailures = 0, clickHouseAutoTimer = null, clickHouseAutoWatchdogTimer = null, clickHouseAutoRunning = false, clickHouseAutoNextRunAt = 0;
     let dailyMatrixLastReport = null, dailyMatrixSource = null, dailyMatrixCountMode = "raw";
+    let matrixConfigurationMode = "free";
     const DAILY_MATRIX_COUNT_MODES = ["raw", "unique", "cumulative"];
     const DAILY_MATRIX_COUNT_LABELS = {raw:"Raw Spots",unique:"Unique Beacons Per Bin",cumulative:"Cumulative Unique Beacons"};
     const CITIES = {
@@ -2417,12 +2446,46 @@
     }
 
     function matrixBandFooter(columnSets = 1) {
-      let html=`<tr><th class="slot-cell">BAND</th><th></th>`;
+      let html=`<tr><th class="slot-cell" colspan="2">BAND</th>`;
       for(let set=0;set<columnSets;set++) {
         if (set > 0) html += `<th class="path-separator"></th>`;
         DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`);
       }
       return `${html}</tr>`;
+    }
+
+    function clearMatrixWrap(id) {
+      const wrap = $(id);
+      if (!wrap) return;
+      const header = wrap.previousElementSibling;
+      if (header?.classList.contains("daily-matrix-header-wrap")) header.remove();
+      wrap.innerHTML = "";
+    }
+
+    function installMatrixHeaderClone(container) {
+      if (!container) return;
+      const previousHeader = container.previousElementSibling;
+      if (previousHeader?.classList.contains("daily-matrix-header-wrap")) previousHeader.remove();
+      if (container._matrixHeaderSync) container.removeEventListener("scroll", container._matrixHeaderSync);
+      const table = container.querySelector("table.daily-matrix-table");
+      const thead = table?.querySelector("thead");
+      if (!table || !thead) return;
+      table.classList.add("daily-matrix-body-table");
+      const headerWrap = document.createElement("div");
+      headerWrap.className = "daily-matrix-header-wrap";
+      const headerTable = document.createElement("table");
+      headerTable.className = table.className.replace("daily-matrix-body-table", "").replace(/\s+/g, " ").trim();
+      const tableStyle = table.getAttribute("style");
+      if (tableStyle) headerTable.setAttribute("style", tableStyle);
+      const colgroup = table.querySelector("colgroup");
+      if (colgroup) headerTable.appendChild(colgroup.cloneNode(true));
+      headerTable.appendChild(thead.cloneNode(true));
+      headerWrap.appendChild(headerTable);
+      container.parentNode.insertBefore(headerWrap, container);
+      const syncHeader = () => { headerWrap.scrollLeft = container.scrollLeft; };
+      container._matrixHeaderSync = syncHeader;
+      container.addEventListener("scroll", syncHeader, { passive: true });
+      syncHeader();
     }
 
     function installMatrixColumnHover(container) {
@@ -2451,9 +2514,10 @@
       let html=`<table class="daily-matrix-table daily-global-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(1)}<thead><tr><th colspan="2">${esc(report.dateStr)}</th><th colspan="${DAILY_MATRIX_BANDS.length}">${esc(report.reporter)} | ALL BEACONS HEARD</th></tr><tr><th>UTC</th><th>Local</th>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
       for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;DAILY_MATRIX_BANDS.forEach(item=>{const n=report.globalMatrix[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyGlobalCell(n,max)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
-      html+=`<tr><td class="slot-cell">${summaryLabel}</td><td></td>${summaryTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr><tr><td class="slot-cell">${periodLabel}</td><td></td>${periodTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter()}</tbody></table>`;
+      html+=`<tr><td class="slot-cell" colspan="2">${summaryLabel}</td>${summaryTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr><tr><td class="slot-cell" colspan="2">${periodLabel}</td>${periodTotals.map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter()}</tbody></table>`;
       $("dailyGlobalMatrixWrap").innerHTML=html;
       installMatrixColumnHover($("dailyGlobalMatrixWrap"));
+      installMatrixHeaderClone($("dailyGlobalMatrixWrap"));
       $("dailyGlobalScope").textContent=`Every beacon heard by ${report.reporter}; no destination-area filter.`;
     }
 
@@ -2461,14 +2525,15 @@
       const max=Math.max(1,...report.matrix1.flatMap(slot=>[...slot.values()]),...report.matrix2.flatMap(slot=>[...slot.values()]));
       const markers1=matrixModelMarkers(report.reporter,report.dateStr,report.path1),markers2=matrixModelMarkers(report.reporter,report.dateStr,report.path2);
       const tableWidth=dailyMatrixTableWidth(2);
-      let html=`<table class="daily-matrix-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(2)}<thead><tr><th colspan="2">${esc(report.dateStr)}</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path-separator"></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr><th>UTC</th><th>Local</th>`;
+      let html=`<table class="daily-matrix-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(2)}<thead><tr class="matrix-header-spacer"><th colspan="${2 + (DAILY_MATRIX_BANDS.length * 2) + 1}"></th></tr><tr><th colspan="2">${esc(report.dateStr)}</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(report.path1.continent)}<span class="daily-path-scope">— ${esc(report.path1.name.split(",")[0])} area, ${report.path1.radiusKm.toLocaleString()} km radius</span></th><th class="path-separator"></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(report.path2.continent)}<span class="daily-path-scope">— ${esc(report.path2.name.split(",")[0])} area, ${report.path2.radiusKm.toLocaleString()} km radius</span></th></tr><tr><th>UTC</th><th>Local</th>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`<th class="path-separator"></th>`; DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
       for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix1[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,1)}>${matrixCellContent(n,state)}</td>`});
         html+=`<td class="path-separator"></td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix2[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,2)}>${matrixCellContent(n,state)}</td>`});html+=`</tr>`;}
-      html+=`<tr><td class="slot-cell">${dailySummaryLabel(report.countMode)}</td><td></td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}<td class="path-separator"></td>${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
+      html+=`<tr><td class="slot-cell" colspan="2">${dailySummaryLabel(report.countMode)}</td>${dailySummaryTotals(report.matrix1,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}<td class="path-separator"></td>${dailySummaryTotals(report.matrix2,report.countMode).map(n=>`<td>${n||""}</td>`).join("")}</tr>${matrixBandFooter(2)}</tbody></table>`; $("dailyMatrixWrap").innerHTML=html;
       installMatrixColumnHover($("dailyMatrixWrap"));
+      installMatrixHeaderClone($("dailyMatrixWrap"));
       renderGlobalReporterMatrix(report);
       const total1=dailySummaryTotals(report.matrix1,report.countMode).reduce((a,b)=>a+b,0),total2=dailySummaryTotals(report.matrix2,report.countMode).reduce((a,b)=>a+b,0);
       const coverage = report.sourceRows ? `${report.earliestUtc}-${report.latestUtc} UTC; latest source spot ${report.latestUtc} UTC; destination spots present in ${report.activeSlots} of 48 bins` : "no matching source time coverage";
@@ -2873,7 +2938,6 @@
       setButtonHelp("openWsprnetQuery", "Open the WSPRnet query page in a new browser tab.");
       setButtonHelp("buildDailyMatrix", $("dailyWsprnetFile").files.length ? "Build the matrix from imported WSPRnet files and selected destination areas." : "Import one or more saved WSPRnet files before building this matrix.");
       setButtonHelp("dailyCountModeToggle", "Switch between raw spots, unique beacons per bin, and cumulative unique beacons.");
-      setButtonHelp("dailyGlobalCountModeToggle", "Switch counting mode for both displayed matrices.");
       setButtonHelp("exportDailyMatrixCsv", dailyMatrixLastReport ? "Export the current matrix as a CSV file." : "Build a matrix before exporting CSV.");
       setButtonHelp("printDailyMatrix", dailyMatrixLastReport ? "Print the current matrix or save it as PDF." : "Build a matrix before printing.");
       $("wsprLiveDiagnostics").innerHTML = !wsprLiveCollection
@@ -3046,8 +3110,8 @@
     function clearDisplayedMatrix(message, badge = "No data selected") {
       dailyMatrixLastReport = null;
       dailyMatrixSource = null;
-      $("dailyMatrixWrap").innerHTML = "";
-      $("dailyGlobalMatrixWrap").innerHTML = "";
+      clearMatrixWrap("dailyMatrixWrap");
+      clearMatrixWrap("dailyGlobalMatrixWrap");
       $("dailyGlobalScope").textContent = "";
       $("dailyMatrixStatus").textContent = message;
       $("matrixSourceBadge").textContent = badge;
@@ -3345,15 +3409,111 @@
       window.addEventListener("afterprint",cleanup); setTimeout(()=>window.print(),80);
     }
 
+    function syncQuickToolbar() {
+      if (!$("matrixQuickToolbar")) return;
+      const copyButton = (sourceId, targetId, fallbackText = "") => {
+        const source = $(sourceId), target = $(targetId);
+        if (!source || !target) return;
+        target.disabled = source.disabled;
+        target.title = source.title || "";
+        target.textContent = fallbackText || source.textContent;
+        const pressed = source.getAttribute("aria-pressed");
+        if (pressed !== null) target.setAttribute("aria-pressed", pressed);
+      };
+      if ($("quickRefresh")) {
+        $("quickRefresh").disabled = Boolean(wsprLiveRequestInFlight);
+        $("quickRefresh").title = wsprLiveRequestInFlight ? "A live data request is already in progress." : "Refresh live data or rebuild from loaded saved data.";
+        $("quickRefresh").textContent = "Refresh";
+      }
+      copyButton("saveCollectedWsprJson", "quickSave", "Save");
+      copyButton("loadCollectedWsprData", "quickLoad", "Load");
+      copyButton("clearCollectedWspr", "quickClear", "Clear");
+      copyButton("dailyCountModeToggle", "quickCountMode");
+      copyButton("exportDailyMatrixCsv", "quickExportCsv", "Export CSV");
+      copyButton("printDailyMatrix", "quickPrintPdf", "Print / PDF");
+      if ($("quickLiveProvider") && $("wsprLiveProvider")) {
+        $("quickLiveProvider").innerHTML = $("wsprLiveProvider").innerHTML;
+        $("quickLiveProvider").value = $("wsprLiveProvider").value;
+        $("quickLiveProvider").disabled = $("wsprLiveProvider").disabled;
+        $("quickLiveProvider").title = $("wsprLiveProvider").title || "Choose the live data source before manual collection.";
+      }
+      if ($("quickRowHeight") && $("matrixRowHeight")) $("quickRowHeight").value = $("matrixRowHeight").value;
+      if ($("quickRadius1") && $("dailyLegendRadius1")) {
+        $("quickRadius1").innerHTML = $("dailyLegendRadius1").innerHTML;
+        $("quickRadius1").value = $("dailyLegendRadius1").value;
+      }
+      if ($("quickRadius2") && $("dailyLegendRadius2")) {
+        $("quickRadius2").innerHTML = $("dailyLegendRadius2").innerHTML;
+        $("quickRadius2").value = $("dailyLegendRadius2").value;
+      }
+      if ($("quickBandSelectionStatus") && $("dailyBandSelectionStatus")) {
+        $("quickBandSelectionStatus").textContent = "Bands " + $("dailyBandSelectionStatus").textContent;
+      }
+      if ($("quickBandButtons") && $("dailyBandButtons")) {
+        $("quickBandButtons").innerHTML = $("dailyBandButtons").innerHTML.replace(/id="saveDailyBandsAsDefault"/g, 'id="quickSaveDailyBandsAsDefault"');
+      }
+      if ($("quickWsprLiveDiagnostics") && $("wsprLiveDiagnostics")) {
+        $("quickWsprLiveDiagnostics").innerHTML = $("wsprLiveDiagnostics").innerHTML;
+      }
+    }
+
+    function applyMatrixRowHeight(value) {
+      const mode = ["compact", "normal", "tall"].includes(value) ? value : "normal";
+      document.body.classList.remove("matrix-row-compact", "matrix-row-normal", "matrix-row-tall");
+      document.body.classList.add("matrix-row-" + mode);
+      if ($("matrixRowHeight")) $("matrixRowHeight").value = mode;
+      return mode;
+    }
+
+    function setMatrixConfigurationMode(mode) {
+      matrixConfigurationMode = mode === "docked" ? "docked" : "free";
+      const docked = matrixConfigurationMode === "docked";
+      document.body.classList.toggle("matrix-configuration-docked", docked);
+      if ($("matrixConfigGroup")) $("matrixConfigGroup").hidden = docked;
+      const toolbar = $("matrixQuickToolbar");
+      const toolbarHeight = toolbar ? Math.ceil(toolbar.getBoundingClientRect().height) : 0;
+      document.documentElement.style.setProperty("--matrix-toolbar-height", toolbarHeight + "px");
+      if ($("quickConfigMode")) {
+        $("quickConfigMode").textContent = "Configuration: " + (docked ? "Docked" : "Free");
+        $("quickConfigMode").setAttribute("aria-pressed", docked ? "true" : "false");
+        $("quickConfigMode").title = docked ? "Show configuration panels." : "Hide configuration panels and move the matrix to its home position.";
+      }
+      const placeBelowToolbar = target => {
+        requestAnimationFrame(() => {
+          const currentToolbar = $("matrixQuickToolbar");
+          if (!target || !currentToolbar) return;
+          const toolbarBottom = currentToolbar.getBoundingClientRect().bottom;
+          const targetTop = target.getBoundingClientRect().top;
+          window.scrollTo({ top: window.scrollY + targetTop - toolbarBottom, behavior: "auto" });
+        });
+      };
+      if (docked) {
+        if ($("dailyMatrixWrap")) $("dailyMatrixWrap").scrollTop = 0;
+        if ($("dailyGlobalMatrixWrap")) $("dailyGlobalMatrixWrap").scrollTop = 0;
+        const matrixHeader = $("dailyMatrixWrap")?.previousElementSibling?.classList.contains("daily-matrix-header-wrap") ? $("dailyMatrixWrap").previousElementSibling : null;
+        placeBelowToolbar(matrixHeader || $("dailyMatrixWrap") || $("matrixBuildGroup"));
+      } else {
+        document.documentElement.style.removeProperty("--matrix-toolbar-height");
+        placeBelowToolbar($("matrixConfigGroup"));
+      }
+    }
+
+    function toggleMatrixConfigurationMode() {
+      setMatrixConfigurationMode(matrixConfigurationMode === "docked" ? "free" : "docked");
+    }
+
     const matrixPanel = $("dailyMatrixPanel");
     matrixPanel.insertBefore($("wsprliveGroup"), $("wsprnetGroup"));
     matrixPanel.insertBefore($("matrixConfigGroup"), $("wsprliveGroup"));
     matrixPanel.insertBefore($("wsprnetImportGroup"), $("matrixBuildGroup"));
     $("dailyMatrixDate").value = new Date().toISOString().slice(0, 10);
     $("dailyLocalOffset").value = readMatrixPreferences().utcOffset ?? 10;
+    applyMatrixRowHeight(readMatrixPreferences().rowHeight || "normal");
     initDailyDestinationSelectors();
     restoreDailyBandSelection();
     renderDailyBandButtons();
+    setMatrixConfigurationMode("free");
+    syncQuickToolbar();
     restoreWsprLiveCollection();
     $("dailyCont1").addEventListener("change",()=>{populateDailyDestinationCities(1);renderWsprLiveCollector();});
     $("dailyCont2").addEventListener("change",()=>{populateDailyDestinationCities(2);renderWsprLiveCollector();});
@@ -3372,8 +3532,39 @@
     $("openWsprnetQuery").addEventListener("click",()=>window.open("https://www.wsprnet.org/drupal/wsprnet/spotquery","_blank","noopener"));
     $("buildDailyMatrix").addEventListener("click",buildDailyMatrix);
     $("dailyCountModeToggle").addEventListener("click",toggleDailyCountMode);
-    $("dailyGlobalCountModeToggle").addEventListener("click",toggleDailyCountMode);
     $("dailyBandButtons").addEventListener("click",event=>{const defaultButton=event.target.closest("#saveDailyBandsAsDefault");if(defaultButton){saveDailyBandsAsDefaultPreference();return;}const button=event.target.closest("button[data-daily-band]");if(button)toggleDailyBandSelection(Number(button.dataset.dailyBand));});
+    $("quickRefresh").addEventListener("click",()=>{buildOrCollectWsprMatrix();syncQuickToolbar();});
+    $("quickSave").addEventListener("click",()=>$("saveCollectedWsprJson").click());
+    $("quickLoad").addEventListener("click",()=>$("loadCollectedWsprData").click());
+    $("quickClear").addEventListener("click",()=>$("clearCollectedWspr").click());
+    $("quickCountMode").addEventListener("click",()=>{toggleDailyCountMode();syncQuickToolbar();});
+    $("quickConfigMode").addEventListener("click",()=>{toggleMatrixConfigurationMode();syncQuickToolbar();});
+    $("quickLiveProvider").addEventListener("change",()=>{if($("wsprLiveProvider")){$("wsprLiveProvider").value=$("quickLiveProvider").value;$("wsprLiveProvider").dispatchEvent(new Event("change"));}syncQuickToolbar();});
+    $("quickDiagnostics").addEventListener("click",()=>{const details=$("quickDiagnosticsPanel");if(details){syncQuickToolbar();details.hidden=false;details.open=!details.open;details.scrollIntoView({block:"nearest"});}});
+    $("quickExportCsv").addEventListener("click",()=>$("exportDailyMatrixCsv").click());
+    $("quickPrintPdf").addEventListener("click",()=>$("printDailyMatrix").click());
+    $("quickBandButtons").addEventListener("click",event=>{
+      const defaultButton=event.target.closest("#quickSaveDailyBandsAsDefault");
+      if(defaultButton){saveDailyBandsAsDefaultPreference();syncQuickToolbar();return;}
+      const button=event.target.closest("button[data-daily-band]");
+      if(button){toggleDailyBandSelection(Number(button.dataset.dailyBand));syncQuickToolbar();}
+    });
+    $("quickRowHeight").addEventListener("change",()=>{
+      if($("matrixRowHeight")){$("matrixRowHeight").value=$("quickRowHeight").value;$("matrixRowHeight").dispatchEvent(new Event("change"));}
+      syncQuickToolbar();
+    });
+    $("quickRadius1").addEventListener("change",()=>{
+      if($("dailyLegendRadius1")){$("dailyLegendRadius1").value=$("quickRadius1").value;$("dailyLegendRadius1").dispatchEvent(new Event("change"));}
+      syncQuickToolbar();
+    });
+    $("quickRadius2").addEventListener("change",()=>{
+      if($("dailyLegendRadius2")){$("dailyLegendRadius2").value=$("quickRadius2").value;$("dailyLegendRadius2").dispatchEvent(new Event("change"));}
+      syncQuickToolbar();
+    });
+    ["buildCollectedWsprMatrix","saveCollectedWsprJson","loadCollectedWsprData","clearCollectedWspr","dailyCountModeToggle","dailyBandButtons","dailyLegendRadius1","dailyLegendRadius2","matrixRowHeight","wsprLiveProvider","exportDailyMatrixCsv","printDailyMatrix"].forEach(id=>{
+      const node=$(id);
+      if(node)new MutationObserver(syncQuickToolbar).observe(node,{attributes:true,childList:true,subtree:true,characterData:true});
+    });
     $("legendRefreshMatrix").addEventListener("click",buildOrCollectWsprMatrix);
     $("dailyWsprnetFile").addEventListener("change",detectDailyReporter);
     $("dailyWsprnetFile").addEventListener("change",()=>{
@@ -3401,6 +3592,9 @@
       const prefs=readMatrixPreferences(); prefs.utcOffset=$("dailyLocalOffset").value; saveMatrixPreferences(prefs);
       if(dailyMatrixLastReport)renderDailyMatrix(dailyMatrixLastReport);
       renderWsprLiveCollector();
+    });
+    $("matrixRowHeight").addEventListener("change",()=>{
+      const prefs=readMatrixPreferences(); prefs.rowHeight=applyMatrixRowHeight($("matrixRowHeight").value); saveMatrixPreferences(prefs);
     });
     $("exportDailyMatrixCsv").addEventListener("click",exportDailyMatrixCsv);
     $("printDailyMatrix").addEventListener("click",printDailyMatrix);
