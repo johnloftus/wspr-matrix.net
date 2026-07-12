@@ -33,7 +33,7 @@
 <li><strong>Load</strong> opens saved JSON, CSV, HTML, or WSPRnet-style data files and builds the matrix. Multiple files can be selected together.</li>
 <li><strong>Clear</strong> clears the current matrix and collection state.</li>
 <li><strong>Counting</strong> cycles through Raw Spots, Unique Beacons Per Bin, and Cumulative Unique Beacons.</li>
-<li><strong>Configuration: Free / Docked</strong> controls the configuration panel. Free shows the callsign, date, and destination selectors. Docked hides that panel and moves the matrix to its home position below the fixed toolbar.</li>
+<li><strong>Green setup button</strong> opens or closes the callsign, date, and destination setup panel. <strong>Setup: Open</strong> shows the panel. <strong>Setup: Closed</strong> hides the panel and moves the matrix to its home position below the fixed toolbar.</li>
 <li><strong>Band buttons</strong> select the bands shown in the matrix. The counter shows how many bands are selected out of the maximum of 10.</li>
 <li><strong>Live data server</strong> selects the ClickHouse-compatible live source used by Refresh.</li>
 <li><strong>Request diagnostics</strong> opens details about live data requests and failures.</li>
@@ -42,6 +42,11 @@
 <li><strong>Row height</strong> changes matrix row spacing. This setting is useful when aligning two browser windows side by side.</li>
 <li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area.</li>
 </ul>
+
+<h2>Path Matrix and Global Matrix</h2>
+<p><strong>Path matrix:</strong> the first matrix is filtered by the selected Path 1 and Path 2 destination areas. Destination filtering uses each beacon grid and the selected city radius.</p>
+<p><strong>Global matrix:</strong> the second matrix shows every beacon heard by the reporter callsign in the loaded or collected data. It is not filtered by Path 1 or Path 2.</p>
+<p>Both matrices use the same toolbar counting mode and selected band buttons.</p>
 
 <h2>Counting Modes</h2>
 <p><strong>Raw Spots</strong> counts every imported or collected report row.</p>
@@ -57,7 +62,6 @@
 <li>JSON data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
 <li>Blank cells mean no matching observed reports in the imported or collected data, not proof that propagation was closed.</li>
 <li>Endpoint radius controls which beacon grids are included in each path area.</li>
-<li>The selected-path matrix filters by destination area. The all-beacons-heard matrix is not filtered by either destination area.</li>
 <li>SNR is deliberately not used by WSPR Matrix.</li>
 </ul>
 </main>
