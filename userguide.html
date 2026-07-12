@@ -18,7 +18,7 @@
 <li>Choose Path 1 and Path 2 destination areas using continent, city, and radius.</li>
 <li>Select the live data server if live data will be used.</li>
 <li>Select up to 10 bands in the fixed toolbar.</li>
-<li>Press <strong>Refresh</strong> to collect live data and build the matrix, or press <strong>Load</strong> to build from one or more saved data files.</li>
+<li>Press <strong>Go!</strong> to collect live data and build the matrix, or press <strong>Load</strong> to build from one or more saved data files.</li>
 <li>Choose the counting mode: Raw Spots, Unique Beacons Per Bin, or Cumulative Unique Beacons.</li>
 <li>Use <strong>Save</strong> if you want to keep the collected JSON data for later review.</li>
 <li>Review the selected-path matrix and the all-beacons-heard matrix.</li>
@@ -28,19 +28,22 @@
 <h2>Fixed Toolbar</h2>
 <p>The fixed toolbar stays available while the matrix is being reviewed. It contains the high-use controls so the user does not need to scroll back to the top of the page.</p>
 <ul>
-<li><strong>Refresh</strong> collects live data for the entered callsign and UTC date, then rebuilds the matrix.</li>
+<li><strong>Go!</strong> collects live data for the entered callsign and UTC date, then rebuilds the matrix. If saved data has already been loaded, Go! rebuilds from the loaded data.</li>
 <li><strong>Save</strong> saves the current collected data as a JSON file.</li>
 <li><strong>Load</strong> opens saved JSON, CSV, HTML, or WSPRnet-style data files and builds the matrix. Multiple files can be selected together.</li>
 <li><strong>Clear</strong> clears the current matrix and collection state.</li>
 <li><strong>Counting</strong> cycles through Raw Spots, Unique Beacons Per Bin, and Cumulative Unique Beacons.</li>
-<li><strong>Green setup button</strong> opens or closes the callsign, date, and destination setup panel. <strong>Setup: Open</strong> shows the panel. <strong>Setup: Closed</strong> hides the panel and moves the matrix to its home position below the fixed toolbar.</li>
+<li><strong>Open setup</strong> and <strong>Close setup</strong> are the action labels on the green setup button. Open setup shows the callsign, date, and destination setup panel. Close setup hides the panel and moves the matrix to its home position below the fixed toolbar.</li>
 <li><strong>Band buttons</strong> select the bands shown in the matrix. The counter shows how many bands are selected out of the maximum of 10.</li>
-<li><strong>Live data server</strong> selects the ClickHouse-compatible live source used by Refresh.</li>
+<li><strong>Live data server</strong> selects the ClickHouse-compatible live source used by Go!.</li>
 <li><strong>Request diagnostics</strong> opens details about live data requests and failures.</li>
 <li><strong>Export CSV</strong> saves the current matrix as a CSV file.</li>
 <li><strong>Print / PDF</strong> opens the browser print flow for paper or PDF output.</li>
 <li><strong>Row height</strong> changes matrix row spacing. This setting is useful when aligning two browser windows side by side.</li>
 <li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area.</li>
+<li><strong>Path Matrix</strong> jumps directly to the selected-path matrix.</li>
+<li><strong>Global Matrix</strong> jumps directly to the all-beacons-heard matrix.</li>
+<li><strong>User Guide</strong> opens the landing page, where the User Guide and other project pages are available.</li>
 </ul>
 
 <h2>Path Matrix and Global Matrix</h2>
