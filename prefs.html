@@ -28,15 +28,13 @@
     </select>
   </p>
   <div class="band-pref-panel">
-    <div class="band-pref-heading">Default matrix bands <span id="bandPrefStatus">9 of 10 selected</span></div>
+    <div class="band-pref-heading">Default matrix bands <span id="bandPrefStatus">9 of 18 selected</span></div>
     <div id="bandPrefButtons" class="band-pref-buttons"></div>
-    <p class="note">These bands will be selected by default in the matrix. Maximum 10 bands can be selected at one time.</p>
+    <p class="note">These bands will be selected by default in the matrix.</p>
   </div>
   <p><button type="submit">Save Preferences</button></p>
 </form>
 <p id="prefsStatus"></p>
-<h2>Planned Preferences</h2>
-<p>When ready, browser-local options may include default reporter callsign, default Path 1 and Path 2 destinations, default endpoint radii, default count mode, and startup state.</p>
 </main>
 <script>
 const PREFS_KEY = "wsprMatrixPreferences";
@@ -44,7 +42,7 @@ const BANDS_KEY = "wsprMatrixDefaultBands";
 const CURRENT_BANDS_KEY = "wsprMatrixSelectedBands";
 const ALL_BANDS = [{band:-1,label:"LF"},{band:0,label:"MF"},{band:1,label:"160m"},{band:3,label:"80m"},{band:5,label:"60m"},{band:7,label:"40m"},{band:10,label:"30m"},{band:13,label:"22m"},{band:14,label:"20m"},{band:18,label:"17m"},{band:21,label:"15m"},{band:24,label:"12m"},{band:28,label:"10m"},{band:50,label:"6m"},{band:70,label:"4m"},{band:144,label:"2m"},{band:432,label:"70cm"},{band:1296,label:"23cm"}];
 const DEFAULT_BANDS = [1,3,7,10,14,18,21,24,28];
-const MAX_BANDS = 10;
+const MAX_BANDS = 18;
 let selectedBands = [];
 function readPrefs(){try{return JSON.parse(localStorage.getItem(PREFS_KEY)||"{}")||{};}catch{return {};}}
 function savePrefs(prefs){localStorage.setItem(PREFS_KEY,JSON.stringify(prefs));}
