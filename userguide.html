@@ -15,7 +15,7 @@
 <ol>
 <li>Open <a href="matrix.html">WSPR Matrix</a>.</li>
 <li>Enter the reporter callsign, UTC date, and local UTC offset if local time is wanted beside UTC.</li>
-<li>Choose Path 1 and Path 2 destination areas using continent, city, and radius.</li>
+<li>Choose Path 1 and Path 2 destination areas using continent, city, and radius, or use Map grids in Map Setup.</li>
 <li>Select the live data server if live data will be used.</li>
 <li>Select up to 18 bands in the fixed toolbar.</li>
 <li>Press <strong>Go!</strong> to collect live data and build the matrix, or press <strong>Load</strong> to build from one or more saved data files.</li>
@@ -41,16 +41,23 @@
 <li><strong>Export CSV</strong> saves the current matrix as a CSV file.</li>
 <li><strong>Print / PDF</strong> opens the browser print flow for paper or PDF output.</li>
 <li><strong>Row height</strong> changes matrix row spacing. This setting is useful when aligning two browser windows side by side.</li>
-<li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area.</li>
+<li><strong>Destination mode</strong> switches between City radius and Map grids.</li>
+<li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area when City radius mode is used.</li>
 <li><strong>Path Matrix</strong> jumps directly to the selected-path matrix.</li>
 <li><strong>Global Matrix</strong> jumps directly to the all-beacons-heard matrix.</li>
 <li><strong>User Guide</strong> opens the landing page, where the User Guide and other project pages are available.</li>
 </ul>
 
 <h2>Path Matrix and Global Matrix</h2>
-<p><strong>Path matrix:</strong> the first matrix is filtered by the selected Path 1 and Path 2 destination areas. Destination filtering uses each beacon grid and the selected city radius.</p>
+<p><strong>Path matrix:</strong> the first matrix is filtered by the selected Path 1 and Path 2 destination areas. The active Destination mode decides how each path area is defined.</p>
 <p><strong>Global matrix:</strong> the second matrix shows every beacon heard by the reporter callsign in the loaded or collected data. It is not filtered by Path 1 or Path 2.</p>
 <p>Both matrices use the same toolbar counting mode and selected band buttons.</p>
+
+<h2>Map Setup</h2>
+<p>Map Setup provides a visual way to define Path 1 and Path 2 destination areas. The maps show two-letter Maidenhead fields, city labels, and a light world outline. Click a field to select it; click it again to remove it. Use <strong>Select All</strong> when a path should include every two-letter field, or <strong>Clear</strong> to remove map-grid selections for that path.</p>
+<p><strong>City radius mode:</strong> the app uses the selected continent, city, and radius. A beacon is counted for a path when its grid is within the selected radius from that city.</p>
+<p><strong>Map grids mode:</strong> the app uses the selected two-letter Maidenhead fields on the maps. A beacon is counted for a path when the first two letters of its grid match a selected field. City and radius selections are not used in this mode.</p>
+<p>One selected map grid on only one path is valid. If Map grids mode is selected and no grids are selected on either path, the app prompts the user to select grids before loading or collecting data.</p>
 
 <h2>Counting Modes</h2>
 <p><strong>Raw Spots</strong> counts every imported or collected report row.</p>
@@ -65,7 +72,8 @@
 <ul>
 <li>JSON data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
 <li>Blank cells mean no matching observed reports in the imported or collected data, not proof that propagation was closed.</li>
-<li>Endpoint radius controls which beacon grids are included in each path area.</li>
+<li>Endpoint radius controls which beacon grids are included in each path area when City radius mode is used.</li>
+<li>Two-letter Maidenhead fields are broad 20 degree longitude by 10 degree latitude areas. In Map grids mode, selected fields define the destination area directly.</li>
 <li>SNR is deliberately not used by WSPR Matrix.</li>
 </ul>
 </main>
