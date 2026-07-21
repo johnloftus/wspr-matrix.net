@@ -10,6 +10,7 @@
 <main class="doc">
 <p><a href="index.html">Back to WSPR Matrix</a></p>
 <h1>User Guide</h1>
+<p><strong>Prototype v2026.07.21</strong></p>
 
 <h2>Basic Workflow</h2>
 <ol>
@@ -55,7 +56,7 @@
 
 <h2>Map Setup</h2>
 <p>Map Setup provides a visual way to define Path 1 and Path 2 destination areas. The maps show two-letter Maidenhead fields, city labels, and a light world outline. Click a field to select it; click it again to remove it. Use <strong>Select All</strong> when a path should include every two-letter field, or <strong>Clear</strong> to remove map-grid selections for that path.</p>
-<p><strong>City radius mode:</strong> the app uses the selected continent, city, and radius. A beacon is counted for a path when its grid is within the selected radius from that city.</p>
+<p><strong>City radius mode:</strong> the app uses the selected continent, city, and radius. A beacon is counted for a path when its grid is within the selected radius from that city. The map also shades the two-letter Maidenhead fields whose field centres fall within the selected radius, giving a visual indication of destination coverage.</p>
 <p><strong>Map grids mode:</strong> the app uses the selected two-letter Maidenhead fields on the maps. A beacon is counted for a path when the first two letters of its grid match a selected field. City and radius selections are not used in this mode.</p>
 <p>One selected map grid on only one path is valid. If Map grids mode is selected and no grids are selected on either path, the app prompts the user to select grids before loading or collecting data.</p>
 
@@ -72,7 +73,7 @@
 <ul>
 <li>JSON data should contain headers and rows, or an array of spot objects with reporter, date, band/frequency, grid, and callsign fields.</li>
 <li>Blank cells mean no matching observed reports in the imported or collected data, not proof that propagation was closed.</li>
-<li>Endpoint radius controls which beacon grids are included in each path area when City radius mode is used.</li>
+<li>Endpoint radius controls which beacon grids are included in each path area when City radius mode is used. The shaded radius fields on the map are a visual guide to this same destination area.</li>
 <li>Two-letter Maidenhead fields are broad 20 degree longitude by 10 degree latitude areas. In Map grids mode, selected fields define the destination area directly.</li>
 <li>SNR is deliberately not used by WSPR Matrix.</li>
 </ul>
