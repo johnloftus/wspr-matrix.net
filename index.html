@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WSPR Matrix</title>
+<meta name="description" content="WSPR Matrix is a browser app for viewing daily WSPR propagation activity by reporter, band, UTC time, local time, and selected global destination areas.">
+<link rel="canonical" href="https://wspr-matrix.net/">
+<meta property="og:title" content="WSPR Matrix">
+<meta property="og:description" content="View daily WSPR propagation activity by reporter, band, UTC time, local time, and selected global destination areas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wspr-matrix.net/">
+<meta property="og:image" content="https://wspr-matrix.net/Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png">
+<title>WSPR Matrix | Daily WSPR Propagation Activity</title>
 <style>
 :root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7}
 *{box-sizing:border-box}
@@ -12,7 +19,8 @@ header{background:#162230;color:white;padding:24px}
 header h1{margin:0;font-size:32px;letter-spacing:0}
 header p{max-width:900px;margin:8px 0 0;color:#d8e2ec}
 main{max-width:1180px;margin:auto;padding:22px}
-.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:20px;align-items:start}
+.hero{display:grid;gap:18px;align-items:start}
+.hero-copy{max-width:980px}
 .panel{background:white;border:1px solid var(--line);border-radius:10px;padding:18px}
 .visual-link{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:white}
 .visual-link img{display:block;width:100%;height:auto}
@@ -26,34 +34,37 @@ a.secondary{background:white;color:var(--blue)}
 .card strong{display:block;color:var(--blue);margin-bottom:5px}
 .card span{font-size:13px;color:var(--muted)}
 .notes{margin-top:18px;color:var(--muted);font-size:13px}
-@media(max-width:850px){.hero,.cards{grid-template-columns:1fr}}
+@media(max-width:850px){.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <h1>WSPR Matrix</h1>
-  <p>A browser-based tool for turning live ClickHouse WSPR reports into visual daily activity matrices by reporter, band, UTC time, local time, and selected destination areas.</p>
+  <p>Daily WSPR propagation activity by reporter, band, UTC time, local time, and selected global destination areas.</p>
 </header>
 <main>
   <section class="hero">
+    <div class="panel hero-copy">
+      <h2>See when propagation paths are active</h2>
+      <p>wspr-matrix is a browser App for viewing daily propagation activity between your region and any global region over a UTC day.</p>
+      <p>The app runs locally in your browser on any operating system - including Windows, Linux, Apple, Android and mobile phones. No installation and no server required.</p>
+      <div class="actions">
+        <a class="button" href="matrix.html">Open WSPR Matrix</a>
+      </div>
+    </div>
     <div>
       <a class="visual-link" href="example.html" aria-label="Open full-size WSPR Matrix example">
         <img src="Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png" alt="Example WSPR Matrix comparing Europe and North America paths for VK7JJ and VK5ARG">
       </a>
       <p class="caption">Example matrix output. Click the image to open the full-size visual.</p>
     </div>
-    <div class="panel">
-      <h2>See when paths are active</h2>
-      <p>WSPR Matrix collects live ClickHouse data or loads WSPRnet JSON data, then builds a 30-minute table showing observed activity by band. It can compare two selected destination areas and also show all destinations heard by the reporter.</p>
-      <p>The app runs locally in your browser. No installation is required.</p>
-      <div class="actions">
-        <a class="button" href="matrix.html">Open WSPR Matrix</a>
-      </div>
-    </div>
   </section>
   <nav class="cards" aria-label="Project pages">
     <a class="card" href="readme.html"><strong>Read Me</strong><span>Purpose, scope, and data-source overview.</span></a>
     <a class="card" href="userguide.html"><strong>User Guide</strong><span>Step-by-step use of the browser app.</span></a>
+    <a class="card" href="applications.html"><strong>Applications</strong><span>Use cases for operating strategy and station comparison.</span></a>
+    <a class="card" href="qa.html"><strong>Q &amp; A</strong><span>Plain-language answers for common reviewer and user questions.</span></a>
+    <a class="card" href="resources.html"><strong>Resources</strong><span>Related WSPR, propagation, map, and band-plan resources.</span></a>
     <a class="card" href="about.html"><strong>About</strong><span>Authorship, acknowledgements, dependencies, and version notes.</span></a>
     <a class="card" href="prefs.html"><strong>Preferences</strong><span>Set local time offset and future browser-local defaults.</span></a>
   </nav>

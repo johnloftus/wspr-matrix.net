@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wspr-matrix.net/sitemap.xml
