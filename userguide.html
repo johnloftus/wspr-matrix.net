@@ -18,7 +18,8 @@
 <ol>
 <li>Open <a href="matrix.html">WSPR Matrix</a>.</li>
 <li>Enter the reporter callsign, UTC date, and local UTC offset if local time is wanted beside UTC.</li>
-<li>Choose Path 1 and Path 2 destination areas using continent, city, and radius, or use Map grids in Map Setup.</li>
+<li>Choose Path 1 and Path 2 destination areas using continent, city and radius.</li>
+<li>You may modify radius grid selections using the map-grid at any time.</li>
 <li>Select the live data server if live data will be used.</li>
 <li>Select up to 18 bands in the fixed toolbar.</li>
 <li>Press <strong>Go!</strong> to collect live data and build the matrix, or press <strong>Load</strong> to build from one or more saved data files.</li>
@@ -26,7 +27,7 @@
 <li>Choose the counting mode: Raw Spots, Unique Beacons Per Bin, or Cumulative Unique Beacons.</li>
 <li>Use <strong>Save</strong> if you want to keep the collected JSON data for later review.</li>
 <li>Select <strong>Path Matrix</strong> to view beacons heard from both selected paths, or select <strong>Global Matrix</strong> to view all-beacons-heard from all continents.</li>
-<li>Use <strong>Export CSV</strong> or <strong>Print / PDF</strong> for reports.</li>
+<li>Use <strong>Export CSV</strong> or <strong>Save / PDF</strong> for reports.</li>
 </ol>
 
 <h2>Fixed Toolbar</h2>
@@ -42,7 +43,7 @@
 <li><strong>Live data server</strong> selects the ClickHouse-compatible live source used by Go!.</li>
 <li><strong>Diagnostics</strong> opens details about live data requests and failures.</li>
 <li><strong>Export CSV</strong> saves the current matrix as a CSV file.</li>
-<li><strong>Print / PDF</strong> opens the browser print flow for paper or PDF output.</li>
+<li><strong>Save / PDF</strong> opens the browser print flow for saving a PDF report.</li>
 <li><strong>Row height</strong> changes matrix row spacing. This setting is useful when aligning two browser windows side by side.</li>
 <li><strong>Destination mode</strong> switches between City radius and Map grids.</li>
 <li><strong>Path radius controls</strong> adjust the endpoint radius for each selected path area when City radius mode is used.</li>
@@ -59,7 +60,7 @@
 <h2>Map Setup</h2>
 <p>Map Setup provides a visual way to define Path 1 and Path 2 destination areas. The maps show two-letter Maidenhead fields, city labels, and a light world outline. Click a field to select it; click it again to remove it. Use <strong>Select All</strong> when a path should include every two-letter field, or <strong>Clear</strong> to remove map-grid selections for that path.</p>
 <p><strong>City radius mode:</strong> the app uses the selected continent, city, and radius. A beacon is counted for a path when its grid is within the selected radius from that city. The map also shades the two-letter Maidenhead fields whose field centres fall within the selected radius, giving a visual indication of destination coverage.</p>
-<p><strong>Map grids mode:</strong> the app uses the selected two-letter Maidenhead fields on the maps. A beacon is counted for a path when the first two letters of its grid match a selected field. City and radius selections are not used in this mode.</p>
+<p><strong>Map grids mode:</strong> when switching from City radius to Map grids, the app keeps the radius grid selection as the starting point. The user can then add or remove two-letter Maidenhead fields on the maps. A beacon is counted for a path when the first two letters of its grid match a selected field.</p>
 <p>One selected map grid on only one path is valid. If Map grids mode is selected and no grids are selected on either path, the app prompts the user to select grids before loading or collecting data.</p>
 
 <h2>Counting Modes</h2>

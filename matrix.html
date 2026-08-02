@@ -6,13 +6,15 @@
 <title>Daily WSPR Path Matrix</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231d4f84'/%3E%3Cpath d='M10 43h44M10 32h44M10 21h44M20 8v48M32 8v48M44 8v48' stroke='%23a9c3df' stroke-width='3'/%3E%3Cpath d='M13 45c11-23 27-23 38 0' fill='none' stroke='%23b7ff3c' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
-:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e;--matrix-row-height:22px}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-heading-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.matrix-heading-row h2{margin-bottom:0}.matrix-top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin:0}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:130px minmax(170px,260px);gap:8px;align-items:center}.wspr-live-collector-controls label{margin:0}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:14px 10px 10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:minmax(126px,1.15fr) minmax(98px,1fr);gap:6px}.daily-matrix-wrap{overflow:auto;max-height:min(72vh,calc(var(--matrix-row-height) * 58));margin-top:0;border:1px solid var(--line);border-top:0;border-radius:0 0 6px 6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:0 2px;height:var(--matrix-row-height);line-height:14px;vertical-align:middle;white-space:nowrap;overflow:hidden;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}.global-matrix-separator{height:72px}@media(max-width:900px){.matrix-heading-row{display:block}.matrix-top-links{justify-content:flex-start;margin-top:10px}.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-controls,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--muted:#56616e;--matrix-row-height:22px}*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#18212b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:24px}section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}h1,h2,h3{margin-top:0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;font:inherit;background:#fff}input[readonly]{background:#eef2f6}button{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:5px;padding:9px 12px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.matrix-heading-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.matrix-heading-row h2{margin-bottom:0}.matrix-top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin:0}.matrix-top-links a{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;padding:7px 10px;color:var(--blue);font-size:12px;font-weight:700;background:#fff}.note,.daily-matrix-note{color:var(--muted);font-size:12px;line-height:1.45}.daily-matrix-controls{display:grid;grid-template-columns:180px 180px minmax(280px,1fr);gap:10px;align-items:end}.daily-matrix-toolbar,.wspr-live-band-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.daily-matrix-status,.wspr-live-status{margin-top:12px;padding:10px 12px;background:#f6f8fa;border:1px solid var(--line);border-radius:6px;font-size:13px}.wspr-live-next-step{margin-top:10px;padding:9px 11px;border:1px solid #8bcbae;border-left:4px solid var(--green);border-radius:6px;background:#fff;color:#176b47;font-size:13px;font-weight:700}.wspr-live-collector{margin-top:14px;padding:12px;border:1px solid #8bcbae;border-radius:6px;background:#f4fbf7}.wspr-live-collector h3{margin-bottom:5px}.wspr-live-collector-controls{display:grid;grid-template-columns:130px minmax(170px,260px);gap:8px;align-items:center}.wspr-live-collector-controls label{margin:0}.wspr-live-band-buttons button{min-width:58px}.daily-path-selectors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.daily-path-selector{border:1px solid var(--line);border-radius:6px;padding:14px 10px 10px}.daily-path-selector.path1{border-color:#e2a674;background:#fff8f2}.daily-path-selector.path2{border-color:#91b7dc;background:#f3f8fd}.daily-path-selector-grid{display:grid;grid-template-columns:minmax(126px,1.15fr) minmax(98px,1fr);gap:6px}.daily-matrix-wrap{overflow:auto;max-height:min(72vh,calc(var(--matrix-row-height) * 58));margin-top:0;border:1px solid var(--line);border-top:0;border-radius:0 0 6px 6px}.daily-matrix-table{width:768px;min-width:768px;table-layout:fixed;border-collapse:collapse;font-size:11px}.daily-matrix-table th,.daily-matrix-table td{text-align:center;padding:0 2px;height:var(--matrix-row-height);line-height:14px;vertical-align:middle;white-space:nowrap;overflow:hidden;border:1px solid var(--line)}.daily-matrix-table th:first-child,.daily-matrix-table td:first-child{width:48px}.daily-matrix-table th:nth-child(2),.daily-matrix-table td:nth-child(2){width:48px}.daily-global-table{width:476px;min-width:476px}.daily-global-table th:first-child,.daily-global-table td:first-child{width:92px;white-space:nowrap}.daily-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.daily-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.daily-matrix-table .slot-cell{position:sticky;left:0;background:#fff;font-weight:700;z-index:1}.daily-matrix-table td.has-spots{color:#fff;font-weight:700}.daily-path-scope{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}.daily-global-scope{margin-top:6px;color:var(--muted);font-size:11px}.global-matrix-separator{height:72px}@media(max-width:900px){.matrix-heading-row{display:block}.matrix-top-links{justify-content:flex-start;margin-top:10px}.daily-matrix-controls,.daily-path-selectors,.daily-path-selector-grid,.wspr-live-collector-controls{grid-template-columns:1fr}}@media print{body{background:#fff}main{padding:0}button,.daily-matrix-toolbar,.wspr-live-collector{display:none!important}section{border:0;padding:0}.daily-matrix-wrap{overflow:visible;border:0}}
 .daily-matrix-table td.pending{color:#9aa4af;background:#f4f6f8}.daily-matrix-table td.missing{color:#b42318;background:#fff1f0;font-weight:700}.wspr-live-diagnostics{margin-top:10px;color:var(--muted);font-size:12px}.wspr-live-diagnostics summary{cursor:pointer;font-weight:700}.wspr-live-diagnostics div{margin-top:6px;line-height:1.45}.wspr-live-diagnostics ul{margin:5px 0;padding-left:20px}.collection-group{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:8px}.collection-group h3{margin-bottom:5px}.wsprnet-group{background:#fff8f2;border-color:#e2a674}.wsprnet-group h3{color:#9a4212}.wsprnet-group .secondary{border-color:#b45218;color:#9a4212}.wsprlive-group{background:#f4fbf7;border-color:#8bcbae}.wsprlive-group h3{color:#176b47}.wsprlive-group .secondary{border-color:#1f8a5b;color:#176b47}.wsprlive-group #buildCollectedWsprMatrix,button.matrix-refresh-button{background:#176b47;border-color:#125437;color:#fff}.shared-matrix-group{background:#f5f8fc;border-color:#a9c3df}.shared-matrix-group h3{color:#1d4f84}.wsprnet-controls{grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}.shared-matrix-controls{grid-template-columns:180px 150px 120px minmax(220px,1fr)}.collection-group-action{align-self:end}.shared-matrix-group .daily-path-selectors{margin-top:12px}.configuration-heading{grid-column:1/-1;margin:0}.panel-subtitle{font-size:12px;font-weight:400}.workflow-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.workflow-strip span{padding:6px 9px;border-radius:999px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.import-strip{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:10px 0;padding:10px 14px;border:1px dashed #e2a674;border-radius:8px;background:#fff8f2}.import-strip>div{min-width:300px;flex:1}.import-strip p{max-width:430px;margin:0}.status-card{margin-top:14px;padding:12px 14px;border:1px solid #a9c3df;border-radius:8px;background:#f5f8fc}.status-card h3{margin:0 0 8px;color:#1d4f84;font-size:14px}.status-card .wspr-live-status,.status-card .daily-matrix-status{margin-top:7px}.source-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:#dde7f3;color:#315b89;font-size:11px;font-weight:700}.matrix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--muted);font-size:11px}.daily-matrix-subhead{margin-top:24px}
 .daily-matrix-header-wrap{overflow:hidden;margin-top:12px;border:1px solid var(--line);border-bottom:0;border-radius:6px 6px 0 0;background:#fff}.daily-matrix-header-wrap .daily-matrix-table{margin:0}.daily-matrix-header-wrap th{background:#fff;box-shadow:0 1px 0 var(--line)}.daily-matrix-header-wrap .path1-head{background:#fff1e7}.daily-matrix-header-wrap .path2-head{background:#eaf2fb}.daily-matrix-table th.path1-head,.daily-matrix-table th.path2-head{padding-top:5px;padding-bottom:5px;line-height:13px}.matrix-header-spacer th{height:8px!important;line-height:8px!important;background:#fff!important}.daily-matrix-body-table thead{display:none}.daily-matrix-table tbody tr:nth-child(odd) td:not(.has-spots):not(.pending):not(.missing){background:#fff}.daily-matrix-table tbody tr:nth-child(even) td:not(.has-spots):not(.pending):not(.missing){background:#f6f7f9}.daily-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.42)}.daily-matrix-table tbody tr:hover .slot-cell{box-shadow:inset 0 999px rgba(255,210,222,.58)}.daily-matrix-table .path-separator{background:#fff!important;border-left:2px solid #cbd5df;border-right:2px solid #cbd5df;color:transparent;padding:0}.daily-matrix-table .col-hover{box-shadow:inset 0 999px rgba(255,210,222,.34)}.matrix-band-panel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff}.matrix-band-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700}.matrix-row-height-control{display:flex;align-items:center;gap:6px;margin:0;font-size:12px}.matrix-row-height-control select{width:auto;min-width:92px;padding:4px 6px;font-size:12px}.matrix-band-buttons{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.matrix-band-buttons button{min-width:52px;padding:5px 8px;font-size:11px}.matrix-band-buttons button.active{background:var(--blue);color:#fff}.matrix-band-buttons button.secondary{background:#fff;color:var(--blue)}.matrix-band-actions{display:inline-flex;margin-left:4px}.matrix-band-actions button{padding:5px 8px;font-size:11px}.matrix-refresh-button{padding:4px 8px;font-size:11px}.matrix-status-hidden{display:none!important}.matrix-radius-controls{display:flex;align-items:center;gap:10px;margin:0 0 0 auto}.matrix-radius-controls label{display:flex;align-items:center;gap:6px;margin:0;font-size:11px}.matrix-radius-controls select{width:auto;min-width:78px;padding:4px 5px;font-size:11px}@media(max-width:900px){.matrix-radius-controls{margin-left:0;flex-wrap:wrap}.matrix-band-heading{display:block}}
 body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix-row-height:28px}body.matrix-row-tall{--matrix-row-height:56px}html:has(body.matrix-configuration-docked){overflow:hidden}body.matrix-configuration-docked{overflow:hidden}body.matrix-configuration-docked .daily-matrix-wrap{max-height:min(var(--matrix-visible-height,72vh),calc(var(--matrix-row-height) * 58))}
 .matrix-quick-toolbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(1072px,calc(100% - 48px));z-index:30;margin:0;padding:10px;border:1px solid #9eb8d2;border-radius:8px;background:rgba(245,248,252,.98);box-shadow:0 2px 10px rgba(24,33,43,.12);display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 10px;align-items:start}.matrix-quick-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:7px}.matrix-quick-row:first-child{margin-top:0}.matrix-quick-toolbar button,.matrix-quick-toolbar .quick-link{padding:6px 9px;font-size:12px}.matrix-quick-toolbar select{width:auto;min-width:82px;padding:5px 7px;font-size:12px}.matrix-quick-toolbar label{display:flex;align-items:center;gap:6px;margin:0;color:var(--muted);font-size:12px;font-weight:700}.matrix-quick-bands{display:flex;flex-wrap:wrap;gap:5px}.matrix-quick-bands button{min-width:38px;padding:4px 6px;font-size:10.5px}.matrix-quick-bands button.active{background:var(--blue);color:#fff}.matrix-quick-bands button.secondary{background:#fff;color:var(--blue)}.quick-diagnostics-panel{max-width:360px;padding:5px 8px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--muted);font-size:11px;line-height:1.35}.matrix-quick-toolbar .quick-link{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:5px;background:#fff;color:var(--blue);font-weight:700}.matrix-quick-left{display:grid;grid-template-rows:32px 1fr;gap:8px}.matrix-quick-main{min-width:0}.matrix-quick-toolbar .setup-button{width:96px;min-width:96px;background:#2f3437;border-color:#202427;color:#b7ff3c}.matrix-quick-toolbar .go-button{width:96px;min-width:96px;min-height:88px;padding:10px 14px;background:#2f3437;border-color:#202427;color:#b7ff3c;font-size:18px;letter-spacing:.02em}.matrix-quick-primary{align-items:center}.matrix-quick-primary .quick-link,.matrix-quick-primary .quick-version{align-self:center}.matrix-quick-count-row{justify-content:flex-start}.matrix-quick-nav-row{justify-content:flex-start}.matrix-quick-nav-row #quickRadius1,.matrix-quick-nav-row #quickRadius2{min-width:70px}.matrix-author-credit{color:var(--muted);font-size:12px;font-weight:700;margin-left:auto}.matrix-quick-toolbar .quick-version{color:var(--muted);font-size:12px;font-weight:700}.matrix-focus-target{height:0;scroll-margin-top:calc(var(--matrix-toolbar-height,0px) + 12px)}#dailyMatrixPanel{padding-top:calc(var(--matrix-toolbar-height,0px) + 4px)}@media(max-width:900px){.matrix-quick-toolbar{top:0;width:min(100% - 16px,1072px);grid-template-columns:1fr}.matrix-quick-left{display:flex}.matrix-quick-toolbar .setup-button,.matrix-quick-toolbar .go-button{width:auto;min-width:82px;min-height:0}.matrix-quick-row{gap:6px}.matrix-quick-toolbar button{padding:5px 7px}}
 .map-setup-group{background:#f7fbff;border-color:#9eb8d2}.map-setup-group.grid-letters-hidden .map-grid-label{display:none}.map-setup-intro{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:2px}.map-setup-intro .note{margin:0;max-width:620px}.map-setup-controls{display:flex;justify-content:flex-end;gap:10px;align-items:center;flex-wrap:wrap}.map-setup-controls label{display:flex;align-items:center;gap:6px;margin:0}.map-setup-controls select{width:auto;min-width:92px;padding:5px 7px;font-size:12px}.map-setup-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}.map-destination-frame{border:1px solid var(--line);border-radius:8px;background:#fff;padding:7px}.map-destination-frame.path1{border-color:#e2a674;background:#fff8f2}.map-destination-frame.path2{border-color:#91b7dc;background:#f3f8fd}.map-destination-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px}.map-destination-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}.map-grid-count{color:var(--muted);font-size:11px;font-weight:700;white-space:nowrap}.map-destination-heading h3{margin:0}.map-destination-heading button{padding:5px 8px;font-size:11px}.map-destination-frame h3{margin-bottom:8px}.map-placeholder{border:1px dashed #6f93b6;border-radius:8px;background:#eaf3fb;padding:2px;color:var(--muted);font-size:13px;font-weight:700}.map-grid-svg{display:block;width:100%;height:auto;aspect-ratio:2/1}.map-grid-background{fill:#eaf3fb}.map-land-layer{pointer-events:none}.map-land-fill{fill:rgba(193,216,186,.46);stroke:none;pointer-events:none}.map-land-shape{fill:none;stroke:#7fa178;stroke-width:.58;pointer-events:none}.map-grid-hit{cursor:pointer;fill:rgba(255,255,255,0);stroke:none;pointer-events:all}.map-grid-hit:hover{fill:rgba(255,210,222,.22)}.map-grid-hit.radius.path1{fill:rgba(180,82,24,.18)}.map-grid-hit.radius.path2{fill:rgba(25,92,150,.18)}.map-grid-hit.selected.path1{fill:rgba(180,82,24,.34)}.map-grid-hit.selected.path2{fill:rgba(25,92,150,.34)}.map-grid-line{pointer-events:none;vector-effect:non-scaling-stroke}.map-grid-label{fill:#425466;font-size:9px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}.map-city-label{fill:#18212b;font-size:9px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:2px;stroke-linejoin:round;pointer-events:none}.map-grid-axis{fill:#56616e;font-size:10px;font-weight:700}.map-grid-tooltip{position:fixed;z-index:60;pointer-events:none;background:#fff;color:#111;border:1px solid #9aa4af;border-radius:3px;padding:2px 4px;font-size:9px;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.18)}@media(max-width:900px){.map-setup-grid{grid-template-columns:1fr}.map-setup-intro{display:block}.map-setup-controls{justify-content:flex-start;margin-top:10px}}
 [hidden]{display:none!important}
+@page{size:landscape;margin:8mm}@media print{.matrix-quick-toolbar,.daily-matrix-header-wrap{display:none}.daily-matrix-wrap{overflow:visible;max-height:none}.daily-matrix-body-table thead{display:table-header-group}.daily-matrix-table{font-size:8px}.daily-matrix-table th,.daily-matrix-table td{height:auto;line-height:10px;padding:1px}}
+.print-map-destinations,.print-matrix-page{display:none}.print-map-destinations h2{margin:0 0 4px;color:var(--blue)}.print-map-summary{margin:0 0 5px;color:var(--muted);font-size:12px}.print-map-grid{border:1px solid var(--line);border-radius:6px;padding:4px;background:#eaf3fb}.print-map-grid svg,.print-matrix-page svg{display:block;width:100%;height:auto}.print-map-title{fill:#1d4f84;font-size:20px;font-weight:700}.print-map-subtitle{fill:#56616e;font-size:12px;font-weight:700}.print-matrix-title{fill:#1d4f84;font-size:18px;font-weight:700}.print-matrix-subtitle{display:none!important;fill:transparent;font-size:0}.print-matrix-head{fill:#1d4f84;font-size:16px;font-weight:700}.print-matrix-cell{fill:#18212b;font-size:16px}.print-matrix-small{fill:#56616e;font-size:12px}@media print{#dailyMatrixPanel{padding-top:0!important;background:#fff!important}.matrix-review-group{margin:0!important;padding:0!important;border:0!important;background:#fff!important}body.daily-matrix-print #dailyMatrixPanel>*:not(.print-map-destinations):not(.print-matrix-page){display:none!important}.matrix-quick-toolbar,.daily-matrix-header-wrap,.wspr-live-collector,.collection-group:not(.matrix-review-group),.daily-path-selectors,.daily-matrix-note,.daily-global-scope,.daily-matrix-wrap,.matrix-focus-target,.global-matrix-separator,.status-card,.daily-matrix-status,.wspr-live-status,.wspr-live-next-step{display:none!important}.print-map-destinations{display:block;break-inside:avoid;page-break-inside:avoid}.print-map-destinations>h2,.print-map-summary{display:none!important}.print-map-grid{padding:5mm 0;background:#fff;border:0}.print-map-grid svg{max-height:168mm}.print-matrix-page{display:block;break-before:page;page-break-before:always}.print-matrix-page svg{max-height:190mm}}
 </style>
 </head>
 <body>
@@ -34,7 +36,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
           </div>
           <div class="matrix-quick-row">
             <label for="quickLiveProvider">Live data server <select id="quickLiveProvider"></select></label>
-            <button id="quickPrintPdf" class="secondary" type="button">Print / PDF</button>
+            <button id="quickPrintPdf" class="secondary" type="button">Save / PDF</button>
             <button id="quickExportCsv" class="secondary" type="button">Export CSV</button>
             <a class="quick-link" href="prefs.html">Preferences</a>
             <button id="quickDiagnostics" class="secondary" type="button">Diagnostics</button>
@@ -124,7 +126,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
         <div class="map-setup-intro">
           <p class="note">Use City radius for the normal selector workflow, or Map grids to filter path destinations by selected two-letter Maidenhead fields.</p>
           <div class="map-setup-controls">
-            <label for="mapDestinationMode">Destination mode <select id="mapDestinationMode"><option value="city" selected>City radius</option><option value="grid">Map grids</option></select></label>
+            <select id="mapDestinationMode" hidden><option value="city" selected>City radius</option><option value="grid">Map grids</option></select>
             <label for="mapGridContrast">Grid contrast <select id="mapGridContrast" onchange="applyMapGridContrast(this.value)"><option value="low">Low</option><option value="normal" selected>Normal</option><option value="high">High</option></select></label>
             <label for="mapGridLetters">Grid letters <select id="mapGridLetters"><option value="hide" selected>Hide</option><option value="show">Show</option></select></label>
           </div>
@@ -147,7 +149,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
         <button id="buildDailyMatrix" type="button" disabled hidden>Build Matrix from Data</button>
         <button id="dailyCountModeToggle" class="secondary daily-count-mode-toggle" type="button" aria-pressed="false">Counting: Raw Spots</button>
         <button id="exportDailyMatrixCsv" class="secondary" type="button" disabled>Export CSV</button>
-        <button id="printDailyMatrix" class="secondary" type="button" disabled>Print / PDF</button>
+        <button id="printDailyMatrix" class="secondary" type="button" disabled>Save / PDF</button>
       </div>
       <div class="status-card matrix-status-hidden">
         <h3>Data and Matrix Status <span id="matrixSourceBadge" class="source-badge">No data selected</span></h3>
@@ -156,6 +158,8 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
         <div class="matrix-band-panel"><div class="matrix-band-heading"><span>Bands <span id="dailyBandSelectionStatus">9 of 10 selected</span></span><label class="matrix-row-height-control" for="matrixRowHeight">Row height <select id="matrixRowHeight"><option value="compact">Compact</option><option value="normal" selected>Normal</option><option value="tall">Tall</option></select></label></div><div id="dailyBandButtons" class="matrix-band-buttons"></div></div>
         <div class="matrix-legend"><span>— pending collection</span><span>0 collected, no spots</span><span>! request failed</span><button id="legendRefreshMatrix" class="secondary matrix-refresh-button" type="button">Refresh</button><div class="matrix-radius-controls"><label>Path 1 Radius km <select id="dailyLegendRadius1"></select></label><label>Path 2 Radius km <select id="dailyLegendRadius2"></select></label></div></div>
       </div>
+      <div id="printMapDestinations" class="print-map-destinations" aria-hidden="true"><h2>Map Destinations</h2><p id="printMapPathSummary" class="print-map-summary"></p><div id="printMapGrid" class="print-map-grid"></div></div>
+      <div id="printMatrixPage" class="print-matrix-page" aria-hidden="true"></div>
       <div id="pathMatrixTarget" class="matrix-focus-target" aria-hidden="true"></div>
       <div class="daily-matrix-wrap" id="dailyMatrixWrap"></div>
       <div class="daily-global-scope matrix-status-hidden" id="dailyGlobalScope"></div>
@@ -169,6 +173,12 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
 <script>
     const EARTH_RADIUS_KM = 6371.0088;
     const ENDPOINT_RADII_KM = [4000, 3800, 3600, 3400, 3200, 3000, 2800, 2600, 2400, 2000, 1800, 1200, 900, 600, 300, 200, 100, 50];
+    const DESTINATION_PRESETS = {
+      "North America": {city: "Denver, United States", radiusKm: 3800},
+      "Europe": {city: "Frankfurt, Germany", radiusKm: 2600},
+      "Oceania": {city: "Townsville, Australia", radiusKm: 4000},
+      "Africa": {city: "Luanda, Angola", radiusKm: 4000}
+    };
     const ALL_WSPR_BANDS = [{band:-1,label:"LF"},{band:0,label:"MF"},{band:1,label:"160m"},{band:3,label:"80m"},{band:5,label:"60m"},{band:7,label:"40m"},{band:10,label:"30m"},{band:13,label:"22m"},{band:14,label:"20m"},{band:18,label:"17m"},{band:21,label:"15m"},{band:24,label:"12m"},{band:28,label:"10m"},{band:50,label:"6m"},{band:70,label:"4m"},{band:144,label:"2m"},{band:432,label:"70cm"},{band:1296,label:"23cm"}];
     const DEFAULT_DAILY_BAND_CODES = [1,3,7,10,14,18,21,24,28];
     const MAX_DAILY_BAND_SELECTION = 18;
@@ -2213,11 +2223,20 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     function populateDailyDestinationCities(pathNo, selectedName = "") {
       const continent = $(`dailyCont${pathNo}`).value;
       const citySelect = $(`dailyCity${pathNo}`);
+      const presetName = selectedName || DESTINATION_PRESETS[continent]?.city || "";
       citySelect.innerHTML = '<option value="">Select City</option>';
       (CITIES[continent] || []).slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(city => {
         const option=document.createElement("option"); option.value=city.name; option.textContent=city.name.split(",")[0]; citySelect.appendChild(option);
       });
-      if ([...citySelect.options].some(option=>option.value===selectedName)) citySelect.value=selectedName;
+      if ([...citySelect.options].some(option=>option.value===presetName)) citySelect.value=presetName;
+    }
+
+    function applyDailyDestinationPreset(pathNo) {
+      const continent = $(`dailyCont${pathNo}`).value;
+      const preset = DESTINATION_PRESETS[continent];
+      populateDailyDestinationCities(pathNo, preset?.city || "");
+      if (preset?.radiusKm) $(`dailyRadius${pathNo}`).value = String(preset.radiusKm);
+      syncLegendRadiusSelectors();
     }
 
     function initDailyDestinationSelectors() {
@@ -2228,8 +2247,8 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       });
       $("dailyLegendRadius1").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()}</option>`).join("");
       $("dailyLegendRadius2").innerHTML=ENDPOINT_RADII_KM.map(km=>`<option value="${km}">${km.toLocaleString()}</option>`).join("");
-      $("dailyCont1").value="Europe"; populateDailyDestinationCities(1,"Rome, Italy"); $("dailyRadius1").value="3200";
-      $("dailyCont2").value="North America"; populateDailyDestinationCities(2,"Chicago, United States"); $("dailyRadius2").value="3200";
+      $("dailyCont1").value="Europe"; populateDailyDestinationCities(1,"Frankfurt, Germany"); $("dailyRadius1").value="2600";
+      $("dailyCont2").value="North America"; populateDailyDestinationCities(2,"Denver, United States"); $("dailyRadius2").value="3800";
       syncLegendRadiusSelectors();
     }
 
@@ -2287,9 +2306,21 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       return path.mode === "grid" ? "selected map grids" : path.continent;
     }
 
-    function pathHeadingScope(path) {
-      if (path.mode === "grid") return `— ${mapGridSummary(path.gridFields)}`;
-      return `— ${path.name.split(",")[0]} area, ${path.radiusKm.toLocaleString()} km radius`;
+    function countingModeReportLabel(report) {
+      if (!report) return "";
+      const labels = {
+        raw: "Counting Raw Spots",
+        unique: "Counting Unique Beacons per bin",
+        cumulative: "Counting Cumulative Unique Beacons per bin"
+      };
+      return labels[report.countMode] || "";
+    }
+
+    function pathHeadingScope(path, report = null) {
+      const countLabel = countingModeReportLabel(report);
+      const suffix = countLabel ? ` - ${countLabel}` : "";
+      if (path.mode === "grid") return `— ${mapGridSummary(path.gridFields)}${suffix}`;
+      return `— ${path.name.split(",")[0]} area, ${path.radiusKm.toLocaleString()} km radius${suffix}`;
     }
 
     function pathExportDescription(report, path) {
@@ -2679,7 +2710,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       const max=Math.max(1,...report.matrix1.flatMap(slot=>[...slot.values()]),...report.matrix2.flatMap(slot=>[...slot.values()]));
       const markers1=matrixModelMarkers(report.reporter,report.dateStr,report.path1),markers2=matrixModelMarkers(report.reporter,report.dateStr,report.path2);
       const tableWidth=dailyMatrixTableWidth(2);
-      let html=`<table class="daily-matrix-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(2)}<thead><tr class="matrix-header-spacer"><th colspan="${2 + (DAILY_MATRIX_BANDS.length * 2) + 1}"></th></tr><tr><th colspan="2">${esc(report.dateStr)}</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(pathHeadingSource(report.path1))}<span class="daily-path-scope">${esc(pathHeadingScope(report.path1))}</span></th><th class="path-separator"></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(pathHeadingSource(report.path2))}<span class="daily-path-scope">${esc(pathHeadingScope(report.path2))}</span></th></tr><tr><th>UTC</th><th>Local</th>`;
+      let html=`<table class="daily-matrix-table" style="width:${tableWidth}px;min-width:${tableWidth}px">${dailyMatrixColgroup(2)}<thead><tr class="matrix-header-spacer"><th colspan="${2 + (DAILY_MATRIX_BANDS.length * 2) + 1}"></th></tr><tr><th colspan="2">${esc(report.dateStr)}</th><th class="path1-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 1 | Received by ${esc(report.reporter)} from ${esc(pathHeadingSource(report.path1))}<span class="daily-path-scope">${esc(pathHeadingScope(report.path1, report))}</span></th><th class="path-separator"></th><th class="path2-head" colspan="${DAILY_MATRIX_BANDS.length}">PATH 2 | Received by ${esc(report.reporter)} from ${esc(pathHeadingSource(report.path2))}<span class="daily-path-scope">${esc(pathHeadingScope(report.path2, report))}</span></th></tr><tr><th>UTC</th><th>Local</th>`;
       DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`<th class="path-separator"></th>`; DAILY_MATRIX_BANDS.forEach(item=>html+=`<th>${item.label}</th>`); html+=`</tr></thead><tbody>`;
       for(let slot=0;slot<48;slot++){html+=`<tr><td class="slot-cell">${dailySlotLabel(slot)}</td><td>${localSlotLabel(slot)}</td>`;
         DAILY_MATRIX_BANDS.forEach(item=>{const n=report.matrix1[slot].get(item.band)||0,state=collectionCellState(report,slot,item.band);html+=`<td class="${n?"has-spots":state}"${dailyCell(n,max,1)}>${matrixCellContent(n,state)}</td>`});
@@ -3632,11 +3663,264 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     function csvCell(value){const s=String(value??"");return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s;}
     function dailyFilename(report){return `wspr_single_reporter_matrix_${report.reporter}_${report.countMode || "raw"}_${report.dateStr}`.replace(/[<>|/:*?"\\]+/g,"_").replace(/\s+/g,"_").replace(/_+/g,"_");}
     function exportDailyMatrixCsv(){if(!dailyMatrixLastReport){$("dailyMatrixStatus").textContent="Build the daily table before exporting CSV.";return;}downloadText(`${dailyFilename(dailyMatrixLastReport)}.csv`,dailyExportRows(dailyMatrixLastReport).map(row=>row.map(csvCell).join(",")).join("\n"),"text/csv;charset=utf-8");}
+    function printMapFields(pathNo, path) {
+      return path.mode === "grid" ? new Set(path.gridFields || []) : cityRadiusMapFields(pathNo);
+    }
+
+    function renderPrintMapDestinations(report) {
+      const target = $("printMapGrid");
+      if (!target || !report) return;
+      const source = document.querySelector("#mapGridPath1 svg");
+      if (!source) {
+        target.textContent = "Map is not available.";
+        return;
+      }
+      const path1Fields = printMapFields(1, report.path1);
+      const path2Fields = printMapFields(2, report.path2);
+      const svg = source.cloneNode(true);
+      const svgNs = "http://www.w3.org/2000/svg";
+      const viewBoxParts = String(svg.getAttribute("viewBox") || "0 0 1280 640").split(/\s+/).map(Number);
+      const viewWidth = Number.isFinite(viewBoxParts[2]) ? viewBoxParts[2] : 1280;
+      const viewHeight = Number.isFinite(viewBoxParts[3]) ? viewBoxParts[3] : 640;
+      const titleHeight = 34;
+      svg.setAttribute("viewBox", `0 0 ${viewWidth} ${viewHeight + titleHeight}`);
+      const contentGroup = document.createElementNS(svgNs, "g");
+      contentGroup.setAttribute("transform", `translate(0 ${titleHeight})`);
+      Array.from(svg.childNodes).forEach(node => contentGroup.appendChild(node));
+      svg.appendChild(contentGroup);
+      const title = document.createElementNS(svgNs, "text");
+      title.setAttribute("class", "print-map-title");
+      title.setAttribute("x", "8");
+      title.setAttribute("y", "15");
+      title.textContent = "Map Destinations";
+      svg.insertBefore(title, contentGroup);
+      const subtitle = document.createElementNS(svgNs, "text");
+      subtitle.setAttribute("class", "print-map-subtitle");
+      subtitle.setAttribute("x", "8");
+      subtitle.setAttribute("y", "29");
+      subtitle.textContent = "Path 1: " + pathHeadingScope(report.path1) + " | Path 2: " + pathHeadingScope(report.path2);
+      svg.insertBefore(subtitle, contentGroup);
+      svg.querySelectorAll(".map-grid-hit").forEach(cell => {
+        const grid = cell.dataset.grid;
+        const inPath1 = path1Fields.has(grid);
+        const inPath2 = path2Fields.has(grid);
+        cell.classList.remove("selected", "radius", "path1", "path2");
+        cell.style.pointerEvents = "none";
+        if (inPath1 && inPath2) {
+          const x = Number(cell.getAttribute("x"));
+          const width = Number(cell.getAttribute("width"));
+          const split = Math.max(0, width / 2);
+          const second = cell.cloneNode(false);
+          cell.setAttribute("width", split.toFixed(2));
+          cell.classList.add("selected", "path1");
+          second.setAttribute("x", (x + split).toFixed(2));
+          second.setAttribute("width", split.toFixed(2));
+          second.classList.add("selected", "path2");
+          cell.parentNode.insertBefore(second, cell.nextSibling);
+        } else if (inPath1) {
+          cell.classList.add("selected", "path1");
+        } else if (inPath2) {
+          cell.classList.add("selected", "path2");
+        }
+      });
+      target.replaceChildren(svg);
+      const summary = $("printMapPathSummary");
+      if (summary) {
+        summary.textContent = "Path 1: " + pathHeadingScope(report.path1) + " | Path 2: " + pathHeadingScope(report.path2);
+      }
+    }
+
+    function svgText(svg, className, text, x, y, anchor = "middle") {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      node.setAttribute("class", className);
+      node.setAttribute("x", x.toFixed(2));
+      node.setAttribute("y", y.toFixed(2));
+      node.setAttribute("text-anchor", anchor);
+      node.setAttribute("dominant-baseline", "middle");
+      const matrixTextStyles = {
+        "print-matrix-title": { size: 18, fill: "#1d4f84", weight: 700 },
+        "print-matrix-head": { size: 14, fill: "#1d4f84", weight: 700 },
+        "print-matrix-cell": { size: 14, fill: "#18212b", weight: 400 },
+        "print-matrix-small": { size: 11, fill: "#56616e", weight: 700 }
+      };
+      const style = matrixTextStyles[className];
+      if (style) {
+        node.setAttribute("font-size", String(style.size));
+        node.setAttribute("fill", style.fill);
+        node.setAttribute("font-weight", String(style.weight));
+        node.setAttribute("font-family", "Arial, sans-serif");
+      }
+      node.textContent = text;
+      svg.appendChild(node);
+      return node;
+    }
+
+    function svgRect(svg, x, y, width, height, fill, stroke = "#cbd5df") {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      node.setAttribute("x", x.toFixed(2));
+      node.setAttribute("y", y.toFixed(2));
+      node.setAttribute("width", width.toFixed(2));
+      node.setAttribute("height", height.toFixed(2));
+      node.setAttribute("fill", fill);
+      node.setAttribute("stroke", stroke);
+      node.setAttribute("stroke-width", "0.7");
+      svg.appendChild(node);
+      return node;
+    }
+
+    function renderPrintMatrixPage(report) {
+      const target = $("printMatrixPage");
+      if (!target || !report) return;
+      const svgNs = "http://www.w3.org/2000/svg";
+      const width = 1600;
+      const titleH = 30;
+      const pathH = 40;
+      const bandH = 26;
+      const rowH = 22;
+      const summaryH = 24;
+      const height = titleH + pathH + bandH + 48 * rowH + summaryH + 12;
+      const svg = document.createElementNS(svgNs, "svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", "Daily WSPR path matrix print report");
+      svgRect(svg, 0, 0, width, height, "#fff", "#fff");
+      svgText(svg, "print-matrix-title", `${report.reporter} Daily WSPR Matrix`, 10, 18, "start");
+
+      const bands = DAILY_MATRIX_BANDS;
+      const utcW = 72;
+      const localW = 60;
+      const sepW = 10;
+      const bandW = (width - utcW - localW - sepW) / Math.max(1, bands.length * 2);
+      let y = titleH;
+      svgRect(svg, 0, y, utcW + localW, pathH, "#f5f8fc");
+      svgRect(svg, utcW + localW, y, bandW * bands.length, pathH, "#fff1e7");
+      svgRect(svg, utcW + localW + bandW * bands.length, y, sepW, pathH, "#fff");
+      svgRect(svg, utcW + localW + bandW * bands.length + sepW, y, bandW * bands.length, pathH, "#eaf2fb");
+      svgText(svg, "print-matrix-head", report.dateStr, (utcW + localW) / 2, y + pathH / 2);
+      svgText(svg, "print-matrix-head", `PATH 1 | Received by ${report.reporter} from ${pathHeadingSource(report.path1)}`, utcW + localW + bandW * bands.length / 2, y + 12);
+      svgText(svg, "print-matrix-small", pathHeadingScope(report.path1, report), utcW + localW + bandW * bands.length / 2, y + 30);
+      svgText(svg, "print-matrix-head", `PATH 2 | Received by ${report.reporter} from ${pathHeadingSource(report.path2)}`, utcW + localW + bandW * bands.length + sepW + bandW * bands.length / 2, y + 12);
+      svgText(svg, "print-matrix-small", pathHeadingScope(report.path2, report), utcW + localW + bandW * bands.length + sepW + bandW * bands.length / 2, y + 30);
+
+      y += pathH;
+      svgRect(svg, 0, y, utcW, bandH, "#f5f8fc");
+      svgRect(svg, utcW, y, localW, bandH, "#f5f8fc");
+      svgText(svg, "print-matrix-head", "UTC", utcW / 2, y + bandH / 2);
+      svgText(svg, "print-matrix-head", "Local", utcW + localW / 2, y + bandH / 2);
+      bands.forEach((item, index) => {
+        const x1 = utcW + localW + index * bandW;
+        const x2 = utcW + localW + bandW * bands.length + sepW + index * bandW;
+        svgRect(svg, x1, y, bandW, bandH, "#f5f8fc");
+        svgRect(svg, x2, y, bandW, bandH, "#f5f8fc");
+        svgText(svg, "print-matrix-head", item.label, x1 + bandW / 2, y + bandH / 2);
+        svgText(svg, "print-matrix-head", item.label, x2 + bandW / 2, y + bandH / 2);
+      });
+      svgRect(svg, utcW + localW + bandW * bands.length, y, sepW, bandH, "#fff");
+
+      y += bandH;
+      for (let slot = 0; slot < 48; slot++) {
+        const fill = slot % 2 ? "#f6f7f9" : "#fff";
+        svgRect(svg, 0, y, utcW, rowH, fill);
+        svgRect(svg, utcW, y, localW, rowH, fill);
+        svgText(svg, "print-matrix-cell", dailySlotLabel(slot), utcW / 2, y + rowH / 2);
+        svgText(svg, "print-matrix-cell", localSlotLabel(slot), utcW + localW / 2, y + rowH / 2);
+        bands.forEach((item, index) => {
+          const x1 = utcW + localW + index * bandW;
+          const x2 = utcW + localW + bandW * bands.length + sepW + index * bandW;
+          const n1 = report.matrix1[slot].get(item.band) || "";
+          const n2 = report.matrix2[slot].get(item.band) || "";
+          svgRect(svg, x1, y, bandW, rowH, fill);
+          svgRect(svg, x2, y, bandW, rowH, fill);
+          svgText(svg, "print-matrix-cell", String(n1), x1 + bandW / 2, y + rowH / 2);
+          svgText(svg, "print-matrix-cell", String(n2), x2 + bandW / 2, y + rowH / 2);
+        });
+        svgRect(svg, utcW + localW + bandW * bands.length, y, sepW, rowH, "#fff");
+        y += rowH;
+      }
+
+      const totals1 = dailySummaryTotals(report.matrix1, report.countMode);
+      const totals2 = dailySummaryTotals(report.matrix2, report.countMode);
+      svgRect(svg, 0, y, utcW + localW, summaryH, "#f5f8fc");
+      svgText(svg, "print-matrix-head", dailySummaryLabel(report.countMode), (utcW + localW) / 2, y + summaryH / 2);
+      bands.forEach((item, index) => {
+        const x1 = utcW + localW + index * bandW;
+        const x2 = utcW + localW + bandW * bands.length + sepW + index * bandW;
+        svgRect(svg, x1, y, bandW, summaryH, "#f5f8fc");
+        svgRect(svg, x2, y, bandW, summaryH, "#f5f8fc");
+        svgText(svg, "print-matrix-head", String(totals1[index] || ""), x1 + bandW / 2, y + summaryH / 2);
+        svgText(svg, "print-matrix-head", String(totals2[index] || ""), x2 + bandW / 2, y + summaryH / 2);
+      });
+      svgRect(svg, utcW + localW + bandW * bands.length, y, sepW, summaryH, "#fff");
+      target.replaceChildren(svg);
+    }
+
+    function printDocumentCss() {
+      return `@page{size:landscape;margin:8mm}
+html,body{margin:0;background:#fff;color:#18212b;font-family:Arial,sans-serif}
+.print-page{break-after:page;page-break-after:always}
+.print-page:last-child{break-after:auto;page-break-after:auto}
+.print-page svg{display:block;width:100%;height:auto;margin:0 auto}
+.map-page{padding-top:5mm}
+.map-page svg{max-height:168mm}
+.matrix-page svg{max-height:190mm}
+.print-map-title{fill:#1d4f84;font-size:20px;font-weight:700}
+.print-map-subtitle{fill:#56616e;font-size:12px;font-weight:700}
+.print-matrix-title{fill:#1d4f84;font-size:18px;font-weight:700}
+.print-matrix-subtitle{display:none!important;fill:transparent;font-size:0}
+.print-matrix-head{fill:#1d4f84;font-size:16px;font-weight:700}
+.print-matrix-cell{fill:#18212b;font-size:16px}
+.print-matrix-small{fill:#56616e;font-size:12px}
+.map-grid-background{fill:#eaf3fb}
+.map-land-fill{fill:rgba(193,216,186,.46);stroke:none;pointer-events:none}
+.map-land-shape{fill:none;stroke:#7fa178;stroke-width:.58;pointer-events:none}
+.map-grid-hit{fill:rgba(255,255,255,0);stroke:none}
+.map-grid-hit.selected.path1{fill:rgba(180,82,24,.34)}
+.map-grid-hit.selected.path2{fill:rgba(25,92,150,.34)}
+.map-grid-line{vector-effect:non-scaling-stroke}
+.map-grid-label{fill:#9aa8b5;font-size:9px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.map-city-label{fill:#18212b;font-size:9px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:2px;stroke-linejoin:round}
+.map-grid-axis{fill:#56616e;font-size:10px;font-weight:700}`;
+    }
+
+    function printSvgReport(report) {
+      renderPrintMapDestinations(report);
+      renderPrintMatrixPage(report);
+      const mapSvg = $("printMapGrid")?.querySelector("svg")?.outerHTML || "";
+      const matrixSvg = $("printMatrixPage")?.querySelector("svg")?.outerHTML || "";
+      if (!mapSvg || !matrixSvg) {
+        $("dailyMatrixStatus").textContent = "The PDF report could not be prepared. Build the matrix and open setup once so the map is available.";
+        return;
+      }
+      const frame = document.createElement("iframe");
+      frame.setAttribute("title", "WSPR Matrix PDF report");
+      frame.style.position = "fixed";
+      frame.style.left = "-10000px";
+      frame.style.top = "0";
+      frame.style.width = "1px";
+      frame.style.height = "1px";
+      frame.style.border = "0";
+      document.body.appendChild(frame);
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      doc.open();
+      doc.write(`<!doctype html><html><head><meta charset="utf-8"><title>${dailyFilename(report)}.pdf</title><style>${printDocumentCss()}</style></head><body><section class="print-page map-page">${mapSvg}</section><section class="print-page matrix-page">${matrixSvg}</section></body></html>`);
+      doc.close();
+      const removeFrame = () => {
+        frame.contentWindow?.removeEventListener("afterprint", removeFrame);
+        setTimeout(() => frame.remove(), 250);
+      };
+      frame.contentWindow?.addEventListener("afterprint", removeFrame);
+      setTimeout(() => {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+        setTimeout(() => {
+          if (document.body.contains(frame)) frame.remove();
+        }, 60000);
+      }, 100);
+    }
+
     function printDailyMatrix(){
-      if(!dailyMatrixLastReport){$("dailyMatrixStatus").textContent="Build the daily table before printing.";return;}
-      const originalTitle=document.title; document.title=`${dailyFilename(dailyMatrixLastReport)}.pdf`; document.body.classList.add("daily-matrix-print");
-      const cleanup=()=>{document.body.classList.remove("daily-matrix-print");document.title=originalTitle;window.removeEventListener("afterprint",cleanup);};
-      window.addEventListener("afterprint",cleanup); setTimeout(()=>window.print(),80);
+      if(dailyMatrixLastReport===null||dailyMatrixLastReport===undefined){$("dailyMatrixStatus").textContent="Build the daily table before saving PDF.";return;}
+      printSvgReport(dailyMatrixLastReport);
     }
 
     function updateMatrixToolbarMetrics() {
@@ -3672,7 +3956,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       copyButton("clearCollectedWspr", "quickClear", "Clear");
       copyButton("dailyCountModeToggle", "quickCountMode");
       copyButton("exportDailyMatrixCsv", "quickExportCsv", "Export CSV");
-      copyButton("printDailyMatrix", "quickPrintPdf", "Print / PDF");
+      copyButton("printDailyMatrix", "quickPrintPdf", "Save / PDF");
       if ($("quickLiveProvider") && $("wsprLiveProvider")) {
         $("quickLiveProvider").innerHTML = $("wsprLiveProvider").innerHTML;
         $("quickLiveProvider").value = $("wsprLiveProvider").value;
@@ -3774,13 +4058,16 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     }
 
     function cityRadiusMapFields(pathNo) {
-      const destination = selectedDailyDestination(pathNo);
-      if (!destination || destination.mode !== "city" || !destination.city) return new Set();
+      const continent = $(`dailyCont${pathNo}`).value;
+      const name = $(`dailyCity${pathNo}`).value;
+      const city = selectedCity(continent, name);
+      const radiusKm = Number($(`dailyRadius${pathNo}`).value);
+      if (!city || !Number.isFinite(radiusKm)) return new Set();
       const fields = new Set();
       allMaidenheadFieldNames().forEach(fieldName => {
         const centre = maidenheadFieldCentre(fieldName);
         if (!centre) return;
-        if (haversineKm(centre.lat, centre.lon, destination.city.lat, destination.city.lon) <= destination.radiusKm) fields.add(fieldName);
+        if (haversineKm(centre.lat, centre.lon, city.lat, city.lon) <= radiusKm) fields.add(fieldName);
       });
       return fields;
     }
@@ -3836,8 +4123,8 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       const destinationMode = currentDestinationMode();
       const radiusFields = destinationMode === "city" ? cityRadiusMapFields(pathNo) : new Set();
       document.querySelectorAll(`[data-map-path="${pathNo}"]`).forEach(cell => {
-        const selected = mapGridSelections[pathNo].has(cell.dataset.grid);
-        const inRadius = radiusFields.has(cell.dataset.grid);
+        const selected = destinationMode === "grid" && mapGridSelections[pathNo].has(cell.dataset.grid);
+        const inRadius = destinationMode === "city" && radiusFields.has(cell.dataset.grid);
         cell.classList.toggle("selected", selected);
         cell.classList.toggle("radius", inRadius);
       });
@@ -3852,6 +4139,14 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     function refreshMapRadiusVisuals() {
       updateMapGridSelectionVisual(1);
       updateMapGridSelectionVisual(2);
+    }
+
+    let previousDestinationMode = "city";
+
+    function seedMapGridSelectionsFromRadius() {
+      [1, 2].forEach(pathNo => {
+        mapGridSelections[pathNo] = cityRadiusMapFields(pathNo);
+      });
     }
 
     function refreshAfterMapGridChange() {
@@ -3898,9 +4193,10 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
       const tooltip = mapGridTooltip();
       tooltip.textContent = text;
       tooltip.hidden = false;
-      const offset = 8;
-      tooltip.style.left = `${event.clientX + offset}px`;
-      tooltip.style.top = `${event.clientY + offset}px`;
+      const offsetX = 12;
+      const offsetY = 14;
+      tooltip.style.left = (event.clientX + offsetX) + "px";
+      tooltip.style.top = (event.clientY + offsetY) + "px";
     }
 
     function hideMapGridTooltip() {
@@ -4134,8 +4430,8 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     setMatrixConfigurationMode("free");
     syncQuickToolbar();
     restoreWsprLiveCollection();
-    $("dailyCont1").addEventListener("change",()=>{populateDailyDestinationCities(1);renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();});
-    $("dailyCont2").addEventListener("change",()=>{populateDailyDestinationCities(2);renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();});
+    $("dailyCont1").addEventListener("change",()=>{applyDailyDestinationPreset(1);renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();});
+    $("dailyCont2").addEventListener("change",()=>{applyDailyDestinationPreset(2);renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();});
     ["dailyCity1","dailyCity2"].forEach(id => $(id).addEventListener("change",()=>{renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();}));
     ["dailyRadius1","dailyRadius2"].forEach(id => $(id).addEventListener("change",()=>{syncLegendRadiusSelectors();renderWsprLiveCollector();refreshMapRadiusVisuals();rebuildDisplayedDailyMatrix();}));
     $("dailyLegendRadius1").addEventListener("change",()=>{
@@ -4164,7 +4460,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     $("quickCountMode").addEventListener("click",()=>{toggleDailyCountMode();syncQuickToolbar();});
     $("quickConfigMode").addEventListener("click",()=>{toggleMatrixConfigurationMode();syncQuickToolbar();});
     $("mapGridContrast").addEventListener("change",()=>applyMapGridContrast($("mapGridContrast").value));
-    $("mapDestinationMode").addEventListener("change",()=>{renderWsprLiveCollector();refreshMapRadiusVisuals();if(dailyMatrixLastReport && mapGridModeReady())rebuildDisplayedDailyMatrix();syncQuickToolbar();});
+    $("mapDestinationMode").addEventListener("change",()=>{const mode=currentDestinationMode();if(previousDestinationMode==="city"&&mode==="grid")seedMapGridSelectionsFromRadius();previousDestinationMode=mode;renderWsprLiveCollector();refreshMapRadiusVisuals();if(dailyMatrixLastReport && mapGridModeReady())rebuildDisplayedDailyMatrix();syncQuickToolbar();});
     $("mapGridLetters").addEventListener("change",()=>applyMapGridLetterVisibility($("mapGridLetters").value));
     $("mapSetupGroup").addEventListener("click",event=>{
       const clearButton = event.target.closest("button[data-clear-map-path]");
@@ -4176,7 +4472,7 @@ body.matrix-row-compact{--matrix-row-height:22px}body.matrix-row-normal{--matrix
     });
     $("mapSetupGroup").addEventListener("mousemove",event=>{
       const cell = event.target.closest(".map-grid-hit[data-map-path][data-grid]");
-      if (cell) showMapGridTooltip(event, `${cell.dataset.grid} grid field`);
+      if (cell) showMapGridTooltip(event, cell.dataset.grid);
       else hideMapGridTooltip();
     });
     $("mapSetupGroup").addEventListener("mouseleave",hideMapGridTooltip);
