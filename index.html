@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="WSPR Matrix is a browser app for viewing daily WSPR propagation activity by reporter, band, UTC time, local time, and selected global destination areas.">
+<meta name="description" content="WSPR Matrix reports radio propagation peak traffic between cities and regions worldwide. Ideal for radio contest operators and calibration of forecast models.">
 <link rel="canonical" href="https://wspr-matrix.net/">
 <meta property="og:title" content="WSPR Matrix">
 <meta property="og:description" content="View daily WSPR propagation activity by reporter, band, UTC time, local time, and selected global destination areas.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wspr-matrix.net/">
-<meta property="og:image" content="https://wspr-matrix.net/Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png">
+<meta property="og:image" content="https://wspr-matrix.net/Map%20OC%20EU%20NA%202026-08-05.png">
 <title>WSPR Matrix | Daily WSPR Propagation Activity</title>
 <style>
 :root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7}
@@ -19,22 +19,17 @@ header{background:#162230;color:white;padding:24px}
 header h1{margin:0;font-size:32px;letter-spacing:0}
 header p{max-width:900px;margin:8px 0 0;color:#d8e2ec}
 main{max-width:1180px;margin:auto;padding:22px}
-.hero{display:grid;gap:18px;align-items:start}
-.hero-copy{max-width:980px}
-.panel{background:white;border:1px solid var(--line);border-radius:10px;padding:18px}
+.hero{display:grid;grid-template-columns:minmax(320px,.82fr) minmax(420px,1.18fr);gap:18px;align-items:start}
+.panel,.feature-card{background:white;border:1px solid var(--line);border-radius:10px;padding:18px}
 .visual-link{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:white}
 .visual-link img{display:block;width:100%;height:auto}
 .caption{font-size:13px;color:var(--muted);margin:8px 0 0}
-h2{margin:0 0 10px;font-size:20px}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+h2{margin:0 0 10px;font-size:22px}.lead{font-size:17px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 a.button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:white;border-radius:6px;padding:10px 14px;font-weight:700}
 a.secondary{background:white;color:var(--blue)}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
-.card{background:white;border:1px solid var(--line);border-radius:8px;padding:14px;text-decoration:none;color:inherit}
-.card strong{display:block;color:var(--blue);margin-bottom:5px}
-.card span{font-size:13px;color:var(--muted)}
-.notes{margin-top:18px;color:var(--muted);font-size:13px}
-@media(max-width:850px){.cards{grid-template-columns:1fr}}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.feature-card{text-decoration:none;color:inherit}.feature-card strong{display:block;color:var(--blue);font-size:18px;margin-bottom:6px}.feature-card span{display:block;color:var(--muted)}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.footer-links a{color:var(--blue);font-weight:700;text-decoration:none}.notes{margin-top:16px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.hero,.feature-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -44,30 +39,38 @@ a.secondary{background:white;color:var(--blue)}
 </header>
 <main>
   <section class="hero">
-    <div class="panel hero-copy">
+    <div class="panel">
       <h2>See when propagation paths are active</h2>
-      <p>wspr-matrix is a browser App for viewing daily propagation activity between your region and any global region over a UTC day.</p>
+      <p class="lead">wspr-matrix is a browser App for viewing daily propagation activity between your region and any global region over a UTC day.</p>
       <p>The app runs locally in your browser on any operating system - including Windows, Linux, Apple, Android and mobile phones. No installation and no server required.</p>
-      <nav class="cards" aria-label="Project pages">
-        <a class="card" href="readme.html"><strong>Read Me</strong><span>Purpose, scope, and data-source overview.</span></a>
-        <a class="card" href="userguide.html"><strong>User Guide</strong><span>Step-by-step use of the browser app.</span></a>
-        <a class="card" href="applications.html"><strong>Applications</strong><span>Use cases for operating strategy and station comparison.</span></a>
-        <a class="card" href="qa.html"><strong>Q &amp; A</strong><span>Plain-language answers for common reviewer and user questions.</span></a>
-        <a class="card" href="resources.html"><strong>Resources</strong><span>Related WSPR, propagation, map, and band-plan resources.</span></a>
-        <a class="card" href="about.html"><strong>About</strong><span>Authorship, acknowledgements, dependencies, and version notes.</span></a>
-        <a class="card" href="prefs.html"><strong>Preferences</strong><span>Set local time offset and future browser-local defaults.</span></a>
-      </nav>
       <div class="actions">
         <a class="button" href="matrix.html">Open WSPR Matrix</a>
+        <a class="button secondary" href="userguide.html">User Guide</a>
+        <a class="button secondary" href="wae-contest.html">Worked All Europe example</a>
       </div>
     </div>
     <div>
-      <a class="visual-link" href="example.html" aria-label="Open full-size WSPR Matrix example">
-        <img src="Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png" alt="Example WSPR Matrix comparing Europe and North America paths for VK7JJ and VK5ARG">
+      <a class="visual-link" href="matrix.html" aria-label="Open WSPR Matrix browser app">
+        <img src="Map%20OC%20EU%20NA%202026-08-05.png" alt="WSPR Matrix map showing selected destination areas for Oceania, Europe, and North America">
       </a>
-      <p class="caption">Example matrix output. Click the image to open the full-size visual.</p>
+      <p class="caption">Example destination map. Click the visual to open the browser app.</p>
     </div>
   </section>
+
+  <section class="feature-grid" aria-label="Featured WSPR Matrix pages">
+    <a class="feature-card" href="matrix.html"><strong>Browser App</strong><span>Build daily WSPR activity matrices by reporter, band, time, and selected destination areas.</span></a>
+    <a class="feature-card" href="applications.html"><strong>Applications</strong><span>Use WSPR Matrix for contest planning, beam-heading strategy, station comparison, and propagation study.</span></a>
+    <a class="feature-card" href="wae-contest.html"><strong>Worked All Europe example</strong><span>See how WSPR Matrix can support contest preparation for Europe, North America, and Oceania.</span></a>
+  </section>
+
+  <nav class="footer-links" aria-label="Supporting pages">
+    <a href="readme.html">Read Me</a>
+    <a href="qa.html">Q &amp; A</a>
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="prefs.html">Preferences</a>
+    <a href="example.html">Example visual</a>
+  </nav>
   <p class="notes">WSPR Matrix reports observed WSPR activity. It does not prove short-path or long-path propagation unless supported by separate directional evidence.</p>
 </main>
 </body>

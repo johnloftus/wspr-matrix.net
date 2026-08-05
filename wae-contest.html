@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Use WSPR Matrix to prepare for the Worked All Europe DX Contest by identifying likely propagation opportunities by band, time, and direction.">
+<link rel="canonical" href="https://wspr-matrix.net/wae-contest.html">
+<meta property="og:title" content="Worked All Europe Contest Preparation with WSPR Matrix">
+<meta property="og:description" content="A practical WSPR Matrix example for contest operators planning beam headings and operating windows for Europe, North America, and Oceania.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wspr-matrix.net/wae-contest.html">
+<meta property="og:image" content="https://wspr-matrix.net/Map%20OC%20EU%20NA%202026-08-05.png">
+<title>Worked All Europe Contest Preparation | WSPR Matrix</title>
+<style>
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7;--panel:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#162230;color:white;padding:24px}
+header h1{margin:0;font-size:31px;letter-spacing:0}
+header p{max-width:980px;margin:8px 0 0;color:#d8e2ec}
+main{max-width:1180px;margin:auto;padding:22px}
+article{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+h2{margin:26px 0 10px;font-size:22px;color:var(--blue)}
+h3{margin:20px 0 8px;font-size:18px}
+p{margin:0 0 12px}
+ul{margin:8px 0 16px 22px;padding:0}
+li{margin:5px 0}
+.byline{color:var(--muted);font-weight:700;margin-top:4px}
+.lead{font-size:18px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 20px}
+a.button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:white;border-radius:6px;padding:10px 14px;font-weight:700}
+a.secondary{background:white;color:var(--blue)}
+figure{margin:20px 0;padding:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:white}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.grid-note{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.note-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:#f8fafc}
+.note-card strong{display:block;color:var(--blue);margin-bottom:5px}
+.source{font-size:14px;color:var(--muted)}
+footer{margin-top:20px;color:var(--muted);font-size:14px}
+@media(max-width:800px){main{padding:14px}article{padding:16px}.grid-note{grid-template-columns:1fr}header h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Worked All Europe Contest Preparation with WSPR Matrix</h1>
+  <p>Using observed WSPR activity to plan likely contest opportunities by band, UTC time, and beam direction.</p>
+</header>
+<main>
+<article>
+  <p class="byline">Author: John Loftus VK4EMM / VK4CT</p>
+  <div class="actions">
+    <a class="button" href="matrix.html">Open WSPR Matrix</a>
+    <a class="button secondary" href="userguide.html">User Guide</a>
+    <a class="button secondary" href="applications.html">Applications</a>
+    <a class="button secondary" href="index.html">Landing page</a>
+  </div>
+
+  <p class="lead">WSPR Matrix helps contest operators identify likely propagation opportunities by band, time, and direction before the contest begins. In the lead-up to any amateur radio contest, prior preparation helps make the contest more enjoyable and improves the chance of good performance.</p>
+
+  <p>In your dreams, you have a farm of antennas to cover all directions at the same time. For the rest of us, one rotary beam antenna can achieve excellent results with careful planning. Getting an antenna in the best direction, at the best time, on the best band requires a good plan built on good data.</p>
+
+  <p class="source">The good data is collected and made available by WSPR operators through <a href="https://www.wsprnet.org/" rel="noopener">wsprnet.org</a>. Registration is required for direct WSPRnet access.</p>
+
+  <h2>Typical Objectives</h2>
+  <ul>
+    <li>Achieve a personal best or high rank on a contest ladder.</li>
+    <li>Build practical knowledge and skills to take advantage of variable band conditions.</li>
+    <li>Add a new country to a DXCC score.</li>
+  </ul>
+
+  <h2>Decision Support</h2>
+  <p>WSPR Matrix supports the formulation of a strategic contest plan. The app can help you:</p>
+  <ul>
+    <li>identify propagation opportunities by direction, time, and band;</li>
+    <li>plan beam headings to capture those opportunities through 24 hours;</li>
+    <li>catch short band openings; and</li>
+    <li>compare operations between stations under similar conditions.</li>
+  </ul>
+
+  <h2>Example Application: WAE DX Contest</h2>
+  <p>This example considers preparation for the <a href="https://www.darc.de/der-club/referate/conteste/wae-dx-contest/en/" rel="noopener">Worked All Europe DX Contest</a>.</p>
+  <p>The example considers three cases:</p>
+  <ul>
+    <li>Case 1: traffic between Europe and North America East.</li>
+    <li>Case 2: traffic between Europe and North America West.</li>
+    <li>Case 3: traffic between Europe and Oceania, including VK and ZL.</li>
+  </ul>
+
+  <figure>
+    <img src="Map%20OC%20EU%20NA%202026-08-05.png" alt="WSPR Matrix map showing Europe, Oceania, North America East, and North America West grid destination areas">
+    <figcaption>Figure 1. Map showing Maidenhead grid fields used for Europe, Oceania, North America East, and North America West.</figcaption>
+  </figure>
+
+  <div class="grid-note">
+    <div class="note-card">
+      <strong>North America West grids</strong>
+      BP, CP, DP, BO, CO, DO, CN, DN, CM, DM, DL
+    </div>
+    <div class="note-card">
+      <strong>North America East grids</strong>
+      EP, EO, EN, EM, EL, FP, FO, FN, FM
+    </div>
+  </div>
+
+  <p>Station ON5KQ in Belgium is ideally situated to represent Europe with his reverse beacon WSPR spotter, providing a continuous spotting service 24 hours every day. ON5KQ is highly placed on the worldwide list of top spotters, measured on the distance ladder at <a href="https://wspr.rocks/topspotters/topk.html" rel="noopener">wspr.rocks</a>.</p>
+
+  <h2>Matrix 1: Europe and North America</h2>
+  <p>Cases 1 and 2 are presented in Matrix 1. Cells represent the number of unique beacons spotted by ON5KQ from North America during sequential 30-minute UTC bins. Higher unique counts indicate likely opportunity for high run rates, especially in the early hours of the contest.</p>
+
+  <p>Matrix 1 immediately confirms a familiar experience. The North America East Coast has a dominant advantage over North America West Coast into Europe. West Coast operators need a strong signal to break through the heavy traffic in Europe.</p>
+
+  <figure>
+    <img src="ON5KQ%20from%20NA-West%20and%20NA-East%20Unique%202026-08-02.png" alt="WSPR Matrix showing ON5KQ received activity from North America West and North America East">
+    <figcaption>Matrix 1. Beacons spotted in Belgium by ON5KQ from North America West and North America East. Path 1, orange, is North America West. Path 2, blue, is North America East.</figcaption>
+  </figure>
+
+  <p>The heavy traffic between Europe and North America creates a high hurdle for stations in Oceania, because directional antennas in North America and Europe are, for the most part, side-on to Oceania.</p>
+
+  <p>One question then arises: how do Oceania stations deal with the high hurdles? The short answer is patience, especially during the early hours of the contest.</p>
+
+  <p>After the early hours, run rates in North America and Europe fall away because many of the unique callsigns have already been worked. After the early runs, operators in North America and Europe turn beams to get out of the heavy traffic and look for opportunities elsewhere, including Oceania.</p>
+
+  <h2>Matrix 2: Oceania and Europe</h2>
+  <p>Matrix 2 shows the pattern of European beacons spotted by VK5ARG and VK7JJ. The period between 04:00 and 05:30 UTC reveals opportunities for Oceania via long-path. The opportunities arise through good propagation and falling Europe to North America run rates. VK5ARG and VK7JJ are worldwide top spotters, measured on the distance ladder.</p>
+
+  <p>Later in the day, traffic between Europe and North America enters a significant lull from 08:00 UTC until 21:00 UTC. That lull presents another opportunity for VK and ZL stations to work Europe via short-path. Best times for VK and ZL are around 18:00 to 21:00 UTC.</p>
+
+  <figure>
+    <img src="VK5ARG%20and%20VK7JJ%20from%20EU%20Unique%202026-08-02.png" alt="WSPR Matrix showing VK5ARG and VK7JJ received activity from European beacons">
+    <figcaption>Matrix 2. European beacons spotted by VK5ARG and VK7JJ.</figcaption>
+  </figure>
+
+  <h2>Conclusion</h2>
+  <p>Now that you are well prepared, enjoy the contest.</p>
+  <p>A tutorial will soon be available to help build a custom matrix for any contest.</p>
+
+  <footer>
+    <p>WSPR Matrix reports observed WSPR activity. Interpretation of short-path or long-path propagation requires appropriate supporting evidence.</p>
+  </footer>
+</article>
+</main>
+</body>
+</html>

@@ -3,21 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Full-size WSPR Matrix example showing daily activity for VK7JJ and VK5ARG paths.">
+<meta name="description" content="Full-size WSPR Matrix example with links to open the app, read the user guide, and review practical applications.">
 <link rel="canonical" href="https://wspr-matrix.net/example">
 <title>WSPR Matrix Example</title>
 <style>
-body{margin:0;background:#101820;color:white;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{padding:14px 18px;background:#162230;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-a{color:#9fd0ff}
-img{display:block;max-width:100%;height:auto;margin:auto;background:white}
+:root{--blue:#1d4f84;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#162230;color:white;padding:18px 22px}header h1{margin:0;font-size:28px}header p{margin:6px 0 0;color:#d8e2ec;max-width:900px}
+main{max-width:1180px;margin:auto;padding:20px}.panel{background:white;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}a.button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:white;border-radius:6px;padding:9px 12px;font-weight:700}a.secondary{background:white;color:var(--blue)}img{display:block;max-width:100%;height:auto;margin:auto;background:white;border:1px solid var(--line);border-radius:10px}.caption{font-size:13px;color:var(--muted);margin:8px 0 0}
 </style>
 </head>
 <body>
 <header>
-  <div><strong>WSPR Matrix Example</strong> - VK7JJ and VK5ARG, 2026-06-18</div>
-  <nav><a href="index.html">Back to WSPR Matrix</a> | <a href="matrix.html">Open app</a></nav>
+  <h1>WSPR Matrix Example</h1>
+  <p>Example daily matrix output showing selected path activity for VK7JJ and VK5ARG.</p>
 </header>
-<img src="Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png" alt="Full-size WSPR Matrix example">
+<main>
+  <section class="panel">
+    <p>This page is a visual example of WSPR Matrix output. Use the buttons below to open the app or navigate to practical guidance.</p>
+    <div class="actions">
+      <a class="button" href="matrix.html">Open WSPR Matrix</a>
+      <a class="button secondary" href="userguide.html">User Guide</a>
+      <a class="button secondary" href="applications.html">Applications</a>
+      <a class="button secondary" href="wae-contest.html">Worked All Europe example</a>
+      <a class="button secondary" href="index.html">Landing page</a>
+    </div>
+  </section>
+  <img src="Paths%20for%20VK7JJ%20%26%20VK5ARG%202026-06-18.png" alt="Full-size WSPR Matrix example comparing Europe and North America paths">
+  <p class="caption">The visual shows observed WSPR activity by band and 30-minute UTC time slot. It does not by itself prove short-path or long-path propagation.</p>
+</main>
 </body>
 </html>
