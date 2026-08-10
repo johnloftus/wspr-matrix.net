@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Contest Matrix is a browser-only tool for viewing contest log activity by station, band, UTC time, and CQ zone or continent.">
+<link rel="canonical" href="https://wspr-matrix.net/contest-matrix">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Contest Matrix">
+<meta property="og:description" content="Load a public Cabrillo contest log in the browser and view QSO activity by band, UTC time, and continent.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wspr-matrix.net/contest-matrix">
+<title>Contest Matrix | Cabrillo Log Activity</title>
+<style>
+:root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7;--panel:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1120px;margin:auto;padding:22px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+h1{margin:0;color:var(--blue);font-size:30px;letter-spacing:0}
+h2,h3{margin-top:0;color:var(--blue)}
+p{margin:0 0 10px}
+.subtitle{color:var(--muted);max-width:760px}
+.top-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+a.button,button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:6px;padding:9px 12px;font-weight:700;cursor:pointer}
+a.secondary,button.secondary{background:#fff;color:var(--blue)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.setup-toggle{background:#2f3437;border-color:#202427;color:#b7ff3c;min-width:104px}.contest-setup-closed .setup-overhead{display:none}.contest-setup-closed main{padding-top:14px}.compact-config{display:block}.contest-setup-closed .compact-config{display:block}.compact-context{margin:5px 0 10px;color:var(--muted);font-size:14px;text-align:center}.compact-context strong{color:var(--blue)}.compact-config .setup-grid{grid-template-columns:120px 132px 132px minmax(420px,1fr);justify-content:center}.compact-config select{padding:6px 7px}.compact-actions{display:grid;grid-template-columns:minmax(96px,1fr) minmax(122px,1.25fr) minmax(92px,1fr) minmax(70px,.75fr);gap:6px;align-items:end}.compact-actions .setup-toggle{grid-row:auto}.compact-actions a,.compact-actions button{text-align:center;padding:8px 8px;min-height:34px;line-height:16px;display:inline-flex;align-items:center;justify-content:center}.compact-actions .compact-global-button{min-width:122px}.compact-actions .compact-home-button{min-width:70px}.contest-setup-closed header{margin-bottom:8px}.contest-setup-closed .matrix-section{margin-top:8px}.contest-setup-closed .contest-matrix-wrap{max-height:calc(100vh - 190px)}.contest-setup-closed header{display:none}.contest-setup-closed .matrix-section h2{display:none}.contest-setup-closed .compact-config{margin-top:0;margin-bottom:8px;padding:10px 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:12px 0}
+.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.workflow span{display:block;background:#eef2f6;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:#425466;font-size:12px;font-weight:700;text-align:center}
+.setup-grid{display:grid;grid-template-columns:1.1fr .8fr .8fr;gap:12px;align-items:end}
+label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:4px}
+input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;background:#fff;font:inherit}
+input[readonly]{background:#eef2f6}
+.button-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.notice{border-left:4px solid var(--orange);background:#fff8f2;border-color:#e2a674;color:#5f2a0c}
+.status{background:#f6f8fa;border:1px solid var(--line);border-radius:6px;padding:10px;color:var(--muted);font-size:13px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.summary-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px}.summary-card strong{display:block;color:var(--blue);font-size:16px}.summary-card span{display:block;color:var(--muted);font-size:12px}.summary-list{margin:8px 0 0;padding-left:18px}.summary-list li{margin:3px 0}
+.matrix-placeholder{min-height:360px;border:1px dashed #9eb8d2;border-radius:8px;background:#f7fbff;display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}
+.contest-matrix-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff;margin-top:10px;max-height:min(78vh,860px)}.contest-matrix-table{border-collapse:separate;border-spacing:0;min-width:780px;width:100%;font-size:12px;table-layout:fixed}.contest-matrix-table th,.contest-matrix-table td{border:1px solid var(--line);padding:3px 5px;text-align:center;height:24px;white-space:nowrap;overflow:hidden}.contest-matrix-table th{background:#eef2f6;color:#1d4f84;font-weight:800}.contest-matrix-table .total-head{background:#f8fafc;color:#425466;font-size:11px;font-weight:800}.contest-matrix-table thead th{position:sticky;z-index:3}.contest-matrix-table thead tr:nth-child(1) th{top:0}.contest-matrix-table thead tr:nth-child(2) th{top:24px}.contest-matrix-table thead tr:nth-child(3) th{top:48px}.contest-matrix-table thead .time-head{top:24px!important;z-index:12}.contest-matrix-table thead .group-separator{z-index:12}.contest-matrix-table .time-cell{background:#fff;font-weight:700;color:#425466;position:sticky;left:0;z-index:1}.contest-matrix-table .path1-head{background:#fff1e7;color:var(--orange)}.contest-matrix-table .path2-head{background:#eaf2fb;color:var(--blue)}.contest-matrix-table .global-head{background:#eef2f6;color:#425466}.contest-matrix-table .group-separator{width:10px;min-width:10px;background:#fff!important;border-left:2px solid #cbd5df;border-right:2px solid #cbd5df;color:transparent;padding:0}.contest-matrix-table tbody tr:nth-child(odd) td:not(.has-qsos):not(.group-separator){background:#fff}.contest-matrix-table tbody tr:nth-child(even) td:not(.has-qsos):not(.group-separator){background:#f6f7f9}.contest-matrix-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.34)}.contest-matrix-table tbody tr:hover .time-cell{box-shadow:inset 0 999px rgba(255,210,222,.52)}.contest-matrix-table td.has-qsos{color:#fff;font-weight:800}.contest-matrix-table td.path1-count{background:#b45218}.contest-matrix-table td.path2-count{background:#1d4f84}.contest-matrix-table td.global-count{background:#425466}.contest-matrix-table td.col-hover,.contest-matrix-table th.col-hover{box-shadow:inset 0 999px rgba(255,210,222,.28)}.contest-matrix-table tfoot td{background:#f6f8fa;font-weight:800}.contest-matrix-table .band-footer td{background:#fff;color:#1d4f84;font-size:11px;font-weight:800}.contest-matrix-note{color:var(--muted);font-size:12px;margin:6px 0 0}.matrix-context{margin:8px 0 6px;text-align:center;color:var(--muted);font-size:16px}.matrix-context strong{color:var(--blue)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;color:var(--muted);font-size:12px}
+.legend span{padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.footer-note{font-size:12px;color:var(--muted)}
+@media(max-width:860px){header{display:block}.top-links{justify-content:flex-start;margin-top:10px}.workflow,.setup-grid,.summary-grid{grid-template-columns:1fr}.compact-actions{grid-template-columns:1fr}.compact-actions .setup-toggle{grid-row:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Contest Matrix</h1>
+      <p class="subtitle">Browser-only contest log activity by station, band, UTC time, and CQ zone or continent.</p>
+    </div>
+    <nav class="top-links" aria-label="Site navigation">
+      <a class="button secondary" href="userguide.html">User Guide</a>
+      <a class="button secondary compact-home-button" href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <section class="notice setup-overhead">
+    <h2>Contest log mode</h2>
+    <p>Contest Matrix counts QSOs. Destination grouping uses CQ zone and broad continent/region.</p>
+  </section>
+
+  <div class="workflow setup-overhead" aria-label="Contest Matrix workflow">
+    <span>1. Load Cabrillo log</span>
+    <span>2. Confirm station and dates</span>
+    <span>3. Choose regions</span>
+    <span>4. Review QSO activity</span>
+  </div>
+
+  <section class="setup-overhead">
+    <h2>1. Load Cabrillo Contest Log</h2>
+    <div class="setup-grid">
+      <div>
+        <label for="contestLogFile">Public Cabrillo log file</label>
+        <input id="contestLogFile" type="file" accept=".log,.txt,.cbr">
+      </div>
+      <div>
+        <label for="contestStation">Station</label>
+        <input id="contestStation" type="text" placeholder="Load log first" readonly>
+      </div>
+      <div>
+        <label for="contestName">Contest</label>
+        <input id="contestName" type="text" placeholder="Load log first" readonly>
+      </div>
+    </div>
+    <div class="button-row">
+      <button id="loadContestLog" type="button">Load Log</button>
+      <button id="clearContestMatrix" class="secondary" type="button">Clear</button>
+      <button id="saveContestJson" class="secondary" type="button" disabled>Save Contest Data</button>
+    </div>
+  </section>
+
+  <section class="setup-overhead">
+    <h2>2. Configure Matrix</h2>
+    <div class="setup-grid">
+      <div>
+        <label for="contestDate">UTC date</label>
+        <select id="contestDate" disabled>
+          <option>Load log first</option>
+        </select>
+      </div>
+      <div>
+        <label for="contestRegion1">Path 1 region</label>
+        <select id="contestRegion1">
+          <option>Europe</option>
+          <option>North America</option>
+          <option>South America</option>
+          <option>Asia</option>
+          <option>Oceania</option>
+          <option>Africa</option>
+          <option>Asia/Oceania</option>
+        </select>
+      </div>
+      <div>
+        <label for="contestRegion2">Path 2 region</label>
+        <select id="contestRegion2">
+          <option>North America</option>
+          <option>Europe</option>
+          <option>South America</option>
+          <option>Asia</option>
+          <option>Oceania</option>
+          <option>Africa</option>
+          <option>Asia/Oceania</option>
+        </select>
+      </div>
+    </div>
+    <div class="button-row">
+      <button id="buildContestMatrix" type="button" disabled>Build Matrix</button>
+      <button id="contestCountMode" class="secondary" type="button" disabled>Counting: Raw QSOs</button>
+    </div>
+  </section>
+
+  <section class="setup-overhead">
+    <h2>3. Data and Matrix Status</h2>
+    <div id="contestStatus" class="status">Load a Cabrillo public contest log to begin.</div>
+    <div class="legend">
+      <span>QSO counts by 30-minute UTC bin</span>
+      <span>Band from logged frequency</span>
+      <span>Region from worked station CQ zone</span>
+    </div>
+  </section>
+
+  <section class="compact-config" aria-label="Compact contest matrix controls">
+    <div class="setup-grid">
+      <div>
+        <label for="contestDateCompact">UTC date</label>
+        <select id="contestDateCompact" disabled>
+          <option>Load log first</option>
+        </select>
+      </div>
+      <div>
+        <label for="contestRegion1Compact">Path 1 region</label>
+        <select id="contestRegion1Compact"></select>
+      </div>
+      <div>
+        <label for="contestRegion2Compact">Path 2 region</label>
+        <select id="contestRegion2Compact"></select>
+      </div>
+      <div class="compact-actions" aria-label="Contest Matrix navigation">
+        <button id="contestSetupToggle" class="setup-toggle" type="button" aria-pressed="false">Close setup</button>
+        <button id="contestGlobalToggle" class="secondary compact-global-button" type="button" aria-pressed="true">Hide Global</button>
+        <a class="button secondary" href="userguide.html">User Guide</a>
+        <a class="button secondary compact-home-button" href="index.html">Home</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="matrix-section">
+    <h2>Contest QSO Matrix</h2>
+    <div id="contestMatrix" class="matrix-placeholder">
+      <div>
+        <strong>Matrix area ready</strong>
+        <p>The parser will summarise the loaded log here. Matrix rendering is the next build step.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const contestState = { metadata: {}, qsos: [], sourceName: "", countMode: "raw", showGlobal: true };
+  const regionByZone = new Map();
+  for (let z = 1; z <= 8; z++) regionByZone.set(z, "North America");
+  for (let z = 9; z <= 13; z++) regionByZone.set(z, "South America");
+  [14, 15, 16, 40].forEach((z) => regionByZone.set(z, "Europe"));
+  for (let z = 17; z <= 27; z++) regionByZone.set(z, "Asia");
+  regionByZone.set(28, "Asia/Oceania");
+  for (let z = 29; z <= 32; z++) regionByZone.set(z, "Oceania");
+  for (let z = 33; z <= 39; z++) regionByZone.set(z, "Africa");
+
+  function bandFromKHz(value) {
+    const khz = Number(value);
+    if (!Number.isFinite(khz)) return null;
+    const ranges = [
+      [1800, 2000, 1], [3500, 4000, 3], [5300, 5500, 5], [7000, 7300, 7],
+      [10100, 10150, 10], [14000, 14350, 14], [18068, 18168, 18],
+      [21000, 21450, 21], [24890, 24990, 24], [28000, 29700, 28], [50000, 54000, 50]
+    ];
+    for (const [low, high, band] of ranges) if (khz >= low && khz <= high) return band;
+    return khz >= 1000 ? Math.floor(khz / 1000) : null;
+  }
+
+  function bandLabel(code) {
+    const labels = {1:"160m",3:"80m",5:"60m",7:"40m",10:"30m",14:"20m",18:"17m",21:"15m",24:"12m",28:"10m",50:"6m"};
+    return labels[code] || `${code} MHz`;
+  }
+
+  function parseMetadata(lines) {
+    const metadata = {};
+    for (const line of lines) {
+      const text = line.trim();
+      if (!text || text.startsWith("QSO:") || !text.includes(":")) continue;
+      const index = text.indexOf(":");
+      metadata[text.slice(0, index).trim().toUpperCase()] = text.slice(index + 1).trim();
+    }
+    return metadata;
+  }
+
+  function parseQsoLine(line) {
+    const parts = line.trim().split(/\s+/);
+    if (parts.length < 11 || parts[0] !== "QSO:") return null;
+    const [_, frequencyKHz, mode, date, hhmmRaw, reporterRaw] = parts;
+    const call = (parts[8] || "").toUpperCase();
+    const zone = Number.parseInt(parts[10], 10);
+    const band = bandFromKHz(frequencyKHz);
+    if (!band || !Number.isInteger(zone) || !call) return null;
+    const hhmm = String(hhmmRaw || "").padStart(4, "0");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !/^\d{4}$/.test(hhmm)) return null;
+    const timestamp = `${date} ${hhmm.slice(0, 2)}:${hhmm.slice(2)}:00`;
+    return {
+      reporter: String(reporterRaw || "").toUpperCase(),
+      timestamp,
+      band,
+      call,
+      zone,
+      continent: regionByZone.get(zone) || "Unknown",
+      frequencyKHz,
+      mode
+    };
+  }
+
+  function parseCabrilloLog(text) {
+    const lines = text.split(/\r?\n/);
+    const metadata = parseMetadata(lines);
+    const qsos = [];
+    let qsoLines = 0;
+    let skipped = 0;
+    for (const line of lines) {
+      if (!line.startsWith("QSO:")) continue;
+      qsoLines++;
+      const qso = parseQsoLine(line);
+      if (qso) qsos.push(qso);
+      else skipped++;
+    }
+    return { metadata, qsos, qsoLines, skipped };
+  }
+
+  function countBy(items, getter) {
+    const counts = new Map();
+    for (const item of items) {
+      const key = getter(item);
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    return [...counts.entries()].sort((a, b) => String(a[0]).localeCompare(String(b[0]), undefined, {numeric:true}));
+  }
+
+  function setDateOptions(qsos) {
+    const dates = [...new Set(qsos.map((q) => q.timestamp.slice(0, 10)))].sort();
+    const select = $("contestDate");
+    select.innerHTML = dates.map((date) => `<option value="${date}">${date}</option>`).join("") || "<option>No dates found</option>";
+    select.disabled = dates.length === 0;
+    syncCompactControls();
+  }
+
+  function renderSummary() {
+    const { metadata, qsos, sourceName } = contestState;
+    const qsoDates = [...new Set(qsos.map((q) => q.timestamp.slice(0, 10)))].sort();
+    const bandItems = countBy(qsos, (q) => q.band).map(([band, count]) => `<li>${bandLabel(band)}: ${count}</li>`).join("");
+    const regionItems = countBy(qsos, (q) => q.continent).map(([region, count]) => `<li>${region}: ${count}</li>`).join("");
+    const zoneItems = countBy(qsos, (q) => q.zone).map(([zone, count]) => `<li>${String(zone).padStart(2, "0")}: ${count}</li>`).join("");
+    $("contestStatus").innerHTML = `
+      <strong>${qsos.length.toLocaleString()} QSOs parsed from ${sourceName}</strong><br>
+      Station ${metadata.CALLSIGN || qsos[0]?.reporter || "unknown"} | ${metadata.CONTEST || "contest unknown"} | UTC dates ${qsoDates.join(", ") || "none"}.
+    `;
+    $("contestMatrix").classList.remove("matrix-placeholder");
+    $("contestMatrix").innerHTML = `
+      <div class="summary-grid">
+        <div class="summary-card"><strong>${qsos.length.toLocaleString()}</strong><span>Total parsed QSOs</span></div>
+        <div class="summary-card"><strong>${qsoDates.length}</strong><span>UTC dates in log</span></div>
+        <div class="summary-card"><strong>${new Set(qsos.map((q) => q.call)).size.toLocaleString()}</strong><span>Unique worked callsigns</span></div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong>Bands</strong><ul class="summary-list">${bandItems}</ul></div>
+        <div class="summary-card"><strong>Regions</strong><ul class="summary-list">${regionItems}</ul></div>
+        <div class="summary-card"><strong>CQ zones</strong><ul class="summary-list">${zoneItems}</ul></div>
+      </div>
+    `;
+  }
+
+
+  function selectedDateQsos() {
+    const date = $("contestDate").value;
+    return contestState.qsos.filter((q) => q.timestamp.slice(0, 10) === date);
+  }
+
+  function slotLabel(index) {
+    const minutes = index * 30;
+    const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+    const mm = String(minutes % 60).padStart(2, "0");
+    return `${hh}:${mm}`;
+  }
+
+  function slotIndex(timestamp) {
+    const match = String(timestamp).match(/\s(\d{2}):(\d{2}):/);
+    if (!match) return null;
+    const minutes = Number(match[1]) * 60 + Number(match[2]);
+    if (!Number.isFinite(minutes) || minutes < 0 || minutes >= 1440) return null;
+    return Math.floor(minutes / 30);
+  }
+
+  function activeBandCodes(qsos) {
+    return [...new Set(qsos.map((q) => q.band))].sort((a, b) => a - b);
+  }
+
+  function emptyMatrix(bands) {
+    return Array.from({ length: 48 }, () => Object.fromEntries(bands.map((band) => [band, 0])));
+  }
+
+  function buildCounts(qsos, bands, region = null) {
+    const matrix = emptyMatrix(bands);
+    const totals = Object.fromEntries(bands.map((band) => [band, 0]));
+    for (const qso of qsos) {
+      if (region && qso.continent !== region) continue;
+      const index = slotIndex(qso.timestamp);
+      if (index === null || !bands.includes(qso.band)) continue;
+      matrix[index][qso.band] += 1;
+      totals[qso.band] += 1;
+    }
+    return { matrix, totals };
+  }
+
+  function gradientStyle(count, pageMax, groupKey) {
+    if (!count || !pageMax) return "";
+    const bucket = Math.max(1, Math.min(5, Math.ceil((count / pageMax) * 5)));
+    const alphas = [0.50, 0.62, 0.74, 0.86, 0.96];
+    const colours = {
+      path1: [180, 82, 24],
+      path2: [29, 79, 132],
+      global: [66, 84, 102]
+    };
+    const [r, g, b] = colours[groupKey] || colours.global;
+    return ` style="background:rgba(${r},${g},${b},${alphas[bucket - 1]})"`;
+  }
+
+  function matrixMaxCount(...matrices) {
+    let max = 0;
+    for (const matrix of matrices) {
+      for (const row of matrix) {
+        for (const value of Object.values(row)) max = Math.max(max, value || 0);
+      }
+    }
+    return max;
+  }
+
+  function renderCountCells(row, bands, className, groupKey, pageMax) {
+    return bands.map((band) => {
+      const count = row[band] || 0;
+      const colKey = `${groupKey}-${band}`;
+      return `<td data-col="${colKey}" class="${count ? `has-qsos ${className}` : ""}"${gradientStyle(count, pageMax, groupKey)}>${count || ""}</td>`;
+    }).join("");
+  }
+
+  function renderTotalCells(totals, bands, className, groupKey) {
+    return bands.map((band) => {
+      const count = totals[band] || 0;
+      const colKey = `${groupKey}-${band}`;
+      return `<td data-col="${colKey}" class="${count ? `has-qsos ${className}` : ""}">${count || ""}</td>`;
+    }).join("");
+  }
+
+  function renderBandHeaderCells(bands, groupKey) {
+    return bands.map((band) => `<th data-col="${groupKey}-${band}">${bandLabel(band)}</th>`).join("");
+  }
+
+  function renderBandFooterCells(bands, groupKey) {
+    return bands.map((band) => `<td data-col="${groupKey}-${band}">${bandLabel(band)}</td>`).join("");
+  }
+
+  function sumTotals(totals) {
+    return Object.values(totals).reduce((sum, value) => sum + (Number(value) || 0), 0);
+  }
+
+  function updateCompactContext(text = null) {
+    const target = $("contestCompactContext");
+    if (!target) return;
+    if (text) {
+      target.innerHTML = text;
+      return;
+    }
+    const station = contestState.metadata.CALLSIGN || contestState.qsos[0]?.reporter || "Station";
+    const date = $("contestDate").value || "date not selected";
+    target.innerHTML = `<strong>Contest QSO Matrix</strong> | ${station} | ${date} UTC | Counts are raw contest QSOs in 30-minute bins.`;
+  }
+
+  function applyContestColumnHover() {
+    const table = document.querySelector(".contest-matrix-table");
+    if (!table) return;
+    const clear = () => table.querySelectorAll(".col-hover").forEach((cell) => cell.classList.remove("col-hover"));
+    table.addEventListener("mouseover", (event) => {
+      const cell = event.target.closest("[data-col]");
+      if (!cell || !table.contains(cell)) return;
+      clear();
+      table.querySelectorAll(`[data-col="${cell.dataset.col}"]`).forEach((match) => match.classList.add("col-hover"));
+    });
+    table.addEventListener("mouseleave", clear);
+  }
+
+  function globalSeparator() {
+    return contestState.showGlobal ? '<td class="group-separator"></td>' : '';
+  }
+
+  function globalHeaderSeparator() {
+    return contestState.showGlobal ? '<th class="group-separator"></th>' : '';
+  }
+
+  function globalHeaderRowSeparator() {
+    return contestState.showGlobal ? '<th class="group-separator" rowspan="2"></th>' : '';
+  }
+
+  function updateGlobalToggle() {
+    const button = $("contestGlobalToggle");
+    if (!button) return;
+    button.textContent = contestState.showGlobal ? "Hide Global" : "Show Global";
+    button.setAttribute("aria-pressed", String(contestState.showGlobal));
+  }
+
+  function renderContestMatrix() {
+    updateCompactContext();
+    const qsos = selectedDateQsos();
+    if (!qsos.length) {
+      updateCompactContext("<strong>Contest QSO Matrix</strong> | No QSOs for selected date.");
+      $("contestMatrix").classList.add("matrix-placeholder");
+      $("contestMatrix").innerHTML = `<div><strong>No QSOs for selected date</strong><p>Select another UTC date from the loaded log.</p></div>`;
+      return;
+    }
+    const region1 = $("contestRegion1").value;
+    const region2 = $("contestRegion2").value;
+    const bands = activeBandCodes(qsos);
+    const path1 = buildCounts(qsos, bands, region1);
+    const path2 = buildCounts(qsos, bands, region2);
+    const global = buildCounts(qsos, bands, null);
+    const pageMax = matrixMaxCount(path1.matrix, path2.matrix, global.matrix);
+    const path1Total = sumTotals(path1.totals);
+    const path2Total = sumTotals(path2.totals);
+    const globalTotal = sumTotals(global.totals);
+    const station = contestState.metadata.CALLSIGN || qsos[0]?.reporter || "Station";
+    const date = $("contestDate").value;
+    const pathColspan = bands.length;
+    const path1BandHeaders = renderBandHeaderCells(bands, "path1");
+    const path2BandHeaders = renderBandHeaderCells(bands, "path2");
+    const globalBandHeaders = renderBandHeaderCells(bands, "global");
+    let rows = "";
+    for (let slot = 0; slot < 48; slot++) {
+      const globalCells = contestState.showGlobal ? `${globalSeparator()}${renderCountCells(global.matrix[slot], bands, "global-count", "global", pageMax)}` : "";
+      rows += `<tr><td class="time-cell">${slotLabel(slot)}</td>${renderCountCells(path1.matrix[slot], bands, "path1-count", "path1", pageMax)}<td class="group-separator"></td>${renderCountCells(path2.matrix[slot], bands, "path2-count", "path2", pageMax)}${globalCells}</tr>`;
+    }
+    const globalTotalHead = contestState.showGlobal ? `${globalHeaderSeparator()}<th class="total-head" colspan="${pathColspan}">Global Total QSOs: ${globalTotal.toLocaleString()}</th>` : "";
+    const globalPathHead = contestState.showGlobal ? `${globalHeaderRowSeparator()}<th class="global-head" colspan="${pathColspan}">Global: all regions</th>` : "";
+    const globalBandHead = contestState.showGlobal ? globalBandHeaders : "";
+    const globalTotalCells = contestState.showGlobal ? `${globalSeparator()}${renderTotalCells(global.totals, bands, "global-count", "global")}` : "";
+    const globalBandFooter = contestState.showGlobal ? `${globalSeparator()}${renderBandFooterCells(bands, "global")}` : "";
+    const html = `
+      <p class="matrix-context"><strong>CONTEST: ${contestState.metadata.CONTEST || "Contest"} QSO Matrix</strong> | <strong>${station}</strong> | ${date} UTC | Counts QSOs in 30-minute bins.</p>
+      <div class="contest-matrix-wrap">
+        <table class="contest-matrix-table">
+          <thead>
+            <tr><th></th><th class="total-head" colspan="${pathColspan}">Path 1 Total QSOs: ${path1Total.toLocaleString()}</th><th class="group-separator"></th><th class="total-head" colspan="${pathColspan}">Path 2 Total QSOs: ${path2Total.toLocaleString()}</th>${globalTotalHead}</tr>
+            <tr><th class="time-head" rowspan="2">UTC</th><th class="path1-head" colspan="${pathColspan}">Path 1: ${region1}</th><th class="group-separator" rowspan="2"></th><th class="path2-head" colspan="${pathColspan}">Path 2: ${region2}</th>${globalPathHead}</tr>
+            <tr>${path1BandHeaders}${path2BandHeaders}${globalBandHead}</tr>
+          </thead>
+          <tbody>${rows}</tbody>
+          <tfoot>
+            <tr><td class="time-cell">TOTAL</td>${renderTotalCells(path1.totals, bands, "path1-count", "path1")}<td class="group-separator"></td>${renderTotalCells(path2.totals, bands, "path2-count", "path2")}${globalTotalCells}</tr>
+            <tr class="band-footer"><td class="time-cell">BAND</td>${renderBandFooterCells(bands, "path1")}<td class="group-separator"></td>${renderBandFooterCells(bands, "path2")}${globalBandFooter}</tr>
+          </tfoot>
+        </table>
+      </div>
+    `;
+    $("contestMatrix").classList.remove("matrix-placeholder");
+    $("contestMatrix").innerHTML = html;
+    $("contestStatus").innerHTML = `<strong>Contest matrix built.</strong><br>${station} | ${date} UTC | ${qsos.length.toLocaleString()} QSOs on ${bands.map(bandLabel).join(", ")}. Path 1: ${region1}; Path 2: ${region2}.`;
+    applyContestColumnHover();
+  }
+
+  async function loadContestLog() {
+    const file = $("contestLogFile").files?.[0];
+    if (!file) {
+      alert("Select a Cabrillo log first.");
+      return;
+    }
+    const text = await file.text();
+    const result = parseCabrilloLog(text);
+    contestState.metadata = result.metadata;
+    contestState.qsos = result.qsos;
+    contestState.sourceName = file.name;
+    $("contestStation").value = result.metadata.CALLSIGN || result.qsos[0]?.reporter || "";
+    $("contestName").value = result.metadata.CONTEST || "";
+    setDateOptions(result.qsos);
+    $("saveContestJson").disabled = result.qsos.length === 0;
+    $("buildContestMatrix").disabled = result.qsos.length === 0;
+    $("contestCountMode").disabled = result.qsos.length === 0;
+    syncCompactControls();
+    if (!result.qsos.length) {
+      $("contestStatus").textContent = `No valid QSO lines parsed. ${result.skipped} QSO lines were skipped.`;
+      return;
+    }
+    renderSummary();
+    if (result.skipped) $("contestStatus").innerHTML += `<br>${result.skipped} QSO lines were skipped.`;
+    renderContestMatrix();
+  }
+
+  function clearContest() {
+    contestState.metadata = {};
+    contestState.qsos = [];
+    contestState.sourceName = "";
+    contestState.showGlobal = true;
+    updateGlobalToggle();
+    $("contestLogFile").value = "";
+    $("contestStation").value = "";
+    $("contestName").value = "";
+    $("contestDate").innerHTML = "<option>Load log first</option>";
+    $("contestDate").disabled = true;
+    $("saveContestJson").disabled = true;
+    $("buildContestMatrix").disabled = true;
+    $("contestCountMode").disabled = true;
+    syncCompactControls();
+    $("contestStatus").textContent = "Load a Cabrillo public contest log to begin.";
+    updateCompactContext("<strong>Contest QSO Matrix</strong> | Load log first");
+    $("contestMatrix").classList.add("matrix-placeholder");
+    $("contestMatrix").innerHTML = `<div><strong>Matrix area ready</strong><p>The parser will summarise the loaded log here. Matrix rendering is the next build step.</p></div>`;
+  }
+
+
+  function mirrorOptions(sourceId, targetId) {
+    const source = $(sourceId);
+    const target = $(targetId);
+    if (!source || !target) return;
+    target.innerHTML = source.innerHTML;
+    target.value = source.value;
+    target.disabled = source.disabled;
+  }
+
+  function syncCompactControls() {
+    mirrorOptions("contestDate", "contestDateCompact");
+    mirrorOptions("contestRegion1", "contestRegion1Compact");
+    mirrorOptions("contestRegion2", "contestRegion2Compact");
+  }
+
+  function setControlPairValue(primaryId, compactId, value) {
+    const primary = $(primaryId);
+    const compact = $(compactId);
+    if (primary) primary.value = value;
+    if (compact) compact.value = value;
+  }
+
+  function setSetupOpen(isOpen) {
+    document.body.classList.toggle("contest-setup-closed", !isOpen);
+    const button = $("contestSetupToggle");
+    button.textContent = isOpen ? "Close setup" : "Open setup";
+    button.setAttribute("aria-pressed", String(!isOpen));
+  }
+
+  window.contestMatrixParser = { parseCabrilloLog, bandFromKHz, regionByZone };
+  syncCompactControls();
+  updateGlobalToggle();
+  $("contestGlobalToggle").addEventListener("click", () => { contestState.showGlobal = !contestState.showGlobal; updateGlobalToggle(); renderContestMatrix(); });
+  $("contestSetupToggle").addEventListener("click", () => setSetupOpen(document.body.classList.contains("contest-setup-closed")));
+  $("contestDateCompact").addEventListener("change", () => { setControlPairValue("contestDate", "contestDateCompact", $("contestDateCompact").value); renderContestMatrix(); });
+  $("contestRegion1Compact").addEventListener("change", () => { setControlPairValue("contestRegion1", "contestRegion1Compact", $("contestRegion1Compact").value); renderContestMatrix(); });
+  $("contestRegion2Compact").addEventListener("change", () => { setControlPairValue("contestRegion2", "contestRegion2Compact", $("contestRegion2Compact").value); renderContestMatrix(); });
+  $("loadContestLog").addEventListener("click", loadContestLog);
+  $("clearContestMatrix").addEventListener("click", clearContest);
+  $("buildContestMatrix").addEventListener("click", renderContestMatrix);
+  $("contestDate").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
+  $("contestRegion1").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
+  $("contestRegion2").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
+})();
+</script>
+
+</body>
+</html>
