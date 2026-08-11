@@ -14,7 +14,7 @@
 <style>
 :root{--blue:#1d4f84;--orange:#b45218;--green:#1f8a5b;--line:#d7dde4;--ink:#18212b;--muted:#56616e;--bg:#f3f5f7;--panel:#fff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body.contest-setup-closed{height:100vh;overflow:hidden}body.contest-setup-closed main{height:100vh;overflow:hidden}
 main{max-width:1120px;margin:auto;padding:22px}
 header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
 h1{margin:0;color:var(--blue);font-size:30px;letter-spacing:0}
@@ -25,7 +25,7 @@ p{margin:0 0 10px}
 a.button,button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:6px;padding:9px 12px;font-weight:700;cursor:pointer}
 a.secondary,button.secondary{background:#fff;color:var(--blue)}
 button:disabled{opacity:.55;cursor:not-allowed}
-.setup-toggle{background:#2f3437;border-color:#202427;color:#b7ff3c;min-width:104px}.contest-setup-closed .setup-overhead{display:none}.contest-setup-closed main{padding-top:14px}.compact-config{display:block}.contest-setup-closed .compact-config{display:block}.compact-context{margin:5px 0 10px;color:var(--muted);font-size:14px;text-align:center}.compact-context strong{color:var(--blue)}.compact-config .setup-grid{grid-template-columns:120px 132px 132px minmax(420px,1fr);justify-content:center}.compact-config select{padding:6px 7px}.compact-actions{display:grid;grid-template-columns:minmax(96px,1fr) minmax(122px,1.25fr) minmax(92px,1fr) minmax(70px,.75fr);gap:6px;align-items:end}.compact-actions .setup-toggle{grid-row:auto}.compact-actions a,.compact-actions button{text-align:center;padding:8px 8px;min-height:34px;line-height:16px;display:inline-flex;align-items:center;justify-content:center}.compact-actions .compact-global-button{min-width:122px}.compact-actions .compact-home-button{min-width:70px}.contest-setup-closed header{margin-bottom:8px}.contest-setup-closed .matrix-section{margin-top:8px}.contest-setup-closed .contest-matrix-wrap{max-height:calc(100vh - 190px)}.contest-setup-closed header{display:none}.contest-setup-closed .matrix-section h2{display:none}.contest-setup-closed .compact-config{margin-top:0;margin-bottom:8px;padding:10px 12px}
+.setup-toggle{background:#2f3437;border-color:#202427;color:#b7ff3c;min-width:104px}.contest-setup-closed .setup-overhead{display:none}.contest-setup-closed main{padding-top:10px}.compact-config{display:block}.contest-setup-closed .compact-config{display:block}.compact-context{margin:5px 0 10px;color:var(--muted);font-size:14px;text-align:center}.compact-context strong{color:var(--blue)}.compact-config select{padding:6px 7px}.compact-actions{display:grid;grid-template-columns:minmax(102px,.9fr) minmax(104px,.95fr) minmax(122px,1.05fr) minmax(108px,.95fr) minmax(124px,1.1fr) minmax(88px,.8fr) minmax(132px,1.15fr);gap:6px;align-items:end}.compact-selectors{display:grid;grid-template-columns:120px 150px 150px minmax(88px,.8fr) minmax(64px,.6fr);gap:6px;align-items:end;margin-top:6px}.compact-actions a,.compact-actions button,.compact-selectors a{text-align:center;padding:8px 8px;min-height:34px;line-height:16px;display:inline-flex;align-items:center;justify-content:center}.compact-actions .compact-global-button{min-width:0}.compact-selectors .compact-home-button{min-width:0}.compact-actions .view-active{background:#eef2f6;color:var(--blue);border-color:#9eb8d2}.contest-setup-closed header{margin-bottom:8px}.contest-setup-closed .matrix-section{margin-top:6px}.contest-setup-closed .contest-matrix-wrap{max-height:calc(100vh - 205px)}.contest-setup-closed header{display:none}.contest-setup-closed .matrix-section h2{display:none}.contest-setup-closed .compact-config{margin-top:0;margin-bottom:6px;padding:8px 10px}.compact-config,.matrix-section{scroll-margin-top:0}
 section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:12px 0}
 .workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
 .workflow span{display:block;background:#eef2f6;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:#425466;font-size:12px;font-weight:700;text-align:center}
@@ -41,6 +41,7 @@ input[readonly]{background:#eef2f6}
 .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;color:var(--muted);font-size:12px}
 .legend span{padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff}
 .footer-note{font-size:12px;color:var(--muted)}
+.contest-summary-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff;max-height:calc(100vh - 205px)}.contest-summary-table{border-collapse:separate;border-spacing:0;width:100%;min-width:520px;font-size:12px;table-layout:fixed}.contest-summary-table th,.contest-summary-table td{border:1px solid var(--line);padding:4px 6px;text-align:center;height:24px;white-space:nowrap;overflow:hidden}.contest-summary-table th{background:#eef2f6;color:var(--blue);font-weight:800;position:sticky;top:0;z-index:5}.contest-summary-table th:first-child{left:0;z-index:7}.contest-summary-table .zone-cell{background:#fff;font-weight:800;color:#425466;text-align:left;position:sticky;left:0;z-index:4}.contest-summary-table tbody tr:nth-child(even) td:not(.has-qsos){background:#f6f7f9}.contest-summary-table tbody tr:hover td{box-shadow:inset 0 999px rgba(255,210,222,.34)}.contest-summary-table td.has-qsos{background:#1d4f84;color:#fff;font-weight:800}.contest-summary-table .zone-total-cell{background:#eef2f6;color:#18212b;font-weight:900}.contest-summary-table tfoot td{background:#f6f8fa;font-weight:900}.contest-summary-note{color:var(--muted);font-size:12px;margin:6px 0 0}
 @media(max-width:860px){header{display:block}.top-links{justify-content:flex-start;margin-top:10px}.workflow,.setup-grid,.summary-grid{grid-template-columns:1fr}.compact-actions{grid-template-columns:1fr}.compact-actions .setup-toggle{grid-row:auto}}
 </style>
 </head>
@@ -127,7 +128,16 @@ input[readonly]{background:#eef2f6}
   </section>
 
   <section class="compact-config" aria-label="Compact contest matrix controls">
-    <div class="setup-grid">
+    <div class="compact-actions" aria-label="Contest Matrix navigation">
+      <button id="contestSetupToggle" class="setup-toggle" type="button" aria-pressed="false">Close setup</button>
+      <button class="secondary" type="button" data-contest-view="matrix">Path matrix</button>
+      <button class="secondary" type="button" data-contest-view="country" disabled>Country matrix</button>
+      <button id="contestGlobalToggle" class="secondary compact-global-button" type="button" aria-pressed="true">Hide Global</button>
+      <button class="secondary" type="button" data-contest-view="contest">Zone Summary</button>
+      <button class="secondary" type="button" data-contest-view="day">Zone day</button>
+      <button class="secondary" type="button" disabled>Contest summary</button>
+    </div>
+    <div class="compact-selectors">
       <div>
         <label for="contestDateCompact">UTC date</label>
         <select id="contestDateCompact" disabled>
@@ -142,12 +152,8 @@ input[readonly]{background:#eef2f6}
         <label for="contestRegion2Compact">Path 2 region</label>
         <select id="contestRegion2Compact"></select>
       </div>
-      <div class="compact-actions" aria-label="Contest Matrix navigation">
-        <button id="contestSetupToggle" class="setup-toggle" type="button" aria-pressed="false">Close setup</button>
-        <button id="contestGlobalToggle" class="secondary compact-global-button" type="button" aria-pressed="true">Hide Global</button>
-        <a class="button secondary" href="userguide.html">User Guide</a>
-        <a class="button secondary compact-home-button" href="index.html">Home</a>
-      </div>
+      <a class="button secondary" href="userguide.html">User Guide</a>
+      <a class="button secondary compact-home-button" href="index.html">Home</a>
     </div>
   </section>
 
@@ -165,7 +171,7 @@ input[readonly]{background:#eef2f6}
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const contestState = { metadata: {}, qsos: [], sourceName: "", countMode: "raw", showGlobal: true };
+  const contestState = { metadata: {}, qsos: [], sourceName: "", countMode: "raw", showGlobal: true, view: "matrix", viewHtml: {}, viewPlaceholder: {} };
   const regionByZone = new Map();
   for (let z = 1; z <= 8; z++) regionByZone.set(z, "North America");
   for (let z = 9; z <= 13; z++) regionByZone.set(z, "South America");
@@ -236,8 +242,14 @@ input[readonly]{background:#eef2f6}
   }
 
   function bandLabel(code) {
-    const labels = {1:"160m",3:"80m",5:"60m",7:"40m",10:"30m",14:"20m",18:"17m",21:"15m",24:"12m",28:"10m",50:"6m"};
+    const labels = {1:"160",3:"80m",5:"60m",7:"40m",10:"30m",14:"20m",18:"17m",21:"15m",24:"12m",28:"10m",50:"6m"};
     return labels[code] || `${code} MHz`;
+  }
+
+  function zoneSummaryLabel(zone) {
+    const continent = regionByZone.get(zone) || "Unknown";
+    const abbrev = continentAbbrev[continent] || continent;
+    return `${String(zone).padStart(2, "0")} ${abbrev}`;
   }
 
   function parseMetadata(lines) {
@@ -375,6 +387,90 @@ input[readonly]{background:#eef2f6}
     return { matrix, totals };
   }
 
+  function buildZoneSummaryView(qsos, title, periodLabel, emptyTitle, emptyText) {
+    const bands = activeBandCodes(qsos);
+    if (!qsos.length || !bands.length) {
+      return {
+        placeholder: true,
+        html: `<div><strong>${emptyTitle}</strong><p>${emptyText}</p></div>`
+      };
+    }
+    const zoneCounts = new Map();
+    for (let zone = 1; zone <= 40; zone++) {
+      zoneCounts.set(zone, Object.fromEntries(bands.map((band) => [band, 0])));
+    }
+    for (const qso of qsos) {
+      if (!Number.isInteger(qso.zone) || qso.zone < 1 || qso.zone > 40 || !bands.includes(qso.band)) continue;
+      zoneCounts.get(qso.zone)[qso.band] += 1;
+    }
+    const bandTotals = Object.fromEntries(bands.map((band) => [band, 0]));
+    let rows = "";
+    for (let zone = 1; zone <= 40; zone++) {
+      const counts = zoneCounts.get(zone);
+      const rowTotal = bands.reduce((sum, band) => {
+        const count = counts[band] || 0;
+        bandTotals[band] += count;
+        return sum + count;
+      }, 0);
+      const cells = bands.map((band) => {
+        const count = counts[band] || 0;
+        return `<td class="${count ? "has-qsos" : ""}">${count || ""}</td>`;
+      }).join("");
+      rows += `<tr><td class="zone-cell">${zoneSummaryLabel(zone)}</td>${cells}<td class="zone-total-cell">${rowTotal || ""}</td></tr>`;
+    }
+    const station = contestState.metadata.CALLSIGN || qsos[0]?.reporter || "Station";
+    const bandHeaders = bands.map((band) => `<th>${bandLabel(band)}</th>`).join("");
+    const zoneMultiplierCounts = Object.fromEntries(bands.map((band) => [band, 0]));
+    for (let zone = 1; zone <= 40; zone++) {
+      const counts = zoneCounts.get(zone);
+      for (const band of bands) if ((counts[band] || 0) > 0) zoneMultiplierCounts[band] += 1;
+    }
+    const zoneMultiplierTotal = Object.values(zoneMultiplierCounts).reduce((sum, count) => sum + count, 0);
+    const totalCells = bands.map((band) => `<td class="zone-total-cell">${zoneMultiplierCounts[band] || ""}</td>`).join("");
+    return {
+      placeholder: false,
+      html: `
+      <p class="matrix-context"><strong>${title}</strong> | <strong>${station}</strong> | ${periodLabel} | Counts QSOs by CQ zone and band.</p>
+      <div class="contest-summary-wrap">
+        <table class="contest-summary-table">
+          <thead><tr><th>Zone</th>${bandHeaders}<th>Total</th></tr></thead>
+          <tbody>${rows}</tbody>
+          <tfoot><tr><td class="zone-cell">ZONES</td>${totalCells}<td class="zone-total-cell">${zoneMultiplierTotal || ""}</td></tr></tfoot>
+        </table>
+      </div>
+      <p class="contest-summary-note">Zone labels combine CQ zone number and broad continent abbreviation, for example 30 OC. The ZONES row counts worked CQ zones per band.</p>
+    `
+    };
+  }
+
+  function renderContestSummaries() {
+    const allQsos = contestState.qsos;
+    const selectedQsos = selectedDateQsos();
+    const dates = [...new Set(allQsos.map((q) => q.timestamp.slice(0, 10)))].sort();
+    const selectedDate = $("contestDate").value;
+    const dayIndex = dates.indexOf(selectedDate);
+    const dayTitle = dayIndex >= 0 ? `Day ${dayIndex + 1} Summary` : "Day Summary";
+    const contestPeriod = dates.length ? `${dates[0]} to ${dates[dates.length - 1]} UTC` : "Contest";
+    const contestView = buildZoneSummaryView(
+      allQsos,
+      "Contest Summary",
+      contestPeriod,
+      "Contest summary ready",
+      "Load a Cabrillo log to summarise all contest QSOs by CQ zone and band."
+    );
+    const dayView = buildZoneSummaryView(
+      selectedQsos,
+      dayTitle,
+      selectedDate ? `${selectedDate} UTC` : "Selected day",
+      "Day summary ready",
+      "Load a Cabrillo log to summarise selected-day QSOs by CQ zone and band."
+    );
+    contestState.viewHtml.contest = contestView.html;
+    contestState.viewPlaceholder.contest = contestView.placeholder;
+    contestState.viewHtml.day = dayView.html;
+    contestState.viewPlaceholder.day = dayView.placeholder;
+  }
+
   function gradientStyle(count, pageMax, groupKey) {
     if (!count || !pageMax) return "";
     const bucket = Math.max(1, Math.min(5, Math.ceil((count / pageMax) * 5)));
@@ -503,13 +599,38 @@ input[readonly]{background:#eef2f6}
     button.setAttribute("aria-pressed", String(contestState.showGlobal));
   }
 
+  function setContestView(view) {
+    contestState.view = view;
+    renderContestView();
+  }
+
+  function updateContestViewButtons() {
+    document.querySelectorAll("[data-contest-view]").forEach((button) => {
+      const active = button.dataset.contestView === contestState.view;
+      button.classList.toggle("view-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function renderContestView() {
+    const target = $("contestMatrix");
+    const view = contestState.view || "matrix";
+    const html = contestState.viewHtml[view] || `<div><strong>Matrix area ready</strong><p>Load a Cabrillo log to begin.</p></div>`;
+    target.innerHTML = html;
+    target.classList.toggle("matrix-placeholder", Boolean(contestState.viewPlaceholder[view]));
+    updateContestViewButtons();
+    if (view === "matrix" && !contestState.viewPlaceholder.matrix) applyContestColumnHover();
+  }
+
   function renderContestMatrix() {
     updateCompactContext();
     const qsos = selectedDateQsos();
     if (!qsos.length) {
       updateCompactContext("<strong>Contest QSO Matrix</strong> | No QSOs for selected date.");
-      $("contestMatrix").classList.add("matrix-placeholder");
-      $("contestMatrix").innerHTML = `<div><strong>No QSOs for selected date</strong><p>Select another UTC date from the loaded log.</p></div>`;
+      contestState.viewHtml.matrix = `<div><strong>No QSOs for selected date</strong><p>Select another UTC date from the loaded log.</p></div>`;
+      contestState.viewPlaceholder.matrix = true;
+      renderContestSummaries();
+      renderContestView();
       return;
     }
     const region1 = $("contestRegion1").value;
@@ -558,10 +679,11 @@ input[readonly]{background:#eef2f6}
         </table>
       </div>
     `;
-    $("contestMatrix").classList.remove("matrix-placeholder");
-    $("contestMatrix").innerHTML = html;
+    contestState.viewHtml.matrix = html;
+    contestState.viewPlaceholder.matrix = false;
+    renderContestSummaries();
+    renderContestView();
     $("contestStatus").innerHTML = `<strong>Contest matrix built.</strong><br>${station} | ${date} UTC | ${qsos.length.toLocaleString()} QSOs on ${bands.map(bandLabel).join(", ")}. Path 1: ${region1Label}; Path 2: ${region2Label}.`;
-    applyContestColumnHover();
   }
 
   async function loadContestLog() {
@@ -608,8 +730,11 @@ input[readonly]{background:#eef2f6}
     syncCompactControls();
     $("contestStatus").textContent = "Load a Cabrillo public contest log to begin.";
     updateCompactContext("<strong>Contest QSO Matrix</strong> | Load log first");
-    $("contestMatrix").classList.add("matrix-placeholder");
-    $("contestMatrix").innerHTML = `<div><strong>Matrix area ready</strong><p>The parser will summarise the loaded log here. Matrix rendering is the next build step.</p></div>`;
+    contestState.view = "matrix";
+    contestState.viewHtml.matrix = `<div><strong>Matrix area ready</strong><p>The parser will summarise the loaded log here. Matrix rendering is the next build step.</p></div>`;
+    contestState.viewPlaceholder.matrix = true;
+    renderContestSummaries();
+    renderContestView();
   }
 
 
@@ -646,6 +771,10 @@ input[readonly]{background:#eef2f6}
   populateRegionSelectors();
   syncCompactControls();
   updateGlobalToggle();
+  contestState.viewHtml.matrix = `<div><strong>Matrix area ready</strong><p>The parser will summarise the loaded log here. Matrix rendering is the next build step.</p></div>`;
+  contestState.viewPlaceholder.matrix = true;
+  renderContestSummaries();
+  renderContestView();
   $("contestGlobalToggle").addEventListener("click", () => { contestState.showGlobal = !contestState.showGlobal; updateGlobalToggle(); renderContestMatrix(); });
   $("contestSetupToggle").addEventListener("click", () => setSetupOpen(document.body.classList.contains("contest-setup-closed")));
   $("contestDateCompact").addEventListener("change", () => { setControlPairValue("contestDate", "contestDateCompact", $("contestDateCompact").value); renderContestMatrix(); });
@@ -657,6 +786,9 @@ input[readonly]{background:#eef2f6}
   $("contestDate").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
   $("contestRegion1").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
   $("contestRegion2").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
+  document.querySelectorAll("[data-contest-view]").forEach((button) => {
+    button.addEventListener("click", () => setContestView(button.dataset.contestView));
+  });
 })();
 </script>
 
