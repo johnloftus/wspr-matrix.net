@@ -25,7 +25,20 @@ p{margin:0 0 10px}
 a.button,button{display:inline-block;text-decoration:none;border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:6px;padding:9px 12px;font-weight:700;cursor:pointer}
 a.secondary,button.secondary{background:#fff;color:var(--blue)}
 button:disabled{opacity:.55;cursor:not-allowed}
-.setup-toggle{background:#2f3437;border-color:#202427;color:#b7ff3c;min-width:104px}.contest-setup-closed .setup-overhead{display:none}.contest-setup-closed main{padding-top:10px}.compact-config{display:block}.contest-setup-closed .compact-config{display:block}.compact-context{margin:5px 0 10px;color:var(--muted);font-size:14px;text-align:center}.compact-context strong{color:var(--blue)}.compact-load-status{margin:4px 0 0;text-align:center;color:#425466;font-size:13px;font-weight:700;line-height:1.2}.compact-config select{padding:6px 7px}.compact-actions{display:grid;grid-template-columns:minmax(102px,.9fr) minmax(104px,.95fr) minmax(122px,1.05fr) minmax(108px,.95fr) minmax(124px,1.1fr) minmax(88px,.8fr) minmax(132px,1.15fr);gap:6px;align-items:end}.compact-selectors{display:grid;grid-template-columns:120px 150px 150px minmax(88px,.8fr) minmax(64px,.6fr);gap:6px;align-items:end;margin-top:6px}.compact-actions a,.compact-actions button,.compact-selectors a{text-align:center;padding:8px 8px;min-height:34px;line-height:16px;display:inline-flex;align-items:center;justify-content:center}.compact-actions .compact-global-button{min-width:0}.compact-selectors .compact-home-button{min-width:0}.compact-actions .view-active{background:#1d4f84;color:#fff;border-color:#123a62;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}.compact-actions button:disabled{opacity:.45;cursor:not-allowed;background:#eef2f6;color:#6b7280;border-color:#cbd5df}.contest-setup-closed header{margin-bottom:8px}.contest-setup-closed .matrix-section{margin-top:6px}.contest-setup-closed .contest-matrix-wrap{max-height:calc(100vh - 184px)}.contest-setup-closed header{display:none}.contest-setup-closed .matrix-section h2{display:none}.contest-setup-closed .compact-config{margin-top:0;margin-bottom:6px;padding:8px 10px}.compact-config,.matrix-section{scroll-margin-top:0}
+.legacy-load-controls{display:none!important}.contest-setup-closed .setup-overhead{display:none}.contest-setup-closed main{padding-top:10px}.compact-config{display:block}.contest-setup-closed .compact-config{display:block}.compact-context{margin:5px 0 10px;color:var(--muted);font-size:14px;text-align:center}.compact-context strong{color:var(--blue)}.compact-load-status{margin:4px 0 0;text-align:center;color:#425466;font-size:13px;font-weight:700;line-height:1.2}.compact-config select{padding:6px 7px}.compact-actions{display:grid;grid-template-columns:minmax(104px,.95fr) minmax(122px,1.05fr) minmax(108px,.95fr) minmax(124px,1.1fr) minmax(88px,.8fr) minmax(132px,1.15fr);gap:6px;align-items:end}.compact-selectors{display:grid;grid-template-columns:minmax(112px,.9fr) minmax(84px,.65fr) minmax(124px,.9fr) minmax(160px,1.15fr) minmax(160px,1.15fr) minmax(74px,.55fr) minmax(68px,.5fr);gap:6px;align-items:end;margin-top:6px}.compact-actions a,.compact-actions button,.compact-selectors a,.compact-selectors button{text-align:center;padding:8px 8px;min-height:34px;line-height:16px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}.compact-actions .compact-global-button{min-width:0}.compact-selectors .compact-home-button{min-width:0}.compact-actions .view-active{background:#1d4f84;color:#fff;border-color:#123a62;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}.compact-actions button:disabled{opacity:.45;cursor:not-allowed;background:#eef2f6;color:#6b7280;border-color:#cbd5df}.contest-setup-closed header{margin-bottom:8px}.contest-setup-closed .matrix-section{margin-top:6px}.contest-setup-closed .contest-matrix-wrap{max-height:calc(100vh - 184px)}.contest-setup-closed header{display:none}.contest-setup-closed .matrix-section h2{display:none}.contest-setup-closed .compact-config{margin-top:0;margin-bottom:6px;padding:8px 10px}.compact-config,.matrix-section{scroll-margin-top:0}
+body.contest-home-visible{height:auto;overflow:auto}
+body.contest-home-visible main{height:auto;overflow:visible;padding:22px}
+body.contest-home-visible header{display:flex}
+body.contest-home-visible .compact-config,body.contest-home-visible .matrix-section{display:none}
+body.contest-home-visible .contest-home{display:grid}
+body:not(.contest-home-visible) .contest-home{display:none}
+.contest-home{min-height:calc(100vh - 130px);align-items:center}
+.contest-home-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:34px;max-width:880px;margin:auto;box-shadow:0 12px 32px rgba(24,33,43,.08)}
+.contest-home-card h2{font-size:34px;margin:0 0 10px;color:var(--blue)}
+.contest-home-lead{font-size:22px;color:#18212b;max-width:760px;margin-bottom:12px;font-weight:750}
+.contest-home-copy{font-size:17px;color:var(--muted);max-width:760px;margin-bottom:22px}
+.contest-home-actions{display:flex;gap:10px;flex-wrap:wrap}
+.contest-home-actions .start-button{min-width:130px}
 section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:12px 0}
 .workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
 .workflow span{display:block;background:#eef2f6;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:#425466;font-size:12px;font-weight:700;text-align:center}
@@ -52,7 +65,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
 @media(max-width:860px){header{display:block}.top-links{justify-content:flex-start;margin-top:10px}.workflow,.setup-grid,.summary-grid{grid-template-columns:1fr}.compact-actions{grid-template-columns:1fr}.compact-actions .setup-toggle{grid-row:auto}}
 </style>
 </head>
-<body>
+<body class="contest-setup-closed contest-home-visible">
 <main>
   <header>
     <div>
@@ -65,78 +78,35 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     </nav>
   </header>
 
-  <section class="notice setup-overhead">
-    <h2>Contest log mode</h2>
-    <p>Turn a Cabrillo contest log into a daily operating map: see when each band opened, which regions answered, and where the multipliers came from.</p>
+  <section id="contestHome" class="contest-home" aria-label="Contest Matrix home">
+    <div class="contest-home-card">
+      <h2>Contest Matrix</h2>
+      <p class="contest-home-lead">Turn a Cabrillo contest log into a daily operating map.</p>
+      <p class="contest-home-copy">See when each band opened, which regions answered, and where the multipliers came from.</p>
+      <div class="contest-home-actions">
+        <button id="contestStartButton" type="button" class="start-button">Start</button>
+        <a class="button secondary" href="userguide.html">User Guide</a>
+      </div>
+    </div>
   </section>
 
-  <div class="workflow setup-overhead" aria-label="Contest Matrix workflow">
-    <span>1. Load log</span>
-    <span>2. Check station/date</span>
-    <span>3. Choose regions</span>
-    <span>4. Find openings</span>
+  <div class="legacy-load-controls" aria-hidden="true">
+    <input id="contestLogFile" type="file" accept=".log,.txt,.cbr" tabindex="-1">
+    <input id="contestStation" type="text" readonly tabindex="-1">
+    <input id="contestName" type="text" readonly tabindex="-1">
+    <button id="loadContestLog" type="button" tabindex="-1">Load Log</button>
+    <button id="clearContestMatrix" type="button" tabindex="-1">Clear</button>
+    <button id="saveContestJson" type="button" disabled tabindex="-1">Save Contest Data</button>
+    <select id="contestDate" disabled tabindex="-1"><option>Load log first</option></select>
+    <select id="contestRegion1" tabindex="-1"></select>
+    <select id="contestRegion2" tabindex="-1"></select>
+    <button id="buildContestMatrix" type="button" disabled tabindex="-1">Build Matrix</button>
+    <button id="contestCountMode" type="button" disabled tabindex="-1">Counting: Raw QSOs</button>
+    <div id="contestStatus">Load a public Cabrillo contest log to begin.</div>
   </div>
-
-  <section class="setup-overhead">
-    <h2>1. Load Contest Log</h2>
-    <div class="setup-grid">
-      <div>
-        <label for="contestLogFile">Cabrillo log file</label>
-        <input id="contestLogFile" type="file" accept=".log,.txt,.cbr">
-      </div>
-      <div>
-        <label for="contestStation">Station</label>
-        <input id="contestStation" type="text" placeholder="Load log first" readonly>
-      </div>
-      <div>
-        <label for="contestName">Contest</label>
-        <input id="contestName" type="text" placeholder="Load log first" readonly>
-      </div>
-    </div>
-    <div class="button-row">
-      <button id="loadContestLog" type="button">Load Log</button>
-      <button id="clearContestMatrix" class="secondary" type="button">Clear</button>
-      <button id="saveContestJson" class="secondary" type="button" disabled>Save Contest Data</button>
-    </div>
-  </section>
-
-  <section class="setup-overhead">
-    <h2>2. Configure Matrix</h2>
-    <div class="setup-grid">
-      <div>
-        <label for="contestDate">UTC date</label>
-        <select id="contestDate" disabled>
-          <option>Load log first</option>
-        </select>
-      </div>
-      <div>
-        <label for="contestRegion1">Path 1 region</label>
-        <select id="contestRegion1"></select>
-      </div>
-      <div>
-        <label for="contestRegion2">Path 2 region</label>
-        <select id="contestRegion2"></select>
-      </div>
-    </div>
-    <div class="button-row">
-      <button id="buildContestMatrix" type="button" disabled>Build Matrix</button>
-      <button id="contestCountMode" class="secondary" type="button" disabled>Counting: Raw QSOs</button>
-    </div>
-  </section>
-
-  <section class="setup-overhead">
-    <h2>3. Data and Matrix Status</h2>
-    <div id="contestStatus" class="status">Load a public Cabrillo contest log to begin.</div>
-    <div class="legend">
-      <span>30-minute UTC activity</span>
-      <span>Band from frequency</span>
-      <span>Region from CQ zone</span>
-    </div>
-  </section>
 
   <section class="compact-config" aria-label="Compact contest matrix controls">
     <div class="compact-actions" aria-label="Contest Matrix navigation">
-      <button id="contestSetupToggle" class="setup-toggle" type="button" aria-pressed="false">Close setup</button>
       <button class="secondary" type="button" data-contest-view="matrix">Path matrix</button>
       <button class="secondary" type="button" data-contest-view="country">Country matrix</button>
       <button id="contestGlobalToggle" class="secondary compact-global-button" type="button" aria-pressed="true">Hide Global</button>
@@ -145,6 +115,8 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
       <button class="secondary" type="button" data-contest-view="score">Contest summary</button>
     </div>
     <div class="compact-selectors">
+      <button id="contestChooseLogCompact" class="secondary" type="button">Choose log</button>
+      <button id="contestLoadLogCompact" type="button">Load log</button>
       <div>
         <label for="contestDateCompact">UTC date</label>
         <select id="contestDateCompact" disabled>
@@ -159,7 +131,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
         <label for="contestRegion2Compact">Path 2 region</label>
         <select id="contestRegion2Compact"></select>
       </div>
-      <a class="button secondary" href="userguide.html">User Guide</a>
+      <button id="contestClearCompact" class="secondary" type="button">Clear</button>
       <a class="button secondary compact-home-button" href="index.html">Home</a>
     </div>
     <p id="contestLoadStatus" class="compact-load-status" hidden></p>
@@ -330,28 +302,12 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
   syncCompactControls();
   }
 
-  function renderSummary() {
+  function updateContestStatus() {
     const { metadata, qsos, sourceName } = contestState;
     const qsoDates = [...new Set(qsos.map((q) => q.timestamp.slice(0, 10)))].sort();
-    const bandItems = countBy(qsos, (q) => q.band).map(([band, count]) => `<li>${bandLabel(band)}: ${count}</li>`).join("");
-    const regionItems = countBy(qsos, (q) => q.continent).map(([region, count]) => `<li>${region}: ${count}</li>`).join("");
-    const zoneItems = countBy(qsos, (q) => q.zone).map(([zone, count]) => `<li>${String(zone).padStart(2, "0")}: ${count}</li>`).join("");
     $("contestStatus").innerHTML = `
       <strong>${qsos.length.toLocaleString()} QSOs parsed from ${sourceName}</strong><br>
       Station ${metadata.CALLSIGN || qsos[0]?.reporter || "unknown"} | ${metadata.CONTEST || "contest unknown"} | UTC dates ${qsoDates.join(", ") || "none"}.
-    `;
-    $("contestMatrix").classList.remove("matrix-placeholder");
-    $("contestMatrix").innerHTML = `
-      <div class="summary-grid">
-        <div class="summary-card"><strong>${qsos.length.toLocaleString()}</strong><span>Total parsed QSOs</span></div>
-        <div class="summary-card"><strong>${qsoDates.length}</strong><span>UTC dates in log</span></div>
-        <div class="summary-card"><strong>${new Set(qsos.map((q) => q.call)).size.toLocaleString()}</strong><span>Unique worked callsigns</span></div>
-      </div>
-      <div class="summary-grid">
-        <div class="summary-card"><strong>Bands</strong><ul class="summary-list">${bandItems}</ul></div>
-        <div class="summary-card"><strong>Regions</strong><ul class="summary-list">${regionItems}</ul></div>
-        <div class="summary-card"><strong>CQ zones</strong><ul class="summary-list">${zoneItems}</ul></div>
-      </div>
     `;
   }
 
@@ -829,6 +785,10 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     renderContestView();
   }
 
+  function refreshContestViews() {
+    renderContestMatrix();
+  }
+
   function updateContestViewButtons() {
     document.querySelectorAll("[data-contest-view]").forEach((button) => {
       const active = button.dataset.contestView === contestState.view;
@@ -938,9 +898,10 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
       $("contestStatus").textContent = `No valid QSO lines parsed. ${result.skipped} QSO lines were skipped.`;
       return;
     }
-    renderSummary();
+    updateContestStatus();
     if (result.skipped) $("contestStatus").innerHTML += `<br>${result.skipped} QSO lines were skipped.`;
     renderContestMatrix();
+    setContestView("country");
   }
 
   function clearContest() {
@@ -990,16 +951,6 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     if (compact) compact.value = value;
   }
 
-  function setSetupOpen(isOpen) {
-    document.body.classList.toggle("contest-setup-closed", !isOpen);
-    const button = $("contestSetupToggle");
-    button.textContent = isOpen ? "Close setup" : "Open setup";
-    button.setAttribute("aria-pressed", String(!isOpen));
-    if (!isOpen && contestState.qsos.length && contestState.view === "matrix") {
-      setContestView("country");
-    }
-  }
-
   window.contestMatrixParser = { parseCabrilloLog, bandFromKHz, regionByZone };
   populateRegionSelectors();
   syncCompactControls();
@@ -1009,17 +960,20 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
   contestState.viewPlaceholder.matrix = true;
   renderContestSummaries();
   renderContestView();
-  $("contestGlobalToggle").addEventListener("click", () => { contestState.showGlobal = !contestState.showGlobal; updateGlobalToggle(); renderContestMatrix(); });
-  $("contestSetupToggle").addEventListener("click", () => setSetupOpen(document.body.classList.contains("contest-setup-closed")));
-  $("contestDateCompact").addEventListener("change", () => { setControlPairValue("contestDate", "contestDateCompact", $("contestDateCompact").value); renderContestMatrix(); });
-  $("contestRegion1Compact").addEventListener("change", () => { setControlPairValue("contestRegion1", "contestRegion1Compact", $("contestRegion1Compact").value); renderContestMatrix(); });
-  $("contestRegion2Compact").addEventListener("change", () => { setControlPairValue("contestRegion2", "contestRegion2Compact", $("contestRegion2Compact").value); renderContestMatrix(); });
+  $("contestStartButton").addEventListener("click", () => document.body.classList.remove("contest-home-visible"));
+  $("contestGlobalToggle").addEventListener("click", () => { contestState.showGlobal = !contestState.showGlobal; updateGlobalToggle(); refreshContestViews(); });
+  $("contestDateCompact").addEventListener("change", () => { setControlPairValue("contestDate", "contestDateCompact", $("contestDateCompact").value); refreshContestViews(); });
+  $("contestRegion1Compact").addEventListener("change", () => { setControlPairValue("contestRegion1", "contestRegion1Compact", $("contestRegion1Compact").value); refreshContestViews(); });
+  $("contestRegion2Compact").addEventListener("change", () => { setControlPairValue("contestRegion2", "contestRegion2Compact", $("contestRegion2Compact").value); refreshContestViews(); });
+  $("contestChooseLogCompact").addEventListener("click", () => $("contestLogFile").click());
+  $("contestLoadLogCompact").addEventListener("click", loadContestLog);
+  $("contestClearCompact").addEventListener("click", clearContest);
   $("loadContestLog").addEventListener("click", loadContestLog);
   $("clearContestMatrix").addEventListener("click", clearContest);
-  $("buildContestMatrix").addEventListener("click", renderContestMatrix);
-  $("contestDate").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
-  $("contestRegion1").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
-  $("contestRegion2").addEventListener("change", () => { syncCompactControls(); renderContestMatrix(); });
+  $("buildContestMatrix").addEventListener("click", refreshContestViews);
+  $("contestDate").addEventListener("change", () => { syncCompactControls(); refreshContestViews(); });
+  $("contestRegion1").addEventListener("change", () => { syncCompactControls(); refreshContestViews(); });
+  $("contestRegion2").addEventListener("change", () => { syncCompactControls(); refreshContestViews(); });
   document.querySelectorAll("[data-contest-view]").forEach((button) => {
     button.addEventListener("click", () => setContestView(button.dataset.contestView));
   });
