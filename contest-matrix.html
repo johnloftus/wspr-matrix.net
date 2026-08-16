@@ -86,7 +86,9 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
       <p class="contest-home-lead">Turn a Cabrillo contest log into a daily operating map.</p>
       <p class="contest-home-copy">See when each band opened, which regions answered, and where the multipliers came from.</p>
       <div class="contest-home-actions">
-        <button id="contestStartButton" type="button" class="start-button">Start</button>
+        <button type="button" class="start-button" data-contest-mode-start="countryZone" data-contest-start-view="country">Countries</button>
+        <button type="button" class="start-button" data-contest-mode-start="zoneDays" data-contest-start-view="day">Zones</button>
+        <button type="button" class="start-button" data-contest-mode-start="path" data-contest-start-view="matrix">Path Matrix</button>
         <a class="button secondary" href="userguide.html">User Guide</a>
       </div>
     </div>
@@ -151,8 +153,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
       </div>
       <div class="compare-action-group">
         <button id="contestCompareRun" class="secondary" type="button" disabled>Compare Countries</button>
-        <button id="contestCompareZoneRun" class="secondary" type="button" disabled>Compare Zones</button>
-        <button id="contestCompareDayRun" class="secondary" type="button" disabled>Compare Days</button>
+        <button id="contestCompareDayRun" class="secondary" type="button" disabled>Compare Zones</button>
       </div>
       <div class="compare-log-group compare-log-b" aria-label="Compare log B controls">
         <button id="contestCompareChooseB" class="secondary" type="button">Get log B</button>
@@ -183,7 +184,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const contestState = { metadata: {}, qsos: [], sourceName: "", countMode: "raw", showGlobal: true, view: "matrix", viewHtml: {}, viewPlaceholder: {}, countrySort: "country" };
+  const contestState = { metadata: {}, qsos: [], sourceName: "", countMode: "raw", showGlobal: true, mode: "countryZone", view: "matrix", viewHtml: {}, viewPlaceholder: {}, countrySort: "country" };
   const compareState = {
     A: { metadata: {}, qsos: [], sourceName: "", skipped: 0 },
     B: { metadata: {}, qsos: [], sourceName: "", skipped: 0 }
@@ -371,6 +372,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     if (contestState.view === "compare" || contestState.view === "compareZone" || contestState.view === "compareDay") return;
     if (contestState.qsos.length || !compareState.A.qsos.length && !compareState.B.qsos.length) return;
     const ready = compareState.A.qsos.length && compareState.B.qsos.length;
+    setContestMode("path");
     contestState.view = "matrix";
     contestState.viewHtml.matrix = ready
       ? `<div><strong>Compare logs</strong><p>Now ready to press 'Compare' button.</p></div>`
@@ -384,7 +386,6 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     setCompareDateOptions("B");
     const ready = Boolean(compareState.A.qsos.length && compareState.B.qsos.length);
     $("contestCompareRun").disabled = !ready;
-    $("contestCompareZoneRun").disabled = !ready;
     $("contestCompareDayRun").disabled = !ready;
     updateCompareStatus();
     updateComparePlaceholder();
@@ -736,6 +737,17 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     return state.qsos.filter((qso) => qso.timestamp.slice(0, 10) === date);
   }
 
+  function compareDateLabel(slot) {
+    const state = compareState[slot];
+    const select = $(`contestCompareDate${slot}`);
+    const date = select?.value || "";
+    if (!date) return `${slot} all dates`;
+    const dates = [...new Set(state.qsos.map((qso) => qso.timestamp.slice(0, 10)))].sort();
+    const index = dates.indexOf(date);
+    const day = index >= 0 ? `Day ${index + 1}` : "Day ?";
+    return `${slot} ${day}, ${date}`;
+  }
+
   function buildCompareZoneMatrixView(options = {}) {
     const dateAware = Boolean(options.dateAware);
     const aQsos = dateAware ? compareSelectedDateQsos("A") : compareState.A.qsos;
@@ -797,9 +809,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     const aLabel = compareStationLabel("A");
     const bLabel = compareStationLabel("B");
     const title = dateAware ? "Compare Zone Days" : "Compare Zone Matrix";
-    const aDate = $("contestCompareDateA")?.value || "";
-    const bDate = $("contestCompareDateB")?.value || "";
-    const dateText = dateAware && (aDate || bDate) ? `<span class="compare-date-note">A ${aDate || "all dates"} | B ${bDate || "all dates"}</span>` : "";
+    const dateText = dateAware ? `<span class="compare-date-note">${compareDateLabel("A")} &nbsp;&nbsp; | &nbsp;&nbsp; ${compareDateLabel("B")}</span>` : "";
     return {
       placeholder: false,
       html: `
@@ -1122,7 +1132,45 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     button.setAttribute("aria-pressed", String(contestState.showGlobal));
   }
 
+  function modeForView(view) {
+    if (view === "matrix") return "path";
+    if (view === "day" || view === "compareDay") return "zoneDays";
+    return "countryZone";
+  }
+
+  function setContestMode(mode) {
+    contestState.mode = mode;
+    document.body.dataset.contestMode = mode;
+  }
+
   function setContestView(view) {
+    setContestMode(modeForView(view));
+    contestState.view = view;
+    if (view === "matrix" && contestState.qsos.length) {
+      renderContestMatrix();
+      return;
+    }
+    if (["country", "contest", "day", "score"].includes(view) && contestState.qsos.length) {
+      renderContestSummaries();
+    }
+    if (view === "compare") {
+      renderCompareCountryMatrix();
+      return;
+    }
+    if (view === "compareZone") {
+      renderCompareZoneMatrix();
+      return;
+    }
+    if (view === "compareDay") {
+      renderCompareZoneDays();
+      return;
+    }
+    renderContestView();
+  }
+
+  function enterContestMode(mode, view) {
+    document.body.classList.remove("contest-home-visible");
+    setContestMode(mode);
     contestState.view = view;
     renderContestView();
   }
@@ -1144,12 +1192,6 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
       const active = contestState.view === "compare";
       compareButton.classList.toggle("view-active", active);
       compareButton.setAttribute("aria-pressed", String(active));
-    }
-    const compareZoneButton = $("contestCompareZoneRun");
-    if (compareZoneButton) {
-      const active = contestState.view === "compareZone";
-      compareZoneButton.classList.toggle("view-active", active);
-      compareZoneButton.setAttribute("aria-pressed", String(active));
     }
     const compareDayButton = $("contestCompareDayRun");
     if (compareDayButton) {
@@ -1313,6 +1355,7 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
     syncCompactControls();
     $("contestStatus").textContent = "Load a public Cabrillo contest log to begin.";
     updateCompactContext("<strong>Contest QSO Matrix</strong> | Load log first");
+    setContestMode("path");
     contestState.view = "matrix";
     contestState.viewHtml.matrix = `<div><strong>Load a contest log to begin</strong><p>The app will show path activity, country multipliers, zone summaries, and a contest score estimate.</p></div>`;
     contestState.viewPlaceholder.matrix = true;
@@ -1349,24 +1392,44 @@ body.contest-setup-closed #contestMatrix>.country-summary-wrap{max-height:none;p
   updateGlobalToggle();
   updateLoadStatus();
   updateCompareControls();
+  setContestMode(contestState.mode);
   contestState.viewHtml.matrix = `<div><strong>Load a contest log to begin</strong><p>The app will show path activity, country multipliers, zone summaries, and a contest score estimate.</p></div>`;
   contestState.viewPlaceholder.matrix = true;
   renderContestSummaries();
   renderContestView();
-  $("contestStartButton").addEventListener("click", () => document.body.classList.remove("contest-home-visible"));
+  document.querySelectorAll("[data-contest-mode-start]").forEach((button) => {
+    button.addEventListener("click", () => enterContestMode(button.dataset.contestModeStart, button.dataset.contestStartView));
+  });
   $("contestGlobalToggle").addEventListener("click", () => { contestState.showGlobal = !contestState.showGlobal; updateGlobalToggle(); refreshContestViews(); });
   $("contestDateCompact").addEventListener("change", () => { setControlPairValue("contestDate", "contestDateCompact", $("contestDateCompact").value); refreshContestViews(); });
   $("contestRegion1Compact").addEventListener("change", () => { setControlPairValue("contestRegion1", "contestRegion1Compact", $("contestRegion1Compact").value); refreshContestViews(); });
   $("contestRegion2Compact").addEventListener("change", () => { setControlPairValue("contestRegion2", "contestRegion2Compact", $("contestRegion2Compact").value); refreshContestViews(); });
-  $("contestChooseLogCompact").addEventListener("click", () => $("contestLogFile").click());
+  $("contestChooseLogCompact").addEventListener("click", () => {
+    $("contestLogFile").value = "";
+    $("contestLogFile").click();
+  });
+  $("contestLogFile").addEventListener("change", () => {
+    if ($("contestLogFile").files?.[0]) loadContestLog();
+  });
   $("contestLoadLogCompact").addEventListener("click", loadContestLog);
   $("contestClearCompact").addEventListener("click", clearContest);
-  $("contestCompareChooseA").addEventListener("click", () => $("contestCompareFileA").click());
-  $("contestCompareChooseB").addEventListener("click", () => $("contestCompareFileB").click());
+  $("contestCompareChooseA").addEventListener("click", () => {
+    $("contestCompareFileA").value = "";
+    $("contestCompareFileA").click();
+  });
+  $("contestCompareChooseB").addEventListener("click", () => {
+    $("contestCompareFileB").value = "";
+    $("contestCompareFileB").click();
+  });
+  $("contestCompareFileA").addEventListener("change", () => {
+    if ($("contestCompareFileA").files?.[0]) loadCompareLog("A");
+  });
+  $("contestCompareFileB").addEventListener("change", () => {
+    if ($("contestCompareFileB").files?.[0]) loadCompareLog("B");
+  });
   $("contestCompareLoadA").addEventListener("click", () => loadCompareLog("A"));
   $("contestCompareLoadB").addEventListener("click", () => loadCompareLog("B"));
   $("contestCompareRun").addEventListener("click", showCompareCountryMatrix);
-  $("contestCompareZoneRun").addEventListener("click", showCompareZoneMatrix);
   $("contestCompareDayRun").addEventListener("click", showCompareZoneDays);
   $("contestCompareDateA").addEventListener("change", () => { if (contestState.view === "compareDay") renderCompareZoneDays(); });
   $("contestCompareDateB").addEventListener("change", () => { if (contestState.view === "compareDay") renderCompareZoneDays(); });
