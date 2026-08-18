@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Contest Matrix User Guide: load Cabrillo contest logs, compare two callsigns, review countries, CQ zones, band openings, and contest activity by UTC time.">
+<link rel="canonical" href="https://wspr-matrix.net/contest-userguide">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Contest Matrix User Guide</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="doc">
+<p><a href="contest-matrix.html">Back to Contest Matrix</a></p>
+<h1>Contest Matrix User Guide</h1>
+<p><strong>Prototype guide</strong></p>
+
+<h2>What Contest Matrix Does</h2>
+<p>Contest Matrix turns Cabrillo contest logs into visual operating intelligence. It helps you see when each band opened, which regions answered, and where the country and CQ zone multipliers came from.</p>
+<p>The app is useful before a contest for planning, and after a contest for review. It is especially useful when comparing two callsigns, two stations, two antennas, or two different contest years.</p>
+
+<h2>Quick Start</h2>
+<ol>
+<li>Open <a href="contest-matrix.html">Contest Matrix</a>.</li>
+<li>Choose <strong>Single Log</strong>, <strong>Compare Countries</strong>, <strong>Compare Zones</strong>, or <strong>Path Matrix</strong>.</li>
+<li>For one log, press <strong>Get Log</strong> and choose a Cabrillo log file.</li>
+<li>For comparison, press <strong>Get Log A</strong> and <strong>Get Log B</strong> to choose two Cabrillo logs.</li>
+<li>Press <strong>Countries</strong>, <strong>Zone Matrix</strong>, <strong>Zone Day</strong>, <strong>Compare Countries</strong>, or <strong>Compare Zones</strong>.</li>
+<li>Use the internal scroll bar to review the matrix.</li>
+<li>Use <strong>Home</strong> to return to the opening choices.</li>
+</ol>
+
+<h2>Choosing A View</h2>
+<p><strong>Single Log</strong> opens one-log review. Use this when you want to study one Cabrillo log without loading a second callsign.</p>
+<p><strong>Countries</strong> shows worked countries and entities by band. This is the clearest view for multiplier review. It quickly shows what was worked and what was missed.</p>
+<p><strong>Compare Countries</strong> places Log A and Log B side by side under each band. Log A uses the orange columns. Log B uses the blue columns.</p>
+<p><strong>Compare Zones</strong> compares CQ zone activity by selected contest day. Use <strong>Date A</strong> and <strong>Date B</strong> to compare day 1 with day 1, day 2 with day 2, or different days between two logs.</p>
+<p><strong>Path Matrix</strong> reviews QSO timing by selected broad regions. This view is useful for seeing when a region answered on each band during the UTC day.</p>
+
+<h2>Using One Log</h2>
+<p>Use <strong>Single Log</strong> when you want to review one station only. This is the natural starting point for most operators.</p>
+<p>The Single Log control bar provides:</p>
+<ul>
+<li><strong>Get Log</strong> to load one Cabrillo file;</li>
+<li><strong>Countries</strong> to review worked countries and entities by band;</li>
+<li><strong>Zone Matrix</strong> to review CQ zone totals across the full contest log;</li>
+<li><strong>Zone Day</strong> to review CQ zones for the selected contest day;</li>
+<li><strong>Path Matrix</strong> to review QSO timing by selected broad regions.</li>
+</ul>
+<p>The date selector is mainly useful for <strong>Zone Day</strong> and <strong>Path Matrix</strong>. Country and full Zone Matrix views use the dates contained in the loaded log.</p>
+
+<h2>Using Two Logs</h2>
+<p>Load one log when you want a single-station review. Load two logs when you want a direct comparison.</p>
+<p>Useful comparisons include:</p>
+<ul>
+<li>your station this year against your station last year;</li>
+<li>two stations in the same contest;</li>
+<li>two operators using different strategies;</li>
+<li>two antenna systems or receiving locations;</li>
+<li>claimed performance against a public reference log.</li>
+</ul>
+
+<h2>Contest Planning</h2>
+<p>Before a contest, use previous logs to form a practical operating plan. Look for the hours when a band was productive, the regions that answered, and the multiplier areas that appeared briefly.</p>
+<p>A good plan may help you:</p>
+<ul>
+<li>prioritise bands by time of day;</li>
+<li>prepare for short openings;</li>
+<li>choose beam headings with purpose;</li>
+<li>identify likely country and zone multiplier windows;</li>
+<li>compare strategy with a stronger station.</li>
+</ul>
+
+<h2>Contest Review</h2>
+<p>After a contest, use the matrices to review strengths and missed opportunities. The most useful questions are often simple:</p>
+<ul>
+<li>Which bands carried most of the multipliers?</li>
+<li>Which zones or countries were missed?</li>
+<li>Did another station work a region earlier or later?</li>
+<li>Was a band abandoned too early?</li>
+<li>Did the station collect multipliers evenly across both contest days?</li>
+</ul>
+
+<h2>Cabrillo Logs</h2>
+<p>Contest Matrix reads Cabrillo log files directly in your browser. The log is not uploaded to a server by this app. The station callsign, contest name, dates, bands, times, callsigns, and CQ zones are read from the file.</p>
+<p>Contest dates normally come from the Cabrillo log. Country and zone comparison views use those log dates automatically. The day selector is only needed where a day-by-day zone comparison is wanted.</p>
+
+<h2>Countries And Zones</h2>
+<p><strong>Countries</strong> uses a CTY.DAT style prefix lookup to estimate worked countries and entities. This is intended for useful contest analysis, not official adjudication.</p>
+<p><strong>Zones</strong> use the CQ zone number recorded in the Cabrillo QSO line. The zone matrix is a strong way to see broad geographic reach by band and by contest day.</p>
+
+<h2>Important Notes</h2>
+<ul>
+<li>Contest Matrix is an analysis and planning tool, not an official scoring engine.</li>
+<li>Official results may differ after duplicate checking, busted-call checking, exchange checking, and adjudication.</li>
+<li>Country/entity matching is approximate and depends on prefix data.</li>
+<li>Blank cells mean no matching QSOs were found in the loaded log data.</li>
+<li>Counts are based on the Cabrillo log content loaded into the browser.</li>
+</ul>
+</main>
+</body>
+</html>
